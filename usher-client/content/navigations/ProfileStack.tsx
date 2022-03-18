@@ -1,9 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import Profile from '../pages/Profile';
-import Favorites from '../pages/Favorites';
-import Tickets from '../pages/Tickets';
+import { Profile, Favorites, Tickets } from '../pages';
 
 const Stack = createStackNavigator();
 

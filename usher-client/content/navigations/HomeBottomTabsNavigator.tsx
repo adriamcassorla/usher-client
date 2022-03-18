@@ -1,9 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import AuthorizedHome from '../pages/AuthorizedHome';
-import Map from '../pages/Map';
-import Search from '../pages/Search';
+import { AuthorizedHome, Map, Search } from '../pages';
 import ProfileStack from './ProfileStack';
 
 const Tabs = createBottomTabNavigator();

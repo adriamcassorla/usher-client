@@ -1,7 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import Event from '../pages/Event';
+import { Event } from '../pages';
 import HomeBottomTabsNavigator from './HomeBottomTabsNavigator';
 
 import { NavigationContainer } from '@react-navigation/native';
