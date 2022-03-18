@@ -1,14 +1,13 @@
 import { View, Text } from 'react-native'
 import React from 'react'
-
 import { Center } from 'native-base'
 
-const Event = () => {
+const Tickets = () => {
   return (
     <Center h={'full'} w={'full'}>
-      <Text>Event</Text>
+      <Text>Tickets</Text>
     </Center>
   )
 }
 
-export default Event
+export default Tickets
