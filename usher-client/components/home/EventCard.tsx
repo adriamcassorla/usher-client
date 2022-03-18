@@ -1,14 +1,15 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-import { Button } from 'native-base'
+import { Button, Center } from 'native-base'
 
 const EventCard = ({event, navigation}) => {
   return (
-    <View>
+    <Center h={20} w={'full'}>
       <Text>EventCard for event {event}</Text>
 
       <Button
+        w={'80%'}
         colorScheme="primary"
         onPress={()=>{
           navigation.navigate('Event');
@@ -17,7 +18,7 @@ const EventCard = ({event, navigation}) => {
       >
         Check event
       </Button>
-    </View>
+    </Center>
   )
 }
 

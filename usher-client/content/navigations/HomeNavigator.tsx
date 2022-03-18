@@ -9,10 +9,10 @@ const Tabs = createBottomTabNavigator();
 const HomeNavigator = () => {
   return (
       <Tabs.Navigator>
-        <Tabs.Screen name="Home" component={AuthorizedHome} />
-        <Tabs.Screen name="Search" component={Search} />
-        <Tabs.Screen name="Map" component={Map} />
-        <Tabs.Screen name="ProfileStack" component={ProfileStack} />
+        <Tabs.Screen options={{headerShown:false}} name="Home" component={AuthorizedHome} />
+        <Tabs.Screen options={{headerShown:false}} name="Search" component={Search} />
+        <Tabs.Screen options={{headerShown:false}} name="Map" component={Map} />
+        <Tabs.Screen options={{headerShown:false}} name="ProfileStack" component={ProfileStack} />
       </Tabs.Navigator>
   );
 };
