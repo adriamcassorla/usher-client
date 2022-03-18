@@ -3,20 +3,39 @@ import {
   Text,
   Center,
   NativeBaseProvider,
-  extendTheme,
   Button,
 } from 'native-base';
 
 import theme from './styles/theme';
+import UnauthorizedHome from './content/pages/UnauthorizedHome';
+import HomeBottomTabsNavigator from './content/navigations/HomeBottomTabsNavigator';
+
 
 export default function App() {
+  const authorized = true;
+
   return (
-    <NativeBaseProvider theme={theme}>
-      <Center w="full" h="full">
-        <Button color={'primary.500'}>
-          <Text>This is Usher</Text>
-        </Button>
-      </Center>
-    </NativeBaseProvider>
+     <NativeBaseProvider theme={theme}>
+       { authorized ?
+         <HomeBottomTabsNavigator></HomeBottomTabsNavigator> :
+         <UnauthorizedHome></UnauthorizedHome>
+       }
+      {/*
+      TODO: MAIN SKELETON
+      - Conditional render
+        = Login
+        = Stack navigator
+          + Main tab navigation:
+            * Search
+            * Home
+            * Map
+            * Profile stack:
+              - Profile
+              - Favorites
+              - Tickets
+          + Event page
+      */}
+
+     </NativeBaseProvider>
   );
 }
