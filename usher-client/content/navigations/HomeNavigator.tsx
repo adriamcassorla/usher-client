@@ -6,7 +6,7 @@ import ProfileStack from './ProfileStack';
 
 const Tabs = createBottomTabNavigator();
 
-const HomeBottomTabsNavigator = () => {
+const HomeNavigator = () => {
   return (
       <Tabs.Navigator>
         <Tabs.Screen name="Home" component={AuthorizedHome} />
@@ -17,4 +17,4 @@ const HomeBottomTabsNavigator = () => {
   );
 };
 
-export default HomeBottomTabsNavigator;
+export default HomeNavigator;
