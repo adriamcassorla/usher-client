@@ -1,25 +1,23 @@
 import { View, Text } from 'react-native'
 import React from 'react'
-import { Button } from 'native-base'
+import { Button, Center } from 'native-base'
 
-import { Center } from 'native-base'
-
-const Event = ({navigation}) => {
+const Payment = ({navigation}) => {
   return (
     <Center h={'full'} w={'full'}>
-      <Text>Event</Text>
+      <Text>Payment</Text>
       <Button
         colorScheme="primary"
         onPress={()=>{
-          navigation.navigate('Payment')
+          navigation.navigate('Confirmation')
         }}
 
       >
-        Book tickets
+        Pay
       </Button>
 
     </Center>
   )
 }
 
-export default Event
+export default Payment
