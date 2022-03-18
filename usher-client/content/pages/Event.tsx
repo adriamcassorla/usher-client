@@ -8,6 +8,7 @@ const Event = ({navigation}) => {
   return (
     <Center h={'full'} w={'full'}>
       <Text>Event</Text>
+      <Text>But I don't have any event data!</Text>
       <Button
         colorScheme="primary"
         onPress={()=>{

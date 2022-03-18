@@ -3,20 +3,15 @@ import React from 'react'
 
 import { Button } from 'native-base'
 
+import { Highlights, FilterMenu, EventsList, EventCard } from '../../components/home'
+
 const AuthorizedHome = ({navigation}) => {
   return (
     <View>
-      <Text>AuthorizedHome</Text>
-      <Button
-        colorScheme="primary"
-        onPress={()=>{
-          navigation.navigate('Event');
-        }}
-
-      >
-        Check event
-      </Button>
-
+      <Text style={{textAlign: 'center'}}>AuthorizedHome</Text>
+      <Highlights/>
+      <FilterMenu/>
+      <EventsList navigation={navigation} events={['event A', 'event B', 'event C']}/>
     </View>
   )
 }
