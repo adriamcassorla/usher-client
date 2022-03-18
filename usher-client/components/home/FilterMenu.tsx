@@ -1,7 +1,7 @@
-import { View, Text } from 'react-native';
+import { Text } from 'react-native';
 import React from 'react';
 
-import { Button, FlatList } from 'native-base';
+import { Button, View, FlatList } from 'native-base';
 
 const FilterMenu = () => {
   const filters = [
@@ -13,12 +13,11 @@ const FilterMenu = () => {
     'genre F',
   ];
 
-  //TODO: Create a proper render item function for filter buttons
+  //TODO: Create a proper render item function for filter buttons. Can we use a subcomponent?
   const _renderItem = ((item, index, separator) => (<Button ml={1}>A very very long filter</Button>))
 
   return (
-    <View>
-      <Text style={{ textAlign: 'center' }}>FilterMenu</Text>
+    <View py={'3'} bg={'amber.300'}>
       <FlatList
         showsHorizontalScrollIndicator={false}
         margin={2}

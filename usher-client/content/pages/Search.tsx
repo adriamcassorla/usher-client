@@ -1,13 +1,28 @@
 import { View, Text } from 'react-native';
 import React, { useState } from 'react';
 
-import { Center, Input, Icon } from 'native-base';
+import { Center, Input, Icon, FlatList } from 'native-base';
 import { Ionicons } from '@expo/vector-icons';
 
 import MiniEventCardList from '../../components/search/MiniEventCardList';
 
-const Search = () => {
+const Search = ({navigation}) => {
   const [result, setResult] = useState([
+    'array',
+    'of',
+    'events',
+    'from',
+    'context',
+    'array',
+    'of',
+    'events',
+    'from',
+    'context',
+    'array',
+    'of',
+    'events',
+    'from',
+    'context',
     'array',
     'of',
     'events',
@@ -18,7 +33,7 @@ const Search = () => {
   return (
     <Center>
       <Input
-        my={10}
+        mt={32}
         placeholder="Search"
         placeholderTextColor='black'
         variant="filled"
@@ -35,7 +50,7 @@ const Search = () => {
           />
         }
       />
-      <MiniEventCardList events={result}/>
+      <MiniEventCardList navigation={navigation} events={result}/>
     </Center>
   );
 };
