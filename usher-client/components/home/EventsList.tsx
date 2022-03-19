@@ -1,16 +1,18 @@
-import { Text } from 'react-native';
-import React from 'react';
+import { Text } from "react-native";
+import * as React from "react";
 
-import { Button, View, FlatList } from 'native-base';
+import { Button, View, FlatList } from "native-base";
 
-import EventCard from './EventCard';
+import EventCard from "./EventCard";
 
 const EventsList = ({ events, navigation }) => {
   //TODO: Fix flat list. Event card component?
-  const _renderItem = (({item, index, separator}) => (<EventCard event={item}/>))
+  const _renderItem = ({ item, index, separator }) => (
+    <EventCard event={item} />
+  );
   return (
     <View h={500} mt={6}>
-      <Text style={{ textAlign: 'center' }}>Mini event cards List</Text>
+      <Text style={{ textAlign: "center" }}>Mini event cards List</Text>
       <FlatList
         showsVerticalScrollIndicator={false}
         margin={2}

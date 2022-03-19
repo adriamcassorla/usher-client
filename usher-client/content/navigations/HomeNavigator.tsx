@@ -1,12 +1,9 @@
-import React from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import * as React from "react";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import { Map, Search, Home } from '../pages';
-import ProfileStack from './ProfileStack';
-import {
-  EventsContext,
-  EventsProvider,
-} from '../../services/contexts/EventsContext';
+import { Map, Search, Home } from "../pages";
+import ProfileStack from "./ProfileStack";
+import { EventsProvider } from "../../services/contexts/EventsContext";
 
 const Tabs = createBottomTabNavigator();
 

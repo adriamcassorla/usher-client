@@ -1,9 +1,9 @@
-import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer } from '@react-navigation/native';
+import * as React from "react";
+import { createStackNavigator } from "@react-navigation/stack";
+import { NavigationContainer } from "@react-navigation/native";
 
-import { Event, Payment, Confirmation } from '../pages';
-import HomeNavigator from './HomeNavigator';
+import { Event, Payment, Confirmation } from "../pages";
+import HomeNavigator from "./HomeNavigator";
 
 const Stack = createStackNavigator();
 
@@ -11,10 +11,26 @@ const MainStack = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen options={{headerShown:false}} name="Main" component={HomeNavigator} />
-        <Stack.Screen options={{headerShown:false}} name="Event" component={Event} />
-        <Stack.Screen options={{headerShown:false}} name="Payment" component={Payment} />
-        <Stack.Screen options={{headerShown:false}} name="Confirmation" component={Confirmation} />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Main"
+          component={HomeNavigator}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Event"
+          component={Event}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Payment"
+          component={Payment}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Confirmation"
+          component={Confirmation}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

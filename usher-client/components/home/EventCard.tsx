@@ -1,28 +1,24 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { View, Text } from "react-native";
+import * as React from "react";
 
-import { Button, Center, Image } from 'native-base'
+import { Button, Center, Image } from "native-base";
 
-const EventCard = ({event, navigation}) => {
+const EventCard = ({ event, navigation }) => {
   return (
-    <Center h={20} w={'full'}>
+    <Center h={20} w={"full"}>
       <Text>EventCard for event {event.name}</Text>
-      <Image
-      w={200} h={200} src={event.image}
-      />
 
       <Button
-        w={'80%'}
+        w={"80%"}
         colorScheme="primary"
-        onPress={()=>{
-          navigation.navigate('Event');
+        onPress={() => {
+          navigation.navigate("Event");
         }}
-
       >
         Check event
       </Button>
     </Center>
-  )
-}
+  );
+};
 
-export default EventCard
+export default EventCard;

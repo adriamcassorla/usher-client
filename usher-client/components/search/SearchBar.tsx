@@ -1,12 +1,12 @@
-import { Input, Icon, View } from 'native-base';
-import { Ionicons } from '@expo/vector-icons';
-import React from 'react';
+import { Input, Icon, View } from "native-base";
+import { Ionicons } from "@expo/vector-icons";
+import * as React from "react";
 
 const SearchBar = () => {
   return (
-    <View p={2} bg={'amber.50'}>
+    <View p={2} bg={"amber.50"}>
       <Input
-        alignSelf={'center'}
+        alignSelf={"center"}
         mt={6}
         placeholder="Search"
         placeholderTextColor="black"
