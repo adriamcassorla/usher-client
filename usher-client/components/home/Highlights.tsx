@@ -15,15 +15,14 @@ const Highlights = ({ topEvents }: Props) => {
   const navigation = useNavigation<MainStackNavType>();
   const _renderItem = ({ item }) => {
     return (
-      <Center bg={"primary.100"} w={200} h={200} key={item}>
+      <Center bg={"primary.100"} w={200} h={200} zIndex={2} key={item}>
         {item}
       </Center>
     );
   };
 
   return (
-    <Center h={"220"} w={"full"}>
-      <Text style={{ margin: 20, textAlign: "center" }}>Highlights</Text>
+    <Center h={"200"} w={"full"} pt={12}>
       <Carousel
         style={{ borderColor: "green", borderWidth: 5, borderStyle: "solid" }}
         sliderWidth={200}
