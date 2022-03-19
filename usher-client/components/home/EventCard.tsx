@@ -1,6 +1,15 @@
 import * as React from "react";
 
-import { Pressable, Image, VStack, Box, Heading, Text } from "native-base";
+import {
+  Pressable,
+  Image,
+  VStack,
+  Box,
+  Heading,
+  Text,
+  HStack,
+} from "native-base";
+import { todayDates, capitalizeName } from "../../utils/helpers/home";
 import type { StackNavigationProp } from "@react-navigation/stack";
 type MainStackNavType = StackNavigationProp<MainStackParamList>;
 
@@ -31,12 +40,30 @@ const EventCard = ({ event }: Props) => {
           height={150}
           roundedTop="md"
         />
-        <Text bold position="absolute" color="white" top={0} m={[4, 4, 8]}>
+        <Text bold position="absolute" color="white" top={0} m={[3, 3, 8]}>
           {event.type}
         </Text>
+
+        <Box position="absolute" top={100}>
+          <HStack>
+            {event.today_shows.length > 2 ? (
+              <Text bold color="white" fontSize="2xl">
+                Multiple shows
+              </Text>
+            ) : (
+              todayDates(event)?.map((date) => (
+                <Box key={Math.random()} w={32} h={8} m={[3, 3, 0, 3]}>
+                  <Text bold color="white" fontSize="2xl">
+                    {date}
+                  </Text>
+                </Box>
+              ))
+            )}
+          </HStack>
+        </Box>
+
         <VStack>
-          <Text color="gray.400">{event.date}</Text>
-          <Heading>{event.name.toLowerCase()}</Heading>
+          <Heading p={3}>{capitalizeName(event)}</Heading>
         </VStack>
       </Box>
     </Pressable>
