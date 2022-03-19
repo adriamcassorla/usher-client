@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { NativeBaseProvider } from 'native-base';
 
 import theme from './styles/theme';
-import UnauthorizedHome from './content/pages/UnauthorizedHome';
+import Auth from './content/pages/Auth';
 import MainStack from './content/navigations/MainStack';
 
 export default function App() {
@@ -13,7 +13,7 @@ export default function App() {
       {user ? (
         <MainStack></MainStack>
       ) : (
-        <UnauthorizedHome setUser={setUser}></UnauthorizedHome>
+        <Auth setUser={setUser}></Auth>
       )}
     </NativeBaseProvider>
   );

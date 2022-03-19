@@ -1,6 +1,5 @@
-import { View, Text } from 'react-native'
 import React from 'react'
-import { Button, Center } from 'native-base'
+import { Button, Center, Text} from 'native-base'
 
 const Confirmation = ({navigation}) => {
   return (
@@ -11,7 +10,6 @@ const Confirmation = ({navigation}) => {
         onPress={()=>{
           navigation.navigate('Main')
         }}
-
       >
         All done! Return Home!
       </Button>

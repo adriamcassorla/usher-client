@@ -1,16 +1,16 @@
-import { View, Text } from 'react-native';
 import React, {useState} from 'react';
 
-import { Center, Button } from 'native-base';
-import LogInForm from '../../components/unauthorizedHome/LogInForm';
-import SignUpForm from '../../components/unauthorizedHome/SignUpForm';
+import { Center, Text } from 'native-base';
 
-const UnauthorizedHome = ({ setUser }) => {
+import LogInForm from '../../components/auth/LogInForm';
+import SignUpForm from '../../components/auth/SignUpForm';
+
+const Auth = ({ setUser }) => {
   const [isNewUser, setIsNewUser] = useState(false)
 
   return (
     <Center h="full" w="full" bg="light.100">
-      <Text>UnauthorizedHome</Text>
+      <Text>Auth</Text>
       {
         isNewUser ?
         <SignUpForm setUser={setUser} setIsNewUser={setIsNewUser}/> :
@@ -20,4 +20,4 @@ const UnauthorizedHome = ({ setUser }) => {
   );
 };
 
-export default UnauthorizedHome;
+export default Auth;

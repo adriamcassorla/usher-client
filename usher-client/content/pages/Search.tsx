@@ -1,33 +1,21 @@
-import { View, Text } from 'react-native';
 import React, { useState } from 'react';
 
-import { Center, Input, Icon, FlatList } from 'native-base';
+import { Center, Input, Icon } from 'native-base';
 import { Ionicons } from '@expo/vector-icons';
 
 import MiniEventCardList from '../../components/search/MiniEventCardList';
 
 const Search = ({navigation}) => {
+  // TODO: Bring in events from context. Implement search regex logic. setResult with input onChange
+  // NOTE: Let results default to null until user starts typing
+
   const [result, setResult] = useState([
     'array',
     'of',
     'events',
     'from',
     'context',
-    'array',
-    'of',
-    'events',
-    'from',
-    'context',
-    'array',
-    'of',
-    'events',
-    'from',
-    'context',
-    'array',
-    'of',
-    'events',
-    'from',
-    'context',
+    'array'
   ]);
 
   return (
