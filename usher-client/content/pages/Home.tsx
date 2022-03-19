@@ -7,13 +7,15 @@ import { TouchableHighlight } from 'react-native';
 import { EventsContext } from '../../services/contexts/EventsContext';
 
 const Home = ({ navigation }) => {
-  
-  //city should be a state depending on picker
+
+  // * NOTE *  City should be a state depending on picker
   const city = 'Barcelona';
 
   const {events, populateEvents} = useContext(EventsContext);
 
-  useEffect(() => populateEvents(city), [city]);
+  useEffect(() => {
+    populateEvents(city)
+  }, [city]);
 
   // const events = ['_HIGHLIGHTS', '_FILTERS',0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   const _renderItem = ({ item, index, separators }) => {
