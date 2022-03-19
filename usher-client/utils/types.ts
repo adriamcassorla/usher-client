@@ -26,6 +26,7 @@ type EventType = {
   venue_id: String,
   favorite_by: User[],
   shows: Show[],
+  today_shows: Show[]
 }
 
 type Venue = {

@@ -1,10 +1,9 @@
 import * as React from "react";
 const { useContext, useEffect } = React;
 
-import { ScrollView, FlatList, Text, View, Center, Button } from "native-base";
+import { FlatList, Center } from "native-base";
 
 import { Highlights, FilterMenu, EventCard } from "../../components/home";
-import { TouchableHighlight } from "react-native";
 import { EventsContext } from "../../services/contexts/EventsContext";
 
 const Home = ({ navigation }) => {
