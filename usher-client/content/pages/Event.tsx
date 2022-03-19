@@ -1,8 +1,10 @@
 import * as React from "react";
-
 import { Center, Text, Button } from "native-base";
 
-const Event = ({ navigation, route }) => {
+import type { NativeStackScreenProps } from "@react-navigation/native-stack";
+type Props = NativeStackScreenProps<MainStackParamList, "Event">;
+
+const Event = ({ navigation, route }: Props) => {
   const eventId = route.params.eventId;
 
   return (
@@ -11,7 +13,7 @@ const Event = ({ navigation, route }) => {
       <Button
         colorScheme="primary"
         onPress={() => {
-          navigation.navigate("Payment");
+          navigation.navigate("Payment", { showId: "testing" });
         }}
       >
         Book tickets

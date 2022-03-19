@@ -4,8 +4,15 @@ import * as React from "react";
 import { Center, Flex } from "native-base";
 
 import Carousel from "react-native-snap-carousel";
+import type { StackNavigationProp } from "@react-navigation/stack";
+type MainStackNavType = StackNavigationProp<MainStackParamList>;
+import { useNavigation } from "@react-navigation/native";
+type Props = {
+  topEvents: EventType[];
+};
 
-const Highlights = () => {
+const Highlights = ({ topEvents }: Props) => {
+  const navigation = useNavigation<MainStackNavType>();
   const _renderItem = ({ item }) => {
     return (
       <Center bg={"primary.100"} w={200} h={200} key={item}>

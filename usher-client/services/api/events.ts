@@ -3,21 +3,21 @@ import { gql, GraphQLClient } from "graphql-request";
 const apiURL = "https://tourn.me/usher";
 const client = new GraphQLClient(apiURL);
 
-export const getCityEvents = async (city: string, dayRange: number = 3) => {
+export const getCityEvents = async (city: string, dayRange: number = 3): Promise<EventType[]> => {
   const query = gql`
     query GetCityEvents($city: String!, $dayRange: Int!) {
       getCityEvents(city: $city, dayRange: $dayRange) {
-        name
-        today_shows {
-          date
-          active_sale
-        }
         id
+        name
         price
         type
         genres
         image
         poster
+        today_shows {
+          date
+          active_sale
+        }
         venue {
           name
           latitude
@@ -30,7 +30,7 @@ export const getCityEvents = async (city: string, dayRange: number = 3) => {
 
   try {
     const events = await client.request(query, { city, dayRange });
-    return events.getCityEvents;
+    return events.getCityEvents as EventType[];
   } catch (e) {
     console.error(e);
     return [];
@@ -38,7 +38,7 @@ export const getCityEvents = async (city: string, dayRange: number = 3) => {
 };
 
 
-export const getEventInfo = async (eventID: number, isToday: boolean) => {
+export const getEventInfo = async (eventID: number, isToday: boolean): Promise<EventType | null> => {
   const query = gql`
     query GetEvent($eventID: Int!, $isToday: Boolean!) {
   getEvent(id: $eventID) {
@@ -60,20 +60,20 @@ export const getEventInfo = async (eventID: number, isToday: boolean) => {
       longitude
     }
     today_shows @include(if: $isToday){
+      id
       date
       active_sale
       available_seats
-      id
     }
   }
 }
   `;
   try {
     const event = await client.request(query, { eventID, isToday });
-    return event.getEvent;
+    return event.getEvent as EventType;
   }
   catch (e) {
     console.error(e);
-    return [];
+    return null;
   }
 };

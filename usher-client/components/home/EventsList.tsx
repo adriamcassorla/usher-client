@@ -2,10 +2,13 @@ import { Text } from "react-native";
 import * as React from "react";
 
 import { Button, View, FlatList } from "native-base";
-
 import EventCard from "./EventCard";
 
-const EventsList = ({ events, navigation }) => {
+type Props = {
+  events: EventType[];
+};
+
+const EventsList = ({ events }: Props) => {
   //TODO: Fix flat list. Event card component?
   const _renderItem = ({ item, index, separator }) => (
     <EventCard event={item} />

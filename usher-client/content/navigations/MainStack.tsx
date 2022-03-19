@@ -5,7 +5,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { Event, Payment, Confirmation } from "../pages";
 import HomeNavigator from "./HomeNavigator";
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<MainStackParamList>();
 
 const MainStack = () => {
   return (

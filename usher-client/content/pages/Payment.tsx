@@ -1,21 +1,23 @@
-import React from 'react'
-import { Button, Center, Text } from 'native-base'
+import * as React from "react";
+import { Button, Center, Text } from "native-base";
 
-const Payment = ({navigation}) => {
+import type { NativeStackScreenProps } from "@react-navigation/native-stack";
+type Props = NativeStackScreenProps<MainStackParamList, "Payment">;
+
+const Payment = ({ navigation }: Props) => {
   return (
-    <Center h={'full'} w={'full'}>
+    <Center h={"full"} w={"full"}>
       <Text>Payment</Text>
       <Button
         colorScheme="primary"
-        onPress={()=>{
-          navigation.navigate('Confirmation')
+        onPress={() => {
+          navigation.navigate("Confirmation");
         }}
       >
         Pay
       </Button>
-
     </Center>
-  )
-}
+  );
+};
 
-export default Payment
+export default Payment;

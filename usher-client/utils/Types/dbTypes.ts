@@ -11,21 +11,22 @@ type User = {
 }
 
 type EventType = {
-  id: Number,
+  id: number,
   name: String,
-  price: Number,
+  price: number,
   type: String,
   genres: String[],
   image?: String,
   poster?: String,
   language?: String,
-  duration?: Number,
+  duration?: number,
   description?: String,
   external_url?: String,
   venue: Venue,
   venue_id: String,
   favorite_by: User[],
   shows: Show[],
+  today_shows: Show[],
 }
 
 type Venue = {
@@ -35,11 +36,11 @@ type Venue = {
   address: String,
   zipcode: String,
   city: String,
-  latitude: Number,
-  longitude: Number,
+  latitude: number,
+  longitude: number,
   events: EventType[],
   promoter: Promoter,
-  promoter_id: Number,
+  promoter_id: number,
 }
 
 type Ticket = {
@@ -48,24 +49,22 @@ type Ticket = {
   show_id: String,
   used: Boolean,
   user: User,
-  user_id: String,
 }
 
 type Promoter = {
-  id: Number,
+  id: number,
   name: String,
   email: String,
   password: String,
   venues: Venue[],
-  telephone?: Number
+  telephone?: number
 }
 
 type Show = {
-  id: String,
+  id?: String,
   date: String,
   active_sale: Boolean,
-  available_seats: Number,
-  tickets: Ticket[],
-  event: EventType,
-  event_id: Number
+  available_seats?: number,
+  tickets?: Ticket[],
+  event?: EventType,
 }

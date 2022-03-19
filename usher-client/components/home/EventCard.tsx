@@ -1,8 +1,17 @@
 import * as React from "react";
 
 import { Pressable, Image, VStack, Box, Heading, Text } from "native-base";
+import type { StackNavigationProp } from "@react-navigation/stack";
+type MainStackNavType = StackNavigationProp<MainStackParamList>;
 
-const EventCard = ({ event, navigation }) => {
+import { useNavigation } from "@react-navigation/native";
+type Props = {
+  event: EventType;
+};
+
+const EventCard = ({ event }: Props) => {
+  const navigation = useNavigation<MainStackNavType>();
+
   return (
     <Pressable
       onPress={() => navigation.navigate("Event", { eventId: event.id })}

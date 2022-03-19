@@ -1,13 +1,14 @@
 import * as React from "react";
 const { useContext, useEffect } = React;
 
-import { ScrollView, FlatList, Text, View, Center, Button } from "native-base";
-
+import { FlatList, Center } from "native-base";
 import { Highlights, FilterMenu, EventCard } from "../../components/home";
-import { TouchableHighlight } from "react-native";
 import { EventsContext } from "../../services/contexts/EventsContext";
 
-const Home = ({ navigation }) => {
+import type { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
+type Props = BottomTabScreenProps<HomeTabParamList, "Home">;
+
+const Home = ({ navigation }: Props) => {
   // * NOTE *  City should be a state depending on picker
   const city = "Barcelona";
 
@@ -18,10 +19,10 @@ const Home = ({ navigation }) => {
   });
 
   // const events = ['_HIGHLIGHTS', '_FILTERS',0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-  const _renderItem = ({ item, index, separators }) => {
-    if (index === 0) return <Highlights />;
+  const _renderItem = ({ item, index }) => {
+    if (index === 0) return <Highlights topEvents={[]} />;
     if (index === 1) return <FilterMenu />;
-    return <EventCard event={item} navigation={navigation} />;
+    return <EventCard event={item} />;
   };
 
   return (

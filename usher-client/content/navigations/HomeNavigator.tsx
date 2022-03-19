@@ -5,7 +5,7 @@ import { Map, Search, Home } from "../pages";
 import ProfileStack from "./ProfileStack";
 import { EventsProvider } from "../../services/contexts/EventsContext";
 
-const Tabs = createBottomTabNavigator();
+const Tabs = createBottomTabNavigator<HomeTabParamList>();
 
 const HomeNavigator = () => {
   return (

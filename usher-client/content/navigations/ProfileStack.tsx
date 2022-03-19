@@ -3,7 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import { Profile, Favorites, Tickets } from "../pages";
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<ProfileStackParamList>();
 
 const ProfileStack = () => {
   return (
