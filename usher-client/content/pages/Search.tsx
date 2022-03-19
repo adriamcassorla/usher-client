@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 
-import { Center, Input, Icon } from 'native-base';
-import { Ionicons } from '@expo/vector-icons';
+import { View, FlatList } from 'native-base';
 
-import MiniEventCardList from '../../components/search/MiniEventCardList';
+import MiniEventCard from '../../components/search/MiniEventCard';
+import SearchBar from '../../components/search/SearchBar';
 
 const Search = ({navigation}) => {
   // TODO: Bring in events from context. Implement search regex logic. setResult with input onChange
   // NOTE: Let results default to null until user starts typing
 
-  const [result, setResult] = useState([
+  const [results, setResults] = useState([
+    '_SEARCHBAR',
     'array',
     'of',
     'events',
@@ -18,28 +19,22 @@ const Search = ({navigation}) => {
     'array'
   ]);
 
+  const _renderItem = ({item, index, separators}) => {
+    if (index === 0) return (<SearchBar setResults={setResults}/>)
+    return (<MiniEventCard event={item}/>)
+  };
+
   return (
-    <Center>
-      <Input
-        mt={32}
-        placeholder="Search"
-        placeholderTextColor='black'
-        variant="filled"
-        width="80%"
-        borderRadius="10"
-        py="3"
-        borderWidth="0"
-        InputLeftElement={
-          <Icon
-            ml="2"
-            size="4"
-            color="gray.400"
-            as={<Ionicons name="ios-search" />}
-          />
-        }
+    <View w='full' h='full'>
+      <FlatList
+        data={results}
+        stickyHeaderIndices={[0]}
+        renderItem={_renderItem}
+        keyExtractor={(item)=> {
+          //Hacky key extractor
+          return String(item)}}
       />
-      <MiniEventCardList navigation={navigation} events={result}/>
-    </Center>
+    </View>
   );
 };
 
