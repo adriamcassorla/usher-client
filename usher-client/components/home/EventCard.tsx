@@ -1,23 +1,36 @@
-import { View, Text } from "react-native";
 import * as React from "react";
 
-import { Button, Center, Image } from "native-base";
+import { Pressable, Image, VStack, Box, Heading, Text } from "native-base";
 
 const EventCard = ({ event, navigation }) => {
   return (
-    <Center h={20} w={"full"}>
-      <Text>EventCard for event {event.name}</Text>
-
-      <Button
-        w={"80%"}
-        colorScheme="primary"
-        onPress={() => {
-          navigation.navigate("Event");
-        }}
+    <Pressable
+      onPress={() => navigation.navigate("Event", { eventId: event.id })}
+    >
+      <Box
+        alignSelf={"center"}
+        m={2}
+        bg="light.50"
+        shadow={2}
+        rounded="lg"
+        w="90%"
       >
-        Check event
-      </Button>
-    </Center>
+        <Image
+          src={event.image}
+          alt="image base"
+          resizeMode="cover"
+          height={150}
+          roundedTop="md"
+        />
+        <Text bold position="absolute" color="white" top={0} m={[4, 4, 8]}>
+          {event.type}
+        </Text>
+        <VStack>
+          <Text color="gray.400">{event.date}</Text>
+          <Heading>{event.name.toLowerCase()}</Heading>
+        </VStack>
+      </Box>
+    </Pressable>
   );
 };
 
