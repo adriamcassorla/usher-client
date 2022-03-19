@@ -1,4 +1,5 @@
-import { useContext, useEffect } from "react";
+import * as React from "react";
+const { useContext, useEffect } = React;
 
 import { ScrollView, FlatList, Text, View, Center, Button } from "native-base";
 
