@@ -12,7 +12,7 @@ const HomeList = ({ events }: Props) => {
 
   const _renderItem = ({ item }: renderParams) => {
     if (item === "top") return <Highlights />;
-    if (item === "filter") return <FilterMenu isTop={false} />;
+    if (item === "filter") return <FilterMenu />;
     return <EventCard event={item} />;
   };
 

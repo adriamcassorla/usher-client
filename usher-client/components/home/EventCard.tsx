@@ -26,9 +26,9 @@ const EventCard = ({ event }: Props) => {
     >
       <Box
         alignSelf={"center"}
-        m={2}
         bg="light.50"
         shadow={2}
+        mb={3}
         rounded="lg"
         w="90%"
       >
@@ -81,8 +81,10 @@ const EventCard = ({ event }: Props) => {
           ) : null}
         </HStack>
 
-        <VStack>
-          <Heading p={3}>{capitalizeName(event)}</Heading>
+        <VStack bgColor={"dark.300"} roundedBottom="md">
+          <Heading p={3} color={"light.100"}>
+            {capitalizeName(event)}
+          </Heading>
         </VStack>
       </Box>
     </Pressable>

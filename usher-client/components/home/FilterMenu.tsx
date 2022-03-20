@@ -1,6 +1,7 @@
 import * as React from "react";
 
-import { Button, View, FlatList, useSafeArea } from "native-base";
+import { Button, View, FlatList } from "native-base";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 const filters = [
   "filter A",
   "filter B",
@@ -11,13 +12,7 @@ const filters = [
   "filter G",
 ];
 
-type Props = { isTop: boolean };
-const FilterMenu = ({ isTop }: Props) => {
-  const safeAreaProps = useSafeArea({
-    safeAreaTop: true,
-    pt: 1,
-  });
-
+const FilterMenu = () => {
   //TODO: Create a proper render item function for filter buttons. Can we use a subcomponent? - YES!!
   const _renderItem = ({ item }: { item: string }) => {
     return (
@@ -28,7 +23,7 @@ const FilterMenu = ({ isTop }: Props) => {
   };
 
   return (
-    <View bg={"dark.50:alpha.95"} {...safeAreaProps} pb={"4"}>
+    <View bg={"dark.50:alpha.95"} pb={"4"} pt={"40px"}>
       <FlatList
         showsHorizontalScrollIndicator={false}
         px={2}
