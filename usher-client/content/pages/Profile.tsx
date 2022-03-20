@@ -21,7 +21,7 @@ const Profile = ({ navigation }: Props) => {
   // TODO: Pass user info down in navigation props to tix and favs
 
   return (
-    <Center h={"full"} w={"full"}>
+    <Center h={"full"} w={"full"} bgColor={"dark.50"}>
       <Text>Profile</Text>
       <Button
         colorScheme="primary"

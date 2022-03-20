@@ -7,7 +7,7 @@ type Props = NativeStackScreenProps<MainStackParamList, "Payment">;
 
 const Payment = ({ navigation }: Props) => {
   return (
-    <Center h={"full"} w={"full"}>
+    <Center h={"full"} w={"full"} bgColor={"dark.50"}>
       <Text>Payment</Text>
       <Button
         colorScheme="primary"

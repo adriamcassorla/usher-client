@@ -33,7 +33,7 @@ const SignUpForm = ({ setUser, setIsNewUser }: Props) => {
           setIsNewUser(false);
         }}
       >
-        Already have an account? Log in here!
+        Already have an account? Log in!
       </Button>
     </Center>
   );

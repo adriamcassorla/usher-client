@@ -35,7 +35,7 @@ const Search = () => {
 
   if (!results) return <Text>Loading...</Text>;
   return (
-    <View w="full" h="full">
+    <View w="full" h="full" bgColor={"dark.50"}>
       <FlatList
         data={results}
         stickyHeaderIndices={[0]}

@@ -9,7 +9,7 @@ const Event = ({ navigation, route }: Props) => {
   const eventId = route.params.eventId;
 
   return (
-    <Center h={"full"} w={"full"}>
+    <Center h={"full"} w={"full"} bgColor={"dark.50"}>
       <Text>Event page for event with id {eventId}</Text>
       <Button
         colorScheme="primary"

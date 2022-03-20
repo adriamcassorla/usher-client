@@ -14,7 +14,7 @@ type Props = CompositeScreenProps<
 
 const Favorites = ({ navigation }: Props) => {
   return (
-    <Center h={"full"} w={"full"}>
+    <Center h={"full"} w={"full"} bgColor={"dark.50"}>
       <Text>Favorites</Text>
     </Center>
   );

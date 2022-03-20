@@ -31,7 +31,7 @@ const LogInForm = ({ setUser, setIsNewUser }: Props) => {
           setIsNewUser(true);
         }}
       >
-        New user? Sign up here!
+        New user? Sign up!
       </Button>
     </Center>
   );
