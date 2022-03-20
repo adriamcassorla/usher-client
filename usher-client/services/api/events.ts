@@ -3,7 +3,7 @@ import { gql, GraphQLClient } from "graphql-request";
 const apiURL = "https://tourn.me/usher";
 const client = new GraphQLClient(apiURL);
 
-export const getCityEvents = async (city: string, dayRange: number = 3): Promise<EventType[]> => {
+export const getCityEvents = async (city: string, dayRange: number = 3): Promise<EventType[] | null> => {
   const query = gql`
     query GetCityEvents($city: String!, $dayRange: Int!) {
       getCityEvents(city: $city, dayRange: $dayRange) {
@@ -33,7 +33,7 @@ export const getCityEvents = async (city: string, dayRange: number = 3): Promise
     return events.getCityEvents as EventType[];
   } catch (e) {
     console.error(e);
-    return [];
+    return null;
   }
 };
 

@@ -25,20 +25,18 @@ const Search = () => {
 
   type renderParams = {
     item: EventType;
-    index: number;
   };
 
-  const _renderItem = ({ item, index }: renderParams) => {
-    if (index === 0) return <SearchBar />;
+  const _renderItem = ({ item }: renderParams) => {
     return <MiniEventCard event={item} />;
   };
 
   if (!results) return <Text>Loading...</Text>;
   return (
-    <View w="full" h="full" bgColor={"dark.50"}>
+    <View w="full" h="full" bg={"dark.50"}>
+      <SearchBar />
       <FlatList
         data={results}
-        stickyHeaderIndices={[0]}
         renderItem={_renderItem}
         keyExtractor={(item) => String(item.id)}
       />

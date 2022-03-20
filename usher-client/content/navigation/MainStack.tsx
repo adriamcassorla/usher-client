@@ -5,12 +5,31 @@ import { NavigationContainer } from "@react-navigation/native";
 import { Event, Payment, Confirmation } from "../pages";
 import HomeNavigator from "./HomeNavigator";
 import { MainStackParamList } from "../../utils/Types/navTypes";
+import { useToken } from "native-base";
 
 const Stack = createStackNavigator<MainStackParamList>();
-
 const MainStack = () => {
+  const [primary, background, card, text, notification] = useToken("colors", [
+    "primary.600",
+    "dark.50",
+    "dark.100",
+    "light.100",
+    "tertiary.500",
+  ]);
+  const theme = {
+    dark: false,
+    colors: {
+      primary,
+      background,
+      card,
+      text,
+      border: "",
+      notification,
+    },
+  };
+
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={theme}>
       <Stack.Navigator>
         <Stack.Screen
           options={{ headerShown: false }}

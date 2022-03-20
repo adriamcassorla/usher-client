@@ -4,7 +4,7 @@ import { NativeBaseProvider } from "native-base";
 
 import theme from "./styles/theme";
 import Auth from "./content/pages/Auth";
-import MainStack from "./content/navigations/MainStack";
+import MainStack from "./content/navigation/MainStack";
 
 export default function App() {
   const [user, setUser] = useState<User | null>(null);

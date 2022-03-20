@@ -15,6 +15,7 @@ const Home = () => {
     populateEvents(city), [city];
   }, []);
 
+  if (!events) return null;
   return (
     <Center w="full" h="full" bgColor={"dark.50"}>
       <HomeList events={events} />
