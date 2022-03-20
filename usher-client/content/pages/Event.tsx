@@ -2,6 +2,7 @@ import * as React from "react";
 import { Center, Text, Button } from "native-base";
 
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { MainStackParamList } from "../../utils/Types/navTypes";
 type Props = NativeStackScreenProps<MainStackParamList, "Event">;
 
 const Event = ({ navigation, route }: Props) => {

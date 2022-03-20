@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import * as React from "react";
+import { useState } from "react";
 import { NativeBaseProvider } from "native-base";
 
 import theme from "./styles/theme";
@@ -6,7 +7,7 @@ import Auth from "./content/pages/Auth";
 import MainStack from "./content/navigations/MainStack";
 
 export default function App() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<User | null>(null);
 
   return (
     <NativeBaseProvider theme={theme}>

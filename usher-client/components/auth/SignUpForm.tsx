@@ -1,7 +1,12 @@
 import * as React from "react";
 import { Center, Button, Input, Stack } from "native-base";
 
-const SignUpForm = ({ setUser, setIsNewUser }) => {
+type Props = {
+  setUser: React.Dispatch<React.SetStateAction<User | null>>;
+  setIsNewUser: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const SignUpForm = ({ setUser, setIsNewUser }: Props) => {
   return (
     <Center w={"80%"} h={"3/4"}>
       <Stack space={"md"} w="100%" maxW="400px" mb={20}>
@@ -15,7 +20,7 @@ const SignUpForm = ({ setUser, setIsNewUser }) => {
         variant="solid"
         colorScheme="primary"
         onPress={() => {
-          setUser(true);
+          setUser({ id: "kdhjfkds", favorite_events: [] });
         }}
         mb={10}
       >

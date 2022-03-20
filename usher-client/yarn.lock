@@ -1623,7 +1623,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@expo/config-plugins@npm:3.1.0, @expo/config-plugins@npm:^3.0.0":
+"@expo/config-plugins@npm:3.1.0, @expo/config-plugins@npm:^3.0.0, @expo/config-plugins@npm:^3.0.6":
   version: 3.1.0
   resolution: "@expo/config-plugins@npm:3.1.0"
   dependencies:
@@ -1659,7 +1659,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@expo/config@npm:5.0.9":
+"@expo/config@npm:5.0.9, @expo/config@npm:^5.0.6":
   version: 5.0.9
   resolution: "@expo/config@npm:5.0.9"
   dependencies:
@@ -1723,7 +1723,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@expo/metro-config@npm:^0.1.70":
+"@expo/metro-config@npm:^0.1.70, @expo/metro-config@npm:^0.1.81":
   version: 0.1.84
   resolution: "@expo/metro-config@npm:0.1.84"
   dependencies:
@@ -5223,6 +5223,36 @@ __metadata:
   version: 1.0.4
   resolution: "expo-status-bar@npm:1.0.4"
   checksum: 7a9894b6c11d4585809cba6a3ec7a2247daa16d28db9fcb86319e9786013a38e067a6a3351da3806f91d3c4d5ae01b887029b7605137dfc9d4a9ff15b6ee88e6
+  languageName: node
+  linkType: hard
+
+"expo-structured-headers@npm:~1.1.1":
+  version: 1.1.1
+  resolution: "expo-structured-headers@npm:1.1.1"
+  checksum: eff5f938ba345693f7388ecde410b1e7680f1b1ab524fa5218dd3d1fe279aa53b833399e62abf4135f616d2f1bb71a49862bde8309c2f2441b320c8c4545fac4
+  languageName: node
+  linkType: hard
+
+"expo-updates-interface@npm:~0.2.2":
+  version: 0.2.2
+  resolution: "expo-updates-interface@npm:0.2.2"
+  checksum: a0f403a65c568e34493ca651242297b55f21cc3c4c1ff20d9b7b0630950759d5b52705b767612397dede8846e00aef2735324ba41c7954b1db814217aeaf238d
+  languageName: node
+  linkType: hard
+
+"expo-updates@npm:~0.8.2":
+  version: 0.8.5
+  resolution: "expo-updates@npm:0.8.5"
+  dependencies:
+    "@expo/config": ^5.0.6
+    "@expo/config-plugins": ^3.0.6
+    "@expo/metro-config": ^0.1.81
+    expo-structured-headers: ~1.1.1
+    expo-updates-interface: ~0.2.2
+    fbemitter: ^2.1.1
+    resolve-from: ^5.0.0
+    uuid: ^3.4.0
+  checksum: e6b81e52399975c240a0a904816762485b93df311a595b3675f5d8355fb041713aa614590fbf9474d056288f0e42c8b937f0f8037e28228d55e401b04e8217dc
   languageName: node
   linkType: hard
 
@@ -9825,6 +9855,7 @@ __metadata:
     "@types/react-native-snap-carousel": ^3.8.5
     expo: ~42.0.0
     expo-status-bar: ~1.0.4
+    expo-updates: ~0.8.2
     graphql: ^16.3.0
     graphql-request: ^4.1.0
     luxon: ^2.3.1

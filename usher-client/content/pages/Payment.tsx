@@ -2,6 +2,7 @@ import * as React from "react";
 import { Button, Center, Text } from "native-base";
 
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { MainStackParamList } from "../../utils/Types/navTypes";
 type Props = NativeStackScreenProps<MainStackParamList, "Payment">;
 
 const Payment = ({ navigation }: Props) => {

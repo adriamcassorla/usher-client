@@ -4,6 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 
 import { Event, Payment, Confirmation } from "../pages";
 import HomeNavigator from "./HomeNavigator";
+import { MainStackParamList } from "../../utils/Types/navTypes";
 
 const Stack = createStackNavigator<MainStackParamList>();
 

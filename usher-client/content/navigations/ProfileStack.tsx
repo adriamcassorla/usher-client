@@ -2,6 +2,7 @@ import * as React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import { Profile, Favorites, Tickets } from "../pages";
+import { ProfileStackParamList } from "../../utils/Types/navTypes";
 
 const Stack = createStackNavigator<ProfileStackParamList>();
 

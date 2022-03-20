@@ -1,11 +1,14 @@
 import * as React from "react";
 import { Button, Center, Text } from "native-base";
 import type { CompositeScreenProps } from "@react-navigation/native";
-import type { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import type { StackScreenProps } from "@react-navigation/stack";
+import {
+  BottomTabScreenType,
+  MainStackParamList,
+} from "../../utils/Types/navTypes";
 
 type Props = CompositeScreenProps<
-  BottomTabScreenProps<HomeTabParamList>,
+  BottomTabScreenType,
   StackScreenProps<MainStackParamList, "Confirmation">
 >;
 

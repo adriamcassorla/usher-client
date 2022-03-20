@@ -1,43 +1,46 @@
 import * as React from "react";
-const { useState } = React;
+import { useCallback, useState, useContext } from "react";
 
-import { View, FlatList } from "native-base";
+import { View, FlatList, Text } from "native-base";
 
 import MiniEventCard from "../../components/search/MiniEventCard";
 import SearchBar from "../../components/search/SearchBar";
+import { EventsContext } from "../../services/contexts/EventsContext";
+import { useFocusEffect } from "@react-navigation/native";
 
-import type { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
-type Props = BottomTabScreenProps<HomeTabParamList, "Search">;
-
-const Search = ({ navigation }: Props) => {
-  // TODO: Bring in events from context. Implement search regex logic. setResult with input onChange
+const Search = () => {
+  // TODO: Implement search regex logic. setResult with input onChange
   // NOTE: Let results default to null until user starts typing
 
-  const [results, setResults] = useState([
-    "_SEARCHBAR",
-    "array",
-    "of",
-    "events",
-    "from",
-    "context",
-    "array",
-  ]);
+  const { events } = useContext(EventsContext);
+  const [results, setResults] = useState<EventType[] | null>(null);
 
-  const _renderItem = ({ item, index }) => {
-    if (index === 0) return <SearchBar setResults={setResults} />;
+  useFocusEffect(
+    useCallback(() => {
+      if (events) {
+        setResults(events.splice(0, 2));
+      }
+    }, [events])
+  );
+
+  type renderParams = {
+    item: EventType;
+    index: number;
+  };
+
+  const _renderItem = ({ item, index }: renderParams) => {
+    if (index === 0) return <SearchBar />;
     return <MiniEventCard event={item} />;
   };
 
+  if (!results) return <Text>Loading...</Text>;
   return (
     <View w="full" h="full">
       <FlatList
         data={results}
         stickyHeaderIndices={[0]}
         renderItem={_renderItem}
-        keyExtractor={(item) => {
-          //Hacky key extractor
-          return String(item);
-        }}
+        keyExtractor={(item) => String(item.id)}
       />
     </View>
   );

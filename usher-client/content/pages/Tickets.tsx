@@ -2,11 +2,14 @@ import * as React from "react";
 import { Center, Text } from "native-base";
 
 import type { CompositeScreenProps } from "@react-navigation/native";
-import type { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import type { StackScreenProps } from "@react-navigation/stack";
+import {
+  BottomTabScreenType,
+  ProfileStackParamList,
+} from "../../utils/Types/navTypes";
 type Props = CompositeScreenProps<
   StackScreenProps<ProfileStackParamList, "Favorites">,
-  BottomTabScreenProps<HomeTabParamList>
+  BottomTabScreenType
 >;
 
 const Tickets = ({ navigation }: Props) => {

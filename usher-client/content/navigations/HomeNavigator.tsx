@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Map, Search, Home } from "../pages";
 import ProfileStack from "./ProfileStack";
 import { EventsProvider } from "../../services/contexts/EventsContext";
+import { HomeTabParamList } from "../../utils/Types/navTypes";
 
 const Tabs = createBottomTabNavigator<HomeTabParamList>();
 

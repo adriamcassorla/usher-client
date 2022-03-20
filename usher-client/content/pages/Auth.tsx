@@ -1,12 +1,15 @@
 import * as React from "react";
 const { useState } = React;
-
 import { Center, Text } from "native-base";
 
 import LogInForm from "../../components/auth/LogInForm";
 import SignUpForm from "../../components/auth/SignUpForm";
 
-const Auth = ({ setUser }) => {
+type Props = {
+  setUser: React.Dispatch<React.SetStateAction<User | null>>;
+};
+
+const Auth = ({ setUser }: Props) => {
   const [isNewUser, setIsNewUser] = useState(false);
 
   return (

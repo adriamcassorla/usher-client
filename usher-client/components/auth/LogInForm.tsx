@@ -1,7 +1,12 @@
 import * as React from "react";
 import { Center, Button, Stack, Input } from "native-base";
 
-const LogInForm = ({ setUser, setIsNewUser }) => {
+type Props = {
+  setUser: React.Dispatch<React.SetStateAction<User | null>>;
+  setIsNewUser: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const LogInForm = ({ setUser, setIsNewUser }: Props) => {
   return (
     <Center w={"80%"} h={"3/4"}>
       <Stack space={"md"} w="100%" maxW="400px" mb={20}>
@@ -13,7 +18,7 @@ const LogInForm = ({ setUser, setIsNewUser }) => {
         variant="solid"
         colorScheme="primary"
         onPress={() => {
-          setUser(true);
+          setUser({ id: "kdhjfkds", favorite_events: [] });
         }}
         mb={10}
       >

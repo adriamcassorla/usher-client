@@ -1,7 +1,15 @@
-import { Text } from "react-native";
 import * as React from "react";
 
 import { Button, View, FlatList, useSafeArea } from "native-base";
+const filters = [
+  "filter A",
+  "filter B",
+  "filter C",
+  "filter D",
+  "filter E",
+  "filter F",
+  "filter G",
+];
 
 type Props = { isTop: boolean };
 const FilterMenu = ({ isTop }: Props) => {
@@ -10,18 +18,8 @@ const FilterMenu = ({ isTop }: Props) => {
     pt: 1,
   });
 
-  const filters = [
-    "filter A",
-    "filter B",
-    "filter C",
-    "filter D",
-    "filter E",
-    "filter F",
-    "filter G",
-  ];
-
-  //TODO: Create a proper render item function for filter buttons. Can we use a subcomponent?
-  const _renderItem = ({ item, index, separator }) => {
+  //TODO: Create a proper render item function for filter buttons. Can we use a subcomponent? - YES!!
+  const _renderItem = ({ item }: { item: string }) => {
     return (
       <Button ml={3} borderRadius={20}>
         {item}

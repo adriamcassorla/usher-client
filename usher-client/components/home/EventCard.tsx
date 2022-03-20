@@ -1,4 +1,5 @@
 import * as React from "react";
+import { todayDates, capitalizeName } from "../../utils/helpers/home";
 
 import {
   Pressable,
@@ -9,18 +10,16 @@ import {
   Text,
   HStack,
 } from "native-base";
-import { todayDates, capitalizeName } from "../../utils/helpers/home";
-import type { StackNavigationProp } from "@react-navigation/stack";
-type MainStackNavType = StackNavigationProp<MainStackParamList>;
 
 import { useNavigation } from "@react-navigation/native";
+import { MainStackNavType } from "../../utils/Types/navTypes";
+
 type Props = {
   event: EventType;
 };
 
 const EventCard = ({ event }: Props) => {
   const navigation = useNavigation<MainStackNavType>();
-
   return (
     <Pressable
       onPress={() => navigation.navigate("Event", { eventId: event.id })}
@@ -40,27 +39,47 @@ const EventCard = ({ event }: Props) => {
           height={150}
           roundedTop="md"
         />
-        <Text bold position="absolute" color="white" top={0} m={[3, 3, 8]}>
+        <Text
+          bold
+          fontSize="lg"
+          position="absolute"
+          color="white"
+          top={0}
+          m={[3, 3, 8]}
+        >
           {event.type}
         </Text>
 
-        <Box position="absolute" top={100}>
-          <HStack>
-            {event.today_shows.length > 2 ? (
-              <Text bold color="white" fontSize="2xl">
-                Multiple shows
-              </Text>
-            ) : (
-              todayDates(event)?.map((date) => (
+        <HStack position="absolute" top={100}>
+          {event.today_shows.length > 2 && (
+            <Text bold color="white" fontSize="2xl">
+              Multiple shows!
+            </Text>
+          )}
+          {event.today_shows.length && event.today_shows.length < 3
+            ? todayDates(event)?.map((date) => (
                 <Box key={Math.random()} w={32} h={8} m={[3, 3, 0, 3]}>
                   <Text bold color="white" fontSize="2xl">
                     {date}
                   </Text>
                 </Box>
               ))
-            )}
-          </HStack>
-        </Box>
+            : null}
+          {event.today_shows.length === 0 ? (
+            <Text
+              bold
+              color="white"
+              fontSize={"xl"}
+              alignSelf={"flex-end"}
+              textAlign={"right"}
+              w={"full"}
+              pr={3}
+              h={8}
+            >
+              ...more shows soon
+            </Text>
+          ) : null}
+        </HStack>
 
         <VStack>
           <Heading p={3}>{capitalizeName(event)}</Heading>
@@ -70,4 +89,7 @@ const EventCard = ({ event }: Props) => {
   );
 };
 
-export default EventCard;
+export default React.memo(
+  EventCard,
+  (prev, next) => prev.event.id === next.event.id
+);
