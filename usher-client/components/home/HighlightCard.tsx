@@ -12,7 +12,12 @@ const HighlightCard = ({ event }: Props) => {
   return (
     <Center bg={"dark.600"} w={250} h={250} key={event} borderRadius={20}>
       <Button
-        onPress={() => navigation.navigate("Event", { eventId: event.id })}
+        onPress={() =>
+          navigation.navigate("Event", {
+            eventId: event.id,
+            isToday: event.today_shows.length ? true : false,
+          })
+        }
       >
         {event.name}
       </Button>

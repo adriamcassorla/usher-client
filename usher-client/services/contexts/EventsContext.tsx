@@ -1,5 +1,6 @@
-import React, { createContext, useContext, useState } from 'react';
-import { getCityEvents } from '../api/events';
+import * as React from "react";
+import { createContext, useContext, useState } from "react";
+import { getCityEvents } from "../api/events";
 
 type EventsContextType = {
   events: EventType[] | null;
@@ -11,12 +12,10 @@ const defaultValue: EventsContextType = {
   populateEvents: () => {},
 };
 
-const initialEventsState: EventType[] = [];
-
 export const EventsContext = createContext<EventsContextType>(defaultValue);
 
 export const EventsProvider = ({ children }: any) => {
-  const [events, setEvents] = useState(initialEventsState);
+  const [events, setEvents] = useState<EventType[] | null>(null);
 
   const populateEvents = async (city: string) => {
     const fetchedEvents = await getCityEvents(city);

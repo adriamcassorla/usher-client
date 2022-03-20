@@ -22,7 +22,12 @@ const EventCard = ({ event }: Props) => {
   const navigation = useNavigation<MainStackNavType>();
   return (
     <Pressable
-      onPress={() => navigation.navigate("Event", { eventId: event.id })}
+      onPress={() =>
+        navigation.navigate("Event", {
+          eventId: event.id,
+          isToday: event.today_shows.length ? true : false,
+        })
+      }
     >
       <Box
         alignSelf={"center"}
