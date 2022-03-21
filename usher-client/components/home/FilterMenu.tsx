@@ -46,4 +46,4 @@ const FilterMenu = ({ isOnTop }: Props) => {
   );
 };
 
-export default FilterMenu;
+export default React.memo(FilterMenu);
