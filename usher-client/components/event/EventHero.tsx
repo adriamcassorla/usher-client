@@ -18,10 +18,9 @@ type Props = {
   event: EventType;
 };
 const EventHero = ({ event }: Props) => {
-  const [light50, secondary200, secondary500] = useToken("colors", [
+  const [light50, secondary400] = useToken("colors", [
     "light.50",
-    "secondary.200",
-    "secondary.500",
+    "secondary.400",
   ]);
   return (
     <Center w={"full"} h={"200"} bg={"light.50"} roundedTop={40}>
@@ -44,7 +43,7 @@ const EventHero = ({ event }: Props) => {
           space={"xs"}
           justifyContent={"space-around"}
         >
-          <Heading size="sm" color={"dark.50"}>
+          <Heading size="md" color={"dark.50"}>
             {capitalize(event.name)}
           </Heading>
           <Text color={"dark.300"}>{event.venue.name}</Text>
@@ -60,9 +59,9 @@ const EventHero = ({ event }: Props) => {
             jumpValue={1}
             ratingImage={require("./../../assets/ticketRating.png")}
             imageSize={25}
-            ratingColor={secondary500}
+            ratingColor={secondary400}
             tintColor={light50}
-            ratingBackgroundColor={secondary200}
+            ratingBackgroundColor={light50}
             onFinishRating={() => {}}
             style={{ marginVertical: 5, alignItems: "flex-start" }}
           />

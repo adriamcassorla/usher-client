@@ -1,11 +1,11 @@
-import { View, Text } from "react-native";
+import { Center, Heading } from "native-base";
 import * as React from "react";
 
-const VenueInfo = () => {
+const VenueInfo = ({ venue }: { venue: Venue }) => {
   return (
-    <View>
-      <Text>VenueInfo</Text>
-    </View>
+    <Center h={200} w={"100%"} bg={"light.50"} key={"VenuePageKey"}>
+      <Heading color={"light.100"}>{venue.name}</Heading>
+    </Center>
   );
 };
 

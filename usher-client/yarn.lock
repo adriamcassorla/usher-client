@@ -8439,6 +8439,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-pager-view@npm:5.0.12":
+  version: 5.0.12
+  resolution: "react-native-pager-view@npm:5.0.12"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 215df8e749b9fde1a71075282c2ade8b4170cd8d36a468e17c0ea033a888c07baead09d60e6a23b65d9059dc148fd052f8f61899308828457fe2e43fb88cfb0d
+  languageName: node
+  linkType: hard
+
 "react-native-parallax-view@npm:^2.0.6":
   version: 2.0.6
   resolution: "react-native-parallax-view@npm:2.0.6"
@@ -8514,6 +8524,17 @@ __metadata:
     react: "*"
     react-native: ">=0.50.0"
   checksum: 20a9b2987bf5836821e51a0497fc2b598a859032fe168f80c6dcab3727bf26dc34bcb3197059e1e5775dfc91b6b20633502292d8c82e9aeb3e76807d03e0189d
+  languageName: node
+  linkType: hard
+
+"react-native-tab-view@npm:^3.1.1":
+  version: 3.1.1
+  resolution: "react-native-tab-view@npm:3.1.1"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+    react-native-pager-view: "*"
+  checksum: 8866e746f989b02243bcf1e5259698c3db50446d2b3a2c717873376734526be7fbeac520014adbe28cc0da116a7b5cd37508a6f56b90f992724be5f6222e0b71
   languageName: node
   linkType: hard
 
@@ -9939,12 +9960,14 @@ __metadata:
     react-native: "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz"
     react-native-gesture-handler: ~1.10.2
     react-native-maps: 0.28.0
+    react-native-pager-view: 5.0.12
     react-native-parallax-view: ^2.0.6
     react-native-ratings: ^8.1.0
     react-native-safe-area-context: 3.2.0
     react-native-screens: ~3.4.0
     react-native-snap-carousel: ^3.9.1
     react-native-svg: 12.1.1
+    react-native-tab-view: ^3.1.1
     react-native-web: ~0.13.12
     typescript: ~4.0.0
   languageName: unknown

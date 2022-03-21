@@ -1,11 +1,16 @@
-import { View, Text } from "react-native";
+import { Text, Container, Heading, Box } from "native-base";
 import * as React from "react";
+import EventStats from "./EventStats";
 
-const EventInfo = () => {
+const EventInfo = ({ event }: { event: EventType }) => {
   return (
-    <View>
-      <Text>EventInfo</Text>
-    </View>
+    <Container w={"90%"} ml={"5%"} mt={"5%"}>
+      <Heading color={"primary.300"} size={"sm"} mb={1}>
+        About:
+      </Heading>
+      <Text color={"light.800"}>{event.description}</Text>
+      <EventStats event={event} />
+    </Container>
   );
 };
 
