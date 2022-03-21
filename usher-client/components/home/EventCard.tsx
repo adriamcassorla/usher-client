@@ -33,7 +33,7 @@ const EventCard = ({ event }: Props) => {
     >
       <Box
         alignSelf={'center'}
-        bgColor={'dark.300'}
+        bgColor={'dark.400'}
         shadow={2}
         mb={3}
         rounded="lg"
@@ -47,13 +47,13 @@ const EventCard = ({ event }: Props) => {
           height={150}
           roundedTop="md"
         />
-        <Badge bg="tertiary.700" p={0}>
-          <Text color="white" fontSize="xs">
+        <HStack alignItems={'center'}>
+          <VStack flex={4} mt={-4} pl={3} pr={2} pb={2} roundedBottom="md">
+        <Badge w={20} bg="tertiary.700" left={2} top={-2} postion='absolute'>
+          <Text color="white" fontSize="xs" fontWeight={'medium'}>
             {event.type}
           </Text>
         </Badge>
-        <HStack alignItems={'center'}>
-          <VStack flex={4} pt={1} pl={2} pr={2} pb={2} roundedBottom="md">
             <Text color="white" fontWeight="medium" fontSize="md">
               {capitalize(event.name)}
             </Text>
@@ -66,7 +66,6 @@ const EventCard = ({ event }: Props) => {
               ) : null}
             </Box>
           </VStack>
-
           <Text flex={1} color="white" fontWeight="medium" fontSize="lg">
             {event.price}€
           </Text>
