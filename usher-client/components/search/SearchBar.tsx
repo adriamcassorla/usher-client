@@ -7,18 +7,18 @@ const SearchBar = () => {
     safeAreaTop: true,
   });
   return (
-    <View pb={2} bg={"dark.100"} {...safeAreaProps}>
+    <View pb={2} {...safeAreaProps}>
       <Input
         alignSelf={"center"}
         mt={1}
         placeholder="Search an event"
-        placeholderTextColor="dark.900"
+        placeholderTextColor="light.900"
         variant="filled"
-        width="80%"
+        width="90%"
         borderRadius="10"
         py="3"
         borderWidth="0"
-        bg={"dark.200"}
+        bg={"dark.900"}
         InputLeftElement={
           <Icon
             ml="2"

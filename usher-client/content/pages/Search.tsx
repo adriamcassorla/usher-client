@@ -18,9 +18,9 @@ const Search = () => {
 
   useFocusEffect(
     useCallback(() => {
-      if (events) {
-        setResults(events.splice(0, 2));
-      }
+      // if (events) {
+        setResults(events);
+      // }
     }, [events])
   );
 
@@ -35,9 +35,10 @@ const Search = () => {
   if (!results) return <Text>Loading...</Text>;
   return (
     <GradientProvider>
-      <View w="full" h="full">
+      <View w="full" h="full" alignItems='center'>
         <SearchBar />
         <FlatList
+          width='100%'
           data={results}
           renderItem={_renderItem}
           keyExtractor={(item) => String(item.id)}

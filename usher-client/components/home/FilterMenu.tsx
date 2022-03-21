@@ -29,7 +29,7 @@ const FilterMenu = ({ isOnTop }: Props) => {
 
   return (
     <BlurView intensity={isOnTop ? 100 : 0} tint="dark">
-      <View pb={"4"} pt={`${top}px`}>
+      <View pb={"4"} pt={`${top}px`} >
         <FlatList
           showsHorizontalScrollIndicator={false}
           px={2}
