@@ -2,7 +2,6 @@ import { gql, GraphQLClient } from "graphql-request";
 import { AsyncStorage } from "react-native";
 
 const apiURL = process.env.BASE_URL || "http://localhost:4004";
-
 const client = new GraphQLClient(apiURL);
 
 export const getCityEvents = async (city: string, dayRange: number = 3): Promise<EventType[] | null> => {

@@ -5,6 +5,7 @@ import { Center, Button, Text } from "native-base";
 import type { CompositeScreenProps } from "@react-navigation/native";
 import type { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import { HomeTabParamList, StackScreenType } from "../../utils/Types/navTypes";
+import { getProfile } from "../../services/api/user";
 type Props = CompositeScreenProps<
   StackScreenType,
   BottomTabScreenProps<HomeTabParamList, "ProfileStack">
@@ -17,6 +18,7 @@ const Profile = ({ navigation }: Props) => {
   const [profile, setProfile] = useState(null);
   useEffect(() => {
     console.log("Getting profile info using id from params");
+    getProfile().then(profile => console.log(profile))
   }, []);
   // TODO: Pass user info down in navigation props to tix and favs
 
