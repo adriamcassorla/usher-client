@@ -1,12 +1,12 @@
-import * as React from 'react';
-import { useContext, useCallback } from 'react';
-import { Center, Text, useSafeArea } from 'native-base';
+import * as React from "react";
+import { useContext, useCallback } from "react";
+import { Center, Text, useSafeArea } from "native-base";
 
-import { useFocusEffect } from '@react-navigation/native';
-import { EventsContext } from '../../services/contexts/EventsContext';
-import { getRandomTopEvents } from '../../utils/helpers/home';
-import HighlightsCarrousel from './HighlightsCarrousel';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useFocusEffect } from "@react-navigation/native";
+import { EventsContext } from "../../services/contexts/EventsContext";
+import { getRandomTopEvents } from "../../utils/helpers/home";
+import HighlightsCarrousel from "./HighlightsCarrousel";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const Highlights = () => {
   const { top } = useSafeAreaInsets();
@@ -29,7 +29,7 @@ const Highlights = () => {
 
   if (!topEvents) return <Text>Loading...</Text>;
   return (
-    <Center h={'350'} w={'full'} {...safeAreaProps} mb={`${-top + 10}px`}>
+    <Center h={"370"} w={"full"} {...safeAreaProps} mb={`${-top + 10}px`}>
       <HighlightsCarrousel topEvents={topEvents} />
     </Center>
   );
