@@ -5,7 +5,14 @@
     "moduleResolution": "node",
     "noImplicitAny": true,
     "sourceMap": true,
-    "esModuleInterop": false
+    "esModuleInterop": false,
+    "skipLibCheck": true
   },
+  "exclude": [
+    "node_modules",
+    "./node_modules",
+    "./node_modules/*",
+    "./node_modules/@types/node/index.d.ts"
+  ],
   "extends": "expo/tsconfig.base"
 }

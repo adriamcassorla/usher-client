@@ -8,18 +8,18 @@ import { getEventInfo } from "../../services/api/events";
 type Props = NativeStackScreenProps<MainStackParamList, "Event">;
 
 const Event = ({ navigation, route }: Props) => {
-  const { eventId, isToday } = route.params;
+  const { eventId, todayShow } = route.params;
   const [eventInfo, setEventInfo] = useState<EventType | null>(null);
 
   useEffect(() => {
-    getEventInfo(eventId, isToday).then(setEventInfo);
+    getEventInfo(eventId, todayShow.length ? true : false).then(setEventInfo);
   }, [eventId]);
 
   if (!eventInfo) return null;
   return (
     <Center h={"full"} w={"full"} bgColor={"dark.50"}>
       <Text>Event page for event: {eventInfo.name}</Text>
-      {isToday ? (
+      {todayShow.length ? (
         <Button
           onPress={() => {
             navigation.navigate("Payment", { showId: "testing" });

@@ -25,7 +25,7 @@ const EventCard = ({ event }: Props) => {
       onPress={() =>
         navigation.navigate("Event", {
           eventId: event.id,
-          isToday: event.today_shows.length ? true : false,
+          todayShow: event.today_shows,
         })
       }
     >
