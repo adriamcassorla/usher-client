@@ -32,7 +32,7 @@ const HighlightsCarrousel = ({ topEvents }: Props) => {
     <Carousel
       style={{ borderColor: 'green', borderWidth: 5, borderStyle: 'solid' }}
       sliderWidth={Dimensions.get('window').width}
-      itemWidth={290}
+      itemWidth={320}
       data={topEvents}
       renderItem={_renderItem}
       horizontal={true}

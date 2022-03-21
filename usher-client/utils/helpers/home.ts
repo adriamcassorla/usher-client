@@ -1,4 +1,3 @@
-import { DateTime } from 'luxon';
 var moment = require('moment');
 
 export const getMockCopy = (count: number) => {

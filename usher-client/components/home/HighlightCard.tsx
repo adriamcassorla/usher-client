@@ -27,7 +27,7 @@ const HighlightCard = ({ event, copy, promo }: Props) => {
         })
       }
     >
-      <Box overflow={'hidden'} borderRadius={20} w={290} h={290} key={event}>
+      <Box overflow={'hidden'} borderRadius={20} w={320} h={320} key={event}>
         <ZStack
           alignItems="center"
           justifyContent="center"
@@ -36,7 +36,7 @@ const HighlightCard = ({ event, copy, promo }: Props) => {
         >
           <Image w={'full'} h={'full'} source={image} alt={`${event.name}`} />
           <LinearGradient
-            style={{ flex: 1, width: 300, height: 300 }}
+            style={{ flex: 1, width: 320, height: 320 }}
             colors={['transparent', 'rgba(0,0,0,.3)', 'rgba(0,0,0,.9)']}
           />
           <Box
@@ -45,7 +45,7 @@ const HighlightCard = ({ event, copy, promo }: Props) => {
             mb={2}
             width="full"
             position="absolute"
-            top="192"
+            top="230"
             justifyContent="center"
           >
             <Text bold fontSize="xl" color={'white'}>
