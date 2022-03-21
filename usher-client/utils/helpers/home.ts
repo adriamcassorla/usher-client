@@ -1,6 +1,7 @@
 import { DateTime } from 'luxon';
+var moment = require('moment');
 
-export const getMockCopy = (count:number) => {
+export const getMockCopy = (count: number) => {
   const copy = [
     "This season's hit show!",
     "This critics' favorite will defy all your expectations",
@@ -13,23 +14,23 @@ export const getMockCopy = (count:number) => {
   return copy.sort(() => 0.5 - Math.random()).slice(0, count);
 };
 
-export const getMockPromos = (count:number) => {
+export const getMockPromos = (count: number) => {
   const promos = [
     '25% off  today',
     'Limitted tickets',
     'Last shows',
     '5 national awards',
     '10% off double tickets',
-    "Critic's choice"
+    "Critic's choice",
   ];
-  return promos.sort(() => 0.5 - Math.random()).slice(0, count)
+  return promos.sort(() => 0.5 - Math.random()).slice(0, count);
 };
 
 export const todayDates = (event: EventType) => {
   if (event.today_shows.length === 0) return null;
-  return event.today_shows.map((show) =>
-    DateTime.fromMillis(Number(show.date)).toLocaleString(DateTime.TIME_24_SIMPLE)
-  ).join('  |  ');
+  return event.today_shows
+    .map((show) => moment(Number(show.date)).format('HH:mm '))
+    .join('  |  ');
 };
 
 export const capitalize = (str: String) => {
