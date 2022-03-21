@@ -1,30 +1,28 @@
-import { coerceInputValue } from 'graphql';
 import { DateTime } from 'luxon';
 
-export const getMockCopy = () => {
+export const getMockCopy = (count:number) => {
   const copy = [
-    "Come see this season's hit show 50% off!",
-    "This critic's favorite will defy all youyr expectations",
-    'Experience this mind-blowing prize-winning show',
-    "Revisit this classic from the hand of the city's most renown company",
+    "This season's hit show!",
+    "This critics' favorite will defy all your expectations",
+    'Get ready to be blown away',
+    "Revisit a classic from the hand of the city's most renown company",
     'A legendary production returns to the city with its original cast',
     "Still haven't watched this masterpiece? What are you waiting for?",
     "Don't miss out on this promissing new show!",
   ];
-  return copy[Math.floor(Math.random()*copy.length)];
+  return copy.sort(() => 0.5 - Math.random()).slice(0, count);
 };
 
-export const getMockPromo = () => {
+export const getMockPromos = (count:number) => {
   const promos = [
-    '25% off only today!',
-    'Limitted tickets half off!',
-    'Last shows in the city',
-    'Winner of 5 national awards',
-    'Get 10% off two or more tickets',
-    "Critic's choice",
-    'Top seats for less',
+    '25% off  today',
+    'Limitted tickets',
+    'Last shows',
+    '5 national awards',
+    '10% off double tickets',
+    "Critic's choice"
   ];
-  return promos[Math.floor(Math.random()*promos.length)];
+  return promos.sort(() => 0.5 - Math.random()).slice(0, count)
 };
 
 export const todayDates = (event: EventType) => {

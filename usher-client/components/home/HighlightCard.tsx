@@ -1,19 +1,20 @@
 import * as React from 'react';
-import { Box, Text } from 'native-base';
+import { Box, Text, ZStack, Image } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
+import { LinearGradient } from 'expo-linear-gradient';
+import { Pressable } from 'react-native';
+
 import { MainStackNavType } from '../../utils/Types/navTypes';
-import { ImageBackground, Pressable } from 'react-native';
-import { getMockCopy, getMockPromo } from '../../utils/helpers/home';
+import { capitalize } from '../../utils/helpers/home';
 
 type Props = {
   event: EventType;
+  copy: string;
+  promo: string;
 };
 
-const HighlightCard = ({ event }: Props) => {
+const HighlightCard = ({ event, copy, promo }: Props) => {
   const navigation = useNavigation<MainStackNavType>();
-
-  const promo = getMockPromo();
-  const copy = getMockCopy();
 
   const image = { uri: event.image };
 
@@ -26,14 +27,35 @@ const HighlightCard = ({ event }: Props) => {
         })
       }
     >
-      <Box overflow={'hidden'} borderRadius={10} w={250} h={250} key={event}>
-        <ImageBackground
-          source={image}
-          style={{ height: '100%', width: '100%', borderRadius:20 }}
-        />
-        <Text position={'absolute'} color={'white'}>
-          {copy}
-        </Text>
+      <Box overflow={'hidden'} borderRadius={20} w={290} h={290} key={event}>
+        <ZStack
+          alignItems="center"
+          justifyContent="center"
+          w={'full'}
+          h={'full'}
+        >
+          <Image w={'full'} h={'full'} source={image} alt={`${event.name}`} />
+          <LinearGradient
+            style={{ flex: 1, width: 300, height: 300 }}
+            colors={['transparent', 'rgba(0,0,0,.3)', 'rgba(0,0,0,.9)']}
+          />
+          <Box
+            px={2}
+            pt={0}
+            mb={2}
+            width="full"
+            position="absolute"
+            top="192"
+            justifyContent="center"
+          >
+            <Text bold fontSize="xl" color={'white'}>
+              {capitalize(event.name)}
+            </Text>
+            <Text fontWeight="medium" color={'light.50'}>
+              {copy}
+            </Text>
+          </Box>
+        </ZStack>
       </Box>
     </Pressable>
   );
