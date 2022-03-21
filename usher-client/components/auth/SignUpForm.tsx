@@ -15,7 +15,9 @@ const SignUpForm = ({ setUser, setIsNewUser }: Props) => {
   const submitHandler = async (event: GestureResponderEvent) => {
     signup(event, formData)
     const user = await AsyncStorage.getItem('user');
-    console.log(user);
+    if (user) {
+      setUser({id: '1', favorite_events: [], tickets: []})
+    }
   }
   return (
     <Center w={"80%"} h={"3/4"}>
