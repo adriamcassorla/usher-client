@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Center, Button, Stack, Input, FormControl } from "native-base";
-import { login, LoginForm } from '../../utils/helpers/login'
-import { DarkMode } from "@chakra-ui/react";
+import { AsyncStorage } from 'react-native'
+import { login, LoginForm, loginMock } from '../../utils/helpers/login'
 import { GestureResponderEvent } from "react-native";
 
 type Props = {
@@ -11,12 +11,20 @@ type Props = {
 
 const LogInForm = ({ setUser, setIsNewUser }: Props) => {
 
-  const [formData, setFormData] = React.useState<LoginForm>({email: '', password: ''})
-  const [formErrors, setFormErrors] = React.useState<LoginForm>({email: '', password: ''});
+  const [formData, setFormData] = React.useState<LoginForm>(loginMock)
   
-  const submitHandler = (event: GestureResponderEvent) => {
-    login(event, formData, setFormErrors)
+  const submitHandler = async (event: GestureResponderEvent) => {
+    login(event, formData)
+    const user = await AsyncStorage.getItem('user');
+    console.log(user);
   }
+
+  const test = async () => {
+    const user = await AsyncStorage.getItem('user');
+    console.log('Current user is', user);
+  }
+  
+  test();
 
   return (
     
@@ -24,9 +32,6 @@ const LogInForm = ({ setUser, setIsNewUser }: Props) => {
       <FormControl>
         <Stack space={"md"} w="100%" maxW="400px" mb={20}>
           <Input type="email" bg='light.100' size="lg" placeholder="Enter email" onChangeText={(value: string) => setFormData({...formData, email: value})}/>
-          {'email' in formErrors ? <FormControl.ErrorMessage>Error</FormControl.ErrorMessage> : <FormControl.HelperText>
-            Name should contain atleast 3 character.
-          </FormControl.HelperText>}
           <Input type="password" bg='light.100' size="lg" placeholder="Enter password" onChangeText={(value: string) => setFormData({...formData, password: value})}/>
         </Stack>
 
