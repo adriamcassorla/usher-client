@@ -19,7 +19,7 @@ export const getMockPromos = (count: number) => {
     'Limitted tickets',
     'Last shows',
     '5 national awards',
-    '10% off double tickets',
+    'Selling fast',
     "Critic's choice",
   ];
   return promos.sort(() => 0.5 - Math.random()).slice(0, count);

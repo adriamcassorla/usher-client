@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box, Text, ZStack, Image } from 'native-base';
+import { Box, Text, ZStack, Image, Badge } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Pressable } from 'react-native';
@@ -17,6 +17,10 @@ const HighlightCard = ({ event, copy, promo }: Props) => {
   const navigation = useNavigation<MainStackNavType>();
 
   const image = { uri: event.image };
+
+  // Select a random colorScheme from nativebase defaults
+  const schemes = ['primary.600', 'secondary.600', 'tertiary.600'];
+  const badgeScheme = schemes[Math.floor(Math.random() * 3)];
 
   return (
     <Pressable
@@ -45,9 +49,17 @@ const HighlightCard = ({ event, copy, promo }: Props) => {
             mb={2}
             width="full"
             position="absolute"
-            top="230"
+            top="210"
             justifyContent="center"
           >
+            <Badge
+              w={32}
+              p={0}
+              variant="solid"
+              backgroundColor ={badgeScheme}
+            >
+              <Text color="white">{promo}</Text>
+            </Badge>
             <Text bold fontSize="xl" color={'white'}>
               {capitalize(event.name)}
             </Text>

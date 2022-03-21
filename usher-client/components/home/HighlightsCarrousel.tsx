@@ -5,6 +5,9 @@ import { Dimensions } from 'react-native';
 import HighlightCard from './HighlightCard';
 import { getMockCopy, getMockPromos } from '../../utils/helpers/home';
 
+import { useToken } from 'native-base';
+import { color } from 'native-base/lib/typescript/theme/styled-system';
+
 type Props = {
   topEvents: EventType[];
 };
