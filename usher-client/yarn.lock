@@ -8425,6 +8425,29 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-parallax-view@npm:^2.0.6":
+  version: 2.0.6
+  resolution: "react-native-parallax-view@npm:2.0.6"
+  dependencies:
+    react-native-scrollable-mixin: ^1.0.1
+  peerDependencies:
+    react-native: ">=0.8.0 || 0.8.0-rc || 0.8.0-rc.2 || 0.8.0-rc.3"
+  checksum: 99cf5273f0f1a7755c4ec27abdff45638909e54b8db7bdcd9d1e37766ccc000b9de4a52b8c8e87a8e0d2b06992fc9c9b9ff09d5cd39f26a78e801f8326c70ad5
+  languageName: node
+  linkType: hard
+
+"react-native-ratings@npm:^8.1.0":
+  version: 8.1.0
+  resolution: "react-native-ratings@npm:8.1.0"
+  dependencies:
+    lodash: ^4.17.15
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 34aa4e7ff09e537d5c8fb5b5bc98470c0723d7c0fff8954e39de371cdfa5ae3aa4af636ea44d508751f5dcaca6f80ee363fffd9c34a1bd8d8f7a9d8a23d82d15
+  languageName: node
+  linkType: hard
+
 "react-native-safe-area-context@npm:3.2.0":
   version: 3.2.0
   resolution: "react-native-safe-area-context@npm:3.2.0"
@@ -8444,6 +8467,13 @@ __metadata:
     react: "*"
     react-native: "*"
   checksum: 7d47c1c4f1e2f033221c1d1dec8f990bd3e95c2d9a8d1ec7628b4acbee23ae4dd69eb292013b8491155a79ddfadd1805e8e1e239392df902b7a4681473e58796
+  languageName: node
+  linkType: hard
+
+"react-native-scrollable-mixin@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "react-native-scrollable-mixin@npm:1.0.1"
+  checksum: 9017d908a93b314099cceff41344981ab0dd510b983e2655e189a79eda960bd7efe93e180b016c198d940e6a2706e0f50640abfd39830725959d2464cd537fea
   languageName: node
   linkType: hard
 
@@ -9893,6 +9923,8 @@ __metadata:
     react-native: "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz"
     react-native-gesture-handler: ~1.10.2
     react-native-maps: 0.28.0
+    react-native-parallax-view: ^2.0.6
+    react-native-ratings: ^8.1.0
     react-native-safe-area-context: 3.2.0
     react-native-screens: ~3.4.0
     react-native-snap-carousel: ^3.9.1

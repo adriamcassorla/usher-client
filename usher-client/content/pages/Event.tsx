@@ -1,13 +1,19 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
-import { Center, Text, Button } from "native-base";
+import { ScrollView, Image } from "native-base";
 
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { MainStackParamList } from "../../utils/Types/navTypes";
 import { getEventInfo } from "../../services/api/events";
+import {
+  EventFooter,
+  EventHeader,
+  EventHero,
+  EventTabView,
+} from "../../components/event";
 type Props = NativeStackScreenProps<MainStackParamList, "Event">;
 
-const Event = ({ navigation, route }: Props) => {
+const Event = ({ route }: Props) => {
   const { eventId, todayShow } = route.params;
   const [eventInfo, setEventInfo] = useState<EventType | null>(null);
 
@@ -17,18 +23,20 @@ const Event = ({ navigation, route }: Props) => {
 
   if (!eventInfo) return null;
   return (
-    <Center h={"full"} w={"full"} bgColor={"dark.50"}>
-      <Text>Event page for event: {eventInfo.name}</Text>
-      {todayShow.length ? (
-        <Button
-          onPress={() => {
-            navigation.navigate("Payment", { showId: "testing" });
-          }}
-        >
-          Book tickets
-        </Button>
-      ) : null}
-    </Center>
+    <ScrollView h={"full"} w={"full"} bgColor={"dark.50"}>
+      <Image
+        src={eventInfo.image}
+        alt="Main event image"
+        w={"full"}
+        h={"350px"}
+        mb={-50}
+        resizeMode="cover"
+      />
+      <EventHeader></EventHeader>
+      <EventHero event={eventInfo}></EventHero>
+      <EventTabView></EventTabView>
+      <EventFooter></EventFooter>
+    </ScrollView>
   );
 };
 

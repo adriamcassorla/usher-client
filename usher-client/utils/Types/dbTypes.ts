@@ -11,8 +11,6 @@ type EventType = {
   description?: String,
   external_url?: String,
   venue: Venue,
-  venue_id: String,
-  favorite_by: User[],
   shows: Show[],
   today_shows: Show[],
 }

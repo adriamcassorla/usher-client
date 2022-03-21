@@ -59,6 +59,9 @@ export const getEventInfo = async (eventID: number, isToday: boolean): Promise<E
       latitude
       longitude
     }
+    shows {
+      date
+    }
     today_shows @include(if: $isToday){
       id
       date

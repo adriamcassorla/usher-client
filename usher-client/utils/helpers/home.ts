@@ -3,7 +3,7 @@ import { DateTime } from 'luxon';
 export const todayDates = (event: EventType) => {
   if (event.today_shows.length === 0) return null;
   return event.today_shows.map((show) =>
-    DateTime.fromMillis(Number(show.date)).toLocaleString(DateTime.TIME_SIMPLE)
+    DateTime.fromMillis(Number(show.date)).toLocaleString(DateTime.TIME_24_SIMPLE)
   );
 };
 
