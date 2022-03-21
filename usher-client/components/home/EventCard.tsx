@@ -1,18 +1,20 @@
-import * as React from "react";
-import { todayDates, capitalizeName } from "../../utils/helpers/home";
+import * as React from 'react';
+import { todayDates, capitalize } from '../../utils/helpers/home';
 
 import {
   Pressable,
   Image,
   VStack,
   Box,
-  Heading,
   Text,
   HStack,
-} from "native-base";
+  Badge,
+} from 'native-base';
 
-import { useNavigation } from "@react-navigation/native";
-import { MainStackNavType } from "../../utils/Types/navTypes";
+import { useNavigation } from '@react-navigation/native';
+import { MainStackNavType } from '../../utils/Types/navTypes';
+
+const default_card_image = require('../../assets/default_card_image.jpg');
 
 type Props = {
   event: EventType;
@@ -23,15 +25,15 @@ const EventCard = ({ event }: Props) => {
   return (
     <Pressable
       onPress={() =>
-        navigation.navigate("Event", {
+        navigation.navigate('Event', {
           eventId: event.id,
           isToday: event.today_shows.length ? true : false,
         })
       }
     >
       <Box
-        alignSelf={"center"}
-        bg="light.50"
+        alignSelf={'center'}
+        bgColor={'dark.300'}
         shadow={2}
         mb={3}
         rounded="lg"
@@ -39,58 +41,36 @@ const EventCard = ({ event }: Props) => {
       >
         <Image
           src={event.image}
+          defaultSource={default_card_image}
           alt="image base"
           resizeMode="cover"
           height={150}
           roundedTop="md"
         />
-        <Text
-          bold
-          fontSize="lg"
-          position="absolute"
-          color="white"
-          top={0}
-          m={[3, 3, 8]}
-        >
-          {event.type}
-        </Text>
+        <Badge bg="tertiary.700" p={0}>
+          <Text color="white" fontSize="xs">
+            {event.type}
+          </Text>
+        </Badge>
+        <HStack alignItems={'center'}>
+          <VStack flex={4} pt={1} pl={2} pr={2} pb={2} roundedBottom="md">
+            <Text color="white" fontWeight="medium" fontSize="md">
+              {capitalize(event.name)}
+            </Text>
+            <Text color="light.200" fontWeight="medium" fontSize="sm">
+              {capitalize(event.venue.name)}
+            </Text>
+            <Box>
+              {event.today_shows.length ? (
+                <Text color="white">Today at {todayDates(event)}</Text>
+              ) : null}
+            </Box>
+          </VStack>
 
-        <HStack position="absolute" top={100}>
-          {event.today_shows.length > 2 && (
-            <Text bold color="white" fontSize="2xl">
-              Multiple shows!
-            </Text>
-          )}
-          {event.today_shows.length && event.today_shows.length < 3
-            ? todayDates(event)?.map((date) => (
-                <Box key={Math.random()} w={32} h={8} m={[3, 3, 0, 3]}>
-                  <Text bold color="white" fontSize="2xl">
-                    {date}
-                  </Text>
-                </Box>
-              ))
-            : null}
-          {event.today_shows.length === 0 ? (
-            <Text
-              bold
-              color="white"
-              fontSize={"xl"}
-              alignSelf={"flex-end"}
-              textAlign={"right"}
-              w={"full"}
-              pr={3}
-              h={8}
-            >
-              ...more shows soon
-            </Text>
-          ) : null}
+          <Text flex={1} color="white" fontWeight="medium" fontSize="lg">
+            {event.price}€
+          </Text>
         </HStack>
-
-        <VStack bgColor={"dark.300"} roundedBottom="md">
-          <Heading p={3} color={"light.100"}>
-            {capitalizeName(event)}
-          </Heading>
-        </VStack>
       </Box>
     </Pressable>
   );
