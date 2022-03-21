@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
-import { ScrollView, Image } from "native-base";
+import { ScrollView, Image, View } from "native-base";
+import { Text, StyleSheet } from "react-native";
 
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { MainStackParamList } from "../../utils/Types/navTypes";
@@ -22,10 +23,11 @@ const Event = ({ route }: Props) => {
   if (!eventInfo) return null;
   return (
     <ScrollView
-      h={"full"}
-      w={"full"}
-      bgColor={"light.50"}
-      contentContainerStyle={{ flexGrow: 1 }}
+      style={styles.scrollView}
+      contentContainerStyle={styles.contentContainer}
+      stickyHeaderIndices={[3]}
+      bg={"light.50"}
+      showsVerticalScrollIndicator={false}
     >
       <Image
         src={eventInfo.image}
@@ -39,9 +41,20 @@ const Event = ({ route }: Props) => {
       <EventHero event={eventInfo}></EventHero>
       <EventTabHeader tabIndex={tabIndex} setTabIndex={setTabIndex} />
       <EventTabView event={eventInfo} tabIndex={tabIndex}></EventTabView>
-      <EventFooter></EventFooter>
+      {/* <EventFooter></EventFooter> */}
     </ScrollView>
   );
 };
 
 export default Event;
+
+const styles = StyleSheet.create({
+  scrollView: {
+    flex: 1,
+    flexGrow: 1,
+  },
+  contentContainer: {
+    flexGrow: 1,
+    paddingBottom: 500,
+  },
+});

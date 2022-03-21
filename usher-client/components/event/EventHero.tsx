@@ -43,7 +43,7 @@ const EventHero = ({ event }: Props) => {
           space={"xs"}
           justifyContent={"space-around"}
         >
-          <Heading size="sm" color={"dark.50"}>
+          <Heading size="md" color={"dark.50"}>
             {capitalize(event.name)}
           </Heading>
           <Text color={"dark.300"}>{event.venue.name}</Text>

@@ -16,7 +16,7 @@ const EventTabHeader = ({ tabIndex, setTabIndex }: Props) => {
       <Center flexDirection="row" bg={"light.50"} w={"60%"}>
         {routes.map((route, i) => {
           const color = tabIndex === i ? dark200 : dark400;
-          const borderColor = tabIndex === i ? "primary.600" : "light.400";
+          const borderColor = tabIndex === i ? "primary.400" : "light.400";
           return (
             <Box
               borderBottomWidth="4"

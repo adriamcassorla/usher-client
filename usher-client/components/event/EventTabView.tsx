@@ -18,7 +18,7 @@ const EventTabView = ({ event, tabIndex }: Props) => {
   return (
     //@ts-ignore
     <PagerView
-      style={{ flex: 1 }}
+      style={{ width: "100%", height: "200%" }}
       initialPage={0}
       collapsable={false}
       ref={ref}

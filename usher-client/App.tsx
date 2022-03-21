@@ -1,13 +1,13 @@
-import * as React from 'react';
-import { useState } from 'react';
-import { NativeBaseProvider } from 'native-base';
+import * as React from "react";
+import { useState } from "react";
+import { NativeBaseProvider } from "native-base";
 
-import { UserProvider } from './services/contexts/UserContext';
+import { UserProvider } from "./services/contexts/UserContext";
 
-import theme from './styles/theme';
-import Auth from './content/pages/Auth';
-import MainStack from './content/navigation/MainStack';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import theme from "./styles/theme";
+import Auth from "./content/pages/Auth";
+import MainStack from "./content/navigation/MainStack";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 export default function App() {
   const [user, setUser] = useState<User | null>(null);
