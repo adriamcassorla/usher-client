@@ -11,7 +11,7 @@ import {
   useToken,
 } from "native-base";
 import * as React from "react";
-import { capitalizeName, todayDates } from "../../utils/helpers/home";
+import { capitalize, todayDates } from "../../utils/helpers/home";
 import { Rating } from "react-native-ratings";
 
 type Props = {
@@ -45,12 +45,12 @@ const EventHero = ({ event }: Props) => {
           justifyContent={"space-around"}
         >
           <Heading size="sm" color={"dark.50"}>
-            {capitalizeName(event)}
+            {capitalize(event.name)}
           </Heading>
           <Text color={"dark.300"}>{event.venue.name}</Text>
           {event.today_shows ? (
             <Badge w={"80%"} color={"dark.500"}>
-              {todayDates(event)?.join("  |  ")}
+              {todayDates(event)}
             </Badge>
           ) : null}
           <Rating

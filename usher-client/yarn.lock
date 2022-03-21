@@ -5211,6 +5211,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"expo-linear-gradient@npm:~9.2.0":
+  version: 9.2.0
+  resolution: "expo-linear-gradient@npm:9.2.0"
+  checksum: 702c6c894a6c05595c31d9ef6ba70906183cfeda10c0636fc633706e89ffa62087bab14d15b13cc9174722448dfb339463c2cd7f7a51498c41635a5cc473ba34
+  languageName: node
+  linkType: hard
+
 "expo-modules-autolinking@npm:^0.0.3":
   version: 0.0.3
   resolution: "expo-modules-autolinking@npm:0.0.3"
@@ -9912,6 +9919,7 @@ __metadata:
     "@types/react-native-snap-carousel": ^3.8.5
     expo: ~42.0.0
     expo-blur: ~9.0.3
+    expo-linear-gradient: ~9.2.0
     expo-status-bar: ~1.0.4
     expo-updates: ~0.8.2
     graphql: ^16.3.0

@@ -1,13 +1,16 @@
-import * as React from "react";
+import * as React from 'react';
 const { useContext, useEffect, useState } = React;
-import { Center } from "native-base";
+import { Center, useToken } from 'native-base';
 
-import { EventsContext } from "../../services/contexts/EventsContext";
-import HomeList from "../../components/home/HomeList";
+import { EventsContext } from '../../services/contexts/EventsContext';
+import HomeList from '../../components/home/HomeList';
+
+import { LinearGradient } from 'expo-linear-gradient';
+import GradientProvider from '../../components/GradientProvider';
 
 const Home = () => {
   // * NOTE *  City should be a state depending on picker
-  const city = "Barcelona";
+  const city = 'Barcelona';
 
   const { events, populateEvents } = useContext(EventsContext);
 
@@ -17,9 +20,11 @@ const Home = () => {
 
   if (!events) return null;
   return (
-    <Center w="full" h="full" bgColor={"dark.50"}>
-      <HomeList events={events} />
-    </Center>
+    <GradientProvider>
+      <Center w="full" h="full">
+        <HomeList events={events} />
+      </Center>
+    </GradientProvider>
   );
 };
 
