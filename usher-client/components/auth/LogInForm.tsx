@@ -1,7 +1,8 @@
 import * as React from "react";
 import { Center, Button, Stack, Input, FormControl } from "native-base";
-import { loginHandler, LoginForm } from '../../utils/helpers/login'
+import { login, LoginForm } from '../../utils/helpers/login'
 import { DarkMode } from "@chakra-ui/react";
+import { GestureResponderEvent } from "react-native";
 
 type Props = {
   setUser: React.Dispatch<React.SetStateAction<User | null>>;
@@ -13,6 +14,10 @@ const LogInForm = ({ setUser, setIsNewUser }: Props) => {
   const [formData, setFormData] = React.useState<LoginForm>({email: '', password: ''})
   const [formErrors, setFormErrors] = React.useState<LoginForm>({email: '', password: ''});
   
+  const submitHandler = (event: GestureResponderEvent) => {
+    login(event, formData, setFormErrors)
+  }
+
   return (
     
     <Center w={"80%"} h={"3/4"}>
@@ -28,7 +33,7 @@ const LogInForm = ({ setUser, setIsNewUser }: Props) => {
         <Button
           variant="solid"
           colorScheme="primary"
-          onPress={(event) => loginHandler(event, formData, setFormErrors)}
+          onPress={submitHandler}
           mb={10}
           >
           Log in
