@@ -16,15 +16,18 @@ const LogInForm = ({ setUser, setIsNewUser }: Props) => {
   const submitHandler = async (event: GestureResponderEvent) => {
     login(event, formData)
     const user = await AsyncStorage.getItem('user');
-    console.log(user);
+    // console.log(user);
+    if (user) {
+      setUser({id: '1', favorite_events: [], tickets: []})
+    }
   }
 
-  const test = async () => {
-    const user = await AsyncStorage.getItem('user');
-    console.log('Current user is', user);
-  }
+  // const test = async () => {
+  //   const user = await AsyncStorage.getItem('user');
+  //   console.log('Current user is', user);
+  // }
   
-  test();
+  // test();
 
   return (
     
