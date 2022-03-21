@@ -1,8 +1,9 @@
-import { FormEvent } from "react"
 import { GestureResponderEvent } from "react-native"
+import { getJWT } from "../../services/api/auth"
 
-export const loginHandler = ( event: GestureResponderEvent, formData: LoginForm, setFormErrors: React.Dispatch<React.SetStateAction<loginForm>>) => {
-  validateLogin(formData, setFormErrors) ? console.log('Working fine') : console.log('Incorrect data')
+export const login = ( event: GestureResponderEvent, formData: LoginForm, setFormErrors: React.Dispatch<React.SetStateAction<LoginForm>>) => {
+  const { email, password } = formData
+  validateLogin(formData, setFormErrors) ? getJWT(email, password) : console.error('Provide valid email and password')
 }
 
 const validateLogin = (formData: LoginForm, setFormErrors: React.Dispatch<React.SetStateAction<LoginForm>>) => {
