@@ -1,5 +1,7 @@
 import { FlatList, Text } from "native-base";
 import * as React from "react";
+import { useState } from "react";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Highlights, FilterMenu, EventCard } from "./";
 
 type Props = { events: EventType[] | null };
@@ -10,9 +12,12 @@ type renderParams = {
 const HomeList = ({ events }: Props) => {
   if (!events) return <Text>Loading...</Text>;
 
+  const [isOnTop, setIsOnTop] = useState(false);
+  const { top } = useSafeAreaInsets();
+
   const _renderItem = ({ item }: renderParams) => {
     if (item === "top") return <Highlights />;
-    if (item === "filter") return <FilterMenu />;
+    if (item === "filter") return <FilterMenu isOnTop={isOnTop} />;
     return <EventCard event={item} />;
   };
 
@@ -26,6 +31,11 @@ const HomeList = ({ events }: Props) => {
       keyExtractor={(item) =>
         typeof item === "string" ? item : String(item.id)
       }
+      onScroll={(e) => {
+        const yPos = e.nativeEvent.contentOffset.y;
+        if (yPos >= 320 - top) setIsOnTop(true);
+        else setIsOnTop(false);
+      }}
     />
   );
 };

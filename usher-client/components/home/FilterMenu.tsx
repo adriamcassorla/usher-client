@@ -2,6 +2,8 @@ import * as React from "react";
 
 import { Button, View, FlatList } from "native-base";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { BlurView } from "expo-blur";
+
 const filters = [
   "filter A",
   "filter B",
@@ -12,7 +14,10 @@ const filters = [
   "filter G",
 ];
 
-const FilterMenu = () => {
+type Props = { isOnTop: boolean };
+
+const FilterMenu = ({ isOnTop }: Props) => {
+  const { top } = useSafeAreaInsets();
   //TODO: Create a proper render item function for filter buttons. Can we use a subcomponent? - YES!!
   const _renderItem = ({ item }: { item: string }) => {
     return (
@@ -23,19 +28,21 @@ const FilterMenu = () => {
   };
 
   return (
-    <View bg={"dark.50:alpha.95"} pb={"4"} pt={"40px"}>
-      <FlatList
-        showsHorizontalScrollIndicator={false}
-        px={2}
-        data={filters}
-        renderItem={_renderItem}
-        keyExtractor={(item) => {
-          //Hacky key extractor
-          return String(item);
-        }}
-        horizontal
-      />
-    </View>
+    <BlurView intensity={isOnTop ? 100 : 0} tint="dark">
+      <View pb={"4"} pt={`${top}px`}>
+        <FlatList
+          showsHorizontalScrollIndicator={false}
+          px={2}
+          data={filters}
+          renderItem={_renderItem}
+          keyExtractor={(item) => {
+            //Hacky key extractor
+            return String(item);
+          }}
+          horizontal
+        />
+      </View>
+    </BlurView>
   );
 };
 

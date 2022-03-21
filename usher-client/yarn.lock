@@ -5158,6 +5158,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"expo-blur@npm:~9.0.3":
+  version: 9.0.3
+  resolution: "expo-blur@npm:9.0.3"
+  checksum: 5652fb9a7eb2956c1197fb26757dff05c4c4d6acc1d09d08f3ff9965bce2fcacdd1b1a49f4b3c26cedf185e4dba8c5ee607a16ffe003962b1405f8efa0062be1
+  languageName: node
+  linkType: hard
+
 "expo-constants@npm:~11.0.2":
   version: 11.0.2
   resolution: "expo-constants@npm:11.0.2"
@@ -9874,6 +9881,7 @@ __metadata:
     "@types/react-native": ~0.63.2
     "@types/react-native-snap-carousel": ^3.8.5
     expo: ~42.0.0
+    expo-blur: ~9.0.3
     expo-status-bar: ~1.0.4
     expo-updates: ~0.8.2
     graphql: ^16.3.0
