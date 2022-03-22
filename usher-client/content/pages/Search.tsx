@@ -8,13 +8,12 @@ import SearchBar from '../../components/search/SearchBar';
 import { EventsContext } from '../../services/contexts/EventsContext';
 import { useFocusEffect } from '@react-navigation/native';
 import GradientProvider from '../../components/GradientProvider';
+import { BlurView } from 'expo-blur';
 
 const Search = () => {
-
   const { events } = useContext(EventsContext);
   const [results, setResults] = useState<EventType[] | null>(null);
-
-
+  const [isSearching, setIsSearching] = useState<Boolean>(false);
   type renderParams = {
     item: EventType;
   };
@@ -25,13 +24,28 @@ const Search = () => {
 
   return (
     <GradientProvider>
-      <View w="full" h="full" alignItems='center'>
+      <View w="full" h="full" alignItems="center">
         <SearchBar
           events={events}
           setResults={setResults}
+          setIsSearching={setIsSearching}
         />
+        {isSearching && (
+          <Text
+            w="90%"
+            textAlign="left"
+            fontSize="md"
+            fontWeight="medium"
+            color="white"
+            mb={2}
+          >
+            {results?.length
+              ? `Found ${results.length} event${results.length > 1 ? 's' : ''} matching your search`
+              : 'No results. Try something else!'}
+          </Text>
+        )}
         <FlatList
-          width='100%'
+          width="100%"
           data={results}
           renderItem={_renderItem}
           keyExtractor={(item) => String(item.id)}
