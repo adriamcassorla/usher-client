@@ -33,8 +33,7 @@ const HomeList = ({ events }: Props) => {
       }
       onScroll={(e) => {
         const yPos = e.nativeEvent.contentOffset.y;
-        if (!isOnTop && yPos >= 320 - top) setIsOnTop(true);
-        else if (isOnTop && yPos <= 320 - top) setIsOnTop(false);
+        setIsOnTop(yPos >= 370 - top);
       }}
     />
   );
