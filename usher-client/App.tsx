@@ -11,12 +11,11 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 
 export default function App() {
   const { user, populateUser } = React.useContext(UserContext);
-
   return (
     <UserProvider>
       <SafeAreaProvider>
         <NativeBaseProvider theme={theme}>
-          {user ? (
+          {!user ? (
             <MainStack></MainStack>
           ) : (
             <Auth setUser={populateUser}></Auth>
