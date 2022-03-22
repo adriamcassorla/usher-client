@@ -1,23 +1,23 @@
 import { GestureResponderEvent } from "react-native"
 import { createUser } from "../../services/api/auth"
 
-export const signup = async ( event: GestureResponderEvent, formData: SignupForm) => {
+export const signup = async (formData: SignupForm) => {
   const { email, password, firstName, lastName } = formData
   const isValid = validateSignup(formData)
   if (isValid !== true) {
     console.error(isValid)
     return
-  } 
+  }
   const created = await createUser(email, password, firstName, lastName);
   console.warn(created);
-    
+
 }
 
 const validateSignup = (formData: SignupForm) => {
   if (!formData.email) {
     return 'Provide valid email';
   } else if (!formData.password) {
-    return'Password is required'
+    return 'Password is required'
   } else if (!formData.firstName) {
     return 'First name is required'
   } else if (!formData.lastName) {

@@ -9,30 +9,55 @@ type Props = {
 };
 
 const SignUpForm = ({ setUser, setIsNewUser }: Props) => {
-
   const [formData, setFormData] = React.useState<SignupForm>(signupMock);
 
   const submitHandler = async (event: GestureResponderEvent) => {
-    signup(event, formData)
-    const user = await AsyncStorage.getItem('user');
+    signup(formData);
+    const user = await AsyncStorage.getItem("user");
     if (user) {
-      setUser({id: '1', favorite_events: [], tickets: []})
+      setUser({ id: "1", favorite_events: [], tickets: [] });
     }
-  }
+  };
   return (
     <Center w={"80%"} h={"3/4"}>
       <Stack space={"md"} w="100%" maxW="400px" mb={20}>
-        <Input size="lg" bg='light.100' placeholder="First Name" onChangeText={(value: string) => setFormData({...formData, firstName: value})}/>
-        <Input size="lg" bg='light.100' placeholder="Last Name" onChangeText={(value: string) => setFormData({...formData, lastName: value})}/>
-        <Input type="email" size="lg" bg='light.100' placeholder="Enter email" onChangeText={(value: string) => setFormData({...formData, email: value})}/>
-        <Input type="password" size="lg" bg='light.100' placeholder="Enter password" onChangeText={(value: string) => setFormData({...formData, password: value})}/>
+        <Input
+          size="lg"
+          bg="light.100"
+          placeholder="First Name"
+          onChangeText={(value: string) =>
+            setFormData({ ...formData, firstName: value })
+          }
+        />
+        <Input
+          size="lg"
+          bg="light.100"
+          placeholder="Last Name"
+          onChangeText={(value: string) =>
+            setFormData({ ...formData, lastName: value })
+          }
+        />
+        <Input
+          type="email"
+          size="lg"
+          bg="light.100"
+          placeholder="Enter email"
+          onChangeText={(value: string) =>
+            setFormData({ ...formData, email: value })
+          }
+        />
+        <Input
+          type="password"
+          size="lg"
+          bg="light.100"
+          placeholder="Enter password"
+          onChangeText={(value: string) =>
+            setFormData({ ...formData, password: value })
+          }
+        />
       </Stack>
 
-      <Button
-        variant="solid"
-        colorScheme="primary"
-        onPress={submitHandler}
-      >
+      <Button variant="solid" colorScheme="primary" onPress={submitHandler}>
         Sign up
       </Button>
       <Button

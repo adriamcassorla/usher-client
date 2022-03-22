@@ -21,7 +21,7 @@ export const getJWT = async (email: string, password: string): Promise<String | 
   }
 }
 
-export const createUser = async (email: string, password: string, firstName: string, lastName: string): Promise<String |null> => {
+export const createUser = async (email: string, password: string, firstName: string, lastName: string): Promise<String | null> => {
   const mutation = gql`
     mutation createUser($email: String!, $password: String!, $firstName: String!, $lastName: String!) {
   createUser(email: $email, password: $password, first_name: $firstName, last_name: $lastName)
@@ -30,11 +30,12 @@ export const createUser = async (email: string, password: string, firstName: str
 
   try {
     const { createUser } = await client.request(mutation, { email, password, firstName, lastName });
-    if (createUser) {
+    const apiError = new RegExp('^Unsuccesful');
+    if (createUser && !apiError.test(createUser)) {
       await AsyncStorage.setItem('user', createUser);
       return 'Welcome to Usher!'
-    } 
-    return 'This email already has an account'
+    }
+    return createUser;
   } catch (e) {
     console.error(e);
     return null;
