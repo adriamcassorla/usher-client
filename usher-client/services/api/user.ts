@@ -22,7 +22,6 @@ export const logInWithToken = async (token: string) => {
 
   try {
     const { login } = await client.request(query);
-    console.log(login);
     if (login.error) return null
     return login.user as User
   } catch (e) {
