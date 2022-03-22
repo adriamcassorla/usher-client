@@ -1,4 +1,4 @@
-import { Button, Divider, FlatList, Text } from 'native-base';
+import { FlatList, Text } from 'native-base';
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -7,7 +7,7 @@ import { Highlights, FilterMenu, EventCard } from './';
 
 type Props = { events: EventType[] | null };
 type renderParams = {
-  item: EventType | 'top' | 'filter' | 'divider';
+  item: EventType | 'top' | 'filter';
 };
 
 const HomeList = ({ events }: Props) => {
@@ -25,7 +25,6 @@ const HomeList = ({ events }: Props) => {
 
   const _renderItem = ({ item }: renderParams) => {
     if (item === 'top') return <Highlights />;
-    if (item === 'divider') return <Divider m="auto" w="85%" />;
     if (item === 'filter')
       return (
         <FilterMenu
@@ -41,8 +40,8 @@ const HomeList = ({ events }: Props) => {
   return (
     <FlatList
       // @ts-ignore
-      data={['top', 'divider', 'filter', ...filtered]}
-      stickyHeaderIndices={[2]}
+      data={['top', 'filter', ...filtered]}
+      stickyHeaderIndices={[1]}
       removeClippedSubviews={true}
       initialNumToRender={5}
       renderItem={_renderItem}
