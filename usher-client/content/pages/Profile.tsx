@@ -8,6 +8,7 @@ import type { CompositeScreenProps } from "@react-navigation/native";
 import type { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import { HomeTabParamList, StackScreenType } from "../../utils/Types/navTypes";
 import GradientProvider from "../../components/GradientProvider";
+import { getUserProfile } from "../../services/api/user";
 type Props = CompositeScreenProps<
   StackScreenType,
   BottomTabScreenProps<HomeTabParamList, "ProfileStack">
@@ -19,10 +20,10 @@ const Profile = ({ navigation }: Props) => {
   //TODO: Make API call and set profile data using ID from params
   const [profile, setProfile] = useState(null);
   useEffect(() => {
-    
+    getUserProfile().then(console.log)
   }, []);
   // TODO: Pass user info down in navigation props to tix and favs
-
+// 
   return (
     <GradientProvider>
       <Image source={require('../../assets/profile_back.png')} alt="Background shapes" top="-10px" size="xl" height="450px" width="100%" position="absolute"/>
