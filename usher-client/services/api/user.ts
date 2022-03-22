@@ -1,7 +1,7 @@
 import { gql, GraphQLClient } from "graphql-request";
 import { AsyncStorage } from "react-native";
 
-const apiURL = process.env.BASE_URL || "http://localhost:4004";
+const apiURL = "https://www.tourn.me/usher";
 const client = new GraphQLClient(apiURL);
 
 export const logInWithToken = async (token: string) => {

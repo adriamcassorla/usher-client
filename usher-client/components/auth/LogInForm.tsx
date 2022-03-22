@@ -2,7 +2,6 @@ import * as React from "react";
 import { Center, Button, Stack, Input, FormControl } from "native-base";
 import { AsyncStorage } from "react-native";
 import { login, LoginForm, loginMock } from "../../utils/helpers/login";
-import { GestureResponderEvent } from "react-native";
 
 type Props = {
   setUser: React.Dispatch<React.SetStateAction<User | null>>;
