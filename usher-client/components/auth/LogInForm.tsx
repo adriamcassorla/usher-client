@@ -12,20 +12,16 @@ type Props = {
 const LogInForm = ({ setUser, setIsNewUser }: Props) => {
   const [formData, setFormData] = React.useState<LoginForm>(loginMock);
 
-  const submitHandler = async (event: GestureResponderEvent) => {
-    login(event, formData);
-    const user = await AsyncStorage.getItem("user");
-    if (user) {
-      setUser({ id: "1", favorite_events: [], tickets: [] });
-    }
+  const submitHandler = async () => {
+    login(formData).then(setUser);
   };
 
-  const test = async () => {
-    const user = await AsyncStorage.getItem("user");
-    console.log("Current user is", user);
-  };
+  // const test = async () => {
+  //   const user = await AsyncStorage.removeItem("user");
+  //   console.log("Current user is", user);
+  // };
 
-  test();
+  // test();
 
   return (
     <Center w={"80%"} h={"3/4"}>

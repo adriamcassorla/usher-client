@@ -4,20 +4,30 @@ import { AsyncStorage } from "react-native";
 const apiURL = process.env.BASE_URL || "http://localhost:4004";
 const client = new GraphQLClient(apiURL);
 
-export const getJWT = async (email: string, password: string): Promise<String | null> => {
+export const getJWT = async (email: string, password: string): Promise<User | string | null> => {
   const query = gql`
     query login($email: String, $password: String) {
-      login(email: $email, password: $password)
+      login(email: $email, password: $password) {
+        error
+        token
+        user {
+          id
+          favorite_events {
+            id
+          }
+        }
+      }
     }
   `;
 
   try {
     const { login } = await client.request(query, { email, password });
-    await AsyncStorage.setItem('user', login);
-    return login;
+    if (login.error) return login.error
+    await AsyncStorage.setItem('user', login.token);
+    return login.user;
   } catch (e) {
     console.error(e);
-    return null;
+    return 'Internal error';
   }
 }
 

@@ -9,6 +9,7 @@ import Auth from "./content/pages/Auth";
 import MainStack from "./content/navigation/MainStack";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { getLastUser } from "./utils/helpers/login";
+import { convertAbsoluteToRem } from "native-base/lib/typescript/theme/tools";
 
 export default function App() {
   const [user, setUser] = useState<User | null>(null);
