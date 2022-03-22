@@ -1,13 +1,13 @@
-import * as React from 'react';
+import * as React from "react";
 const { useState } = React;
-import { Center, Heading, Text } from 'native-base';
+import { Center, Heading, Text } from "native-base";
 
-import LogInForm from '../../components/auth/LogInForm';
-import SignUpForm from '../../components/auth/SignUpForm';
-import GradientProvider from '../../components/GradientProvider';
+import LogInForm from "../../components/auth/LogInForm";
+import SignUpForm from "../../components/auth/SignUpForm";
+import GradientProvider from "../../components/GradientProvider";
 
 type Props = {
-  setUser: React.Dispatch<React.SetStateAction<User | null>>;
+  setUser: (user: User | null) => void;
 };
 
 const Auth = ({ setUser }: Props) => {

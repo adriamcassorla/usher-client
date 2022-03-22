@@ -9,14 +9,14 @@ type Props = {
 
 const EventTabHeader = ({ tabIndex, setTabIndex }: Props) => {
   const routes = ["Event", "Venue"];
-  const [dark200, dark400] = useToken("colors", ["dark.200", "dark.400"]);
+  const [dark200, light300] = useToken("colors", ["dark.200", "light.300"]);
 
   return (
     <Flex w={"full"} alignItems={"center"}>
       <Center flexDirection="row" bg={"light.50"} w={"60%"}>
         {routes.map((route, i) => {
-          const color = tabIndex === i ? dark200 : dark400;
-          const borderColor = tabIndex === i ? "primary.400" : "light.400";
+          const color = tabIndex === i ? dark200 : light300;
+          const borderColor = tabIndex === i ? "primary.400" : "light.200";
           return (
             <Box
               borderBottomWidth="4"

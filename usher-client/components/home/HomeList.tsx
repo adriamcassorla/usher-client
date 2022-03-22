@@ -6,7 +6,7 @@ import { Highlights, FilterMenu, EventCard } from './';
 
 type Props = { events: EventType[] | null };
 type renderParams = {
-  item: EventType | 'top' | 'filter' | 'divider' | 'reset_button';
+  item: EventType | "top" | "filter" | "divider";
 };
 
 const HomeList = ({ events }: Props) => {
@@ -75,7 +75,7 @@ const HomeList = ({ events }: Props) => {
       initialNumToRender={5}
       renderItem={_renderItem}
       keyExtractor={(item) =>
-        typeof item === 'string' ? item : String(item.id)
+        typeof item === "string" ? item : String(item.id)
       }
       onScroll={(e) => {
         const yPos = e.nativeEvent.contentOffset.y;
