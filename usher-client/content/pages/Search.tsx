@@ -10,19 +10,10 @@ import { useFocusEffect } from '@react-navigation/native';
 import GradientProvider from '../../components/GradientProvider';
 
 const Search = () => {
-  // TODO: Implement search regex logic. setResult with input onChange
-  // NOTE: Let results default to null until user starts typing
 
   const { events } = useContext(EventsContext);
   const [results, setResults] = useState<EventType[] | null>(null);
 
-  useFocusEffect(
-    useCallback(() => {
-      // if (events) {
-        setResults(events);
-      // }
-    }, [events])
-  );
 
   type renderParams = {
     item: EventType;
@@ -32,7 +23,6 @@ const Search = () => {
     return <MiniEventCard event={item} />;
   };
 
-  if (!results) return <Text>Loading...</Text>;
   return (
     <GradientProvider>
       <View w="full" h="full" alignItems='center'>
