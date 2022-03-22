@@ -1,6 +1,6 @@
-import * as React from 'react';
+import * as React from "react";
 const { useState } = React;
-import { Center, Heading, Image } from 'native-base';
+import { Center, Heading, Image } from "native-base";
 
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 import LogInForm from '../../components/auth/LogInForm';
@@ -8,7 +8,7 @@ import SignUpForm from '../../components/auth/SignUpForm';
 import GradientProvider from '../../components/GradientProvider';
 
 type Props = {
-  setUser: React.Dispatch<React.SetStateAction<User | null>>;
+  setUser: (user: User | null) => void;
 };
 
 const Auth = ({ setUser }: Props) => {
@@ -18,7 +18,12 @@ const Auth = ({ setUser }: Props) => {
     <GradientProvider>
       <Center h="full" w="full">
         <Heading mt="90px" mb="-60px">
-          <Image source={require('../../assets/usher_icon.png')} alt="Usher icon" size="xl" width="300px"/>
+          <Image
+            source={require("../../assets/usher_icon.png")}
+            alt="Usher icon"
+            size="xl"
+            width="300px"
+          />
         </Heading>
         {isNewUser ? (
           <SignUpForm setUser={setUser} setIsNewUser={setIsNewUser} />
