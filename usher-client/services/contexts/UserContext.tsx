@@ -3,7 +3,7 @@ import { createContext, useContext, useState } from "react";
 
 type UserContextType = {
   user: User | null;
-  populateUser: (user: User | null) => void;
+  populateUser: (newUser: User | null) => void;
 };
 
 const defaultValue: UserContextType = {

@@ -1,9 +1,13 @@
 import { gql, GraphQLClient } from "graphql-request";
+import { AsyncStorage } from "react-native";
 
 const apiURL = "https://tourn.me/usher";
+
 const client = new GraphQLClient(apiURL);
 
 export const getCityEvents = async (city: string, dayRange: number = 3): Promise<EventType[] | null> => {
+  const jwt = await AsyncStorage.getItem('user');
+  client.setHeader('authorization', `Bearer ${jwt}`)
   const query = gql`
     query GetCityEvents($city: String!, $dayRange: Int!) {
       getCityEvents(city: $city, dayRange: $dayRange) {
@@ -39,6 +43,8 @@ export const getCityEvents = async (city: string, dayRange: number = 3): Promise
 
 
 export const getEventInfo = async (eventID: number, isToday: boolean): Promise<EventType | null> => {
+  const jwt = await AsyncStorage.getItem('user');
+  client.setHeader('authorization', `Bearer ${jwt}`)
   const query = gql`
     query GetEvent($eventID: Int!, $isToday: Boolean!) {
   getEvent(id: $eventID) {

@@ -6,12 +6,11 @@ type UserProfile = {
   last_name: String,
   created_at: String,
   favorite_events: EventType[]
-  tickets: [Ticket],
+  tickets: Ticket[],
   notifications: Boolean,
 }
 
 type User = {
   id: String,
   favorite_events: EventType[],
-  tickets: [Ticket],
 }
