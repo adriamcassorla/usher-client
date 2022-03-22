@@ -1,6 +1,6 @@
 type EventType = {
   id: number,
-  name: String,
+  name: string,
   price: number,
   type: String,
   genres: String[],
@@ -17,7 +17,7 @@ type EventType = {
 
 type Venue = {
   id: String,
-  name: String,
+  name: string,
   external_url?: String,
   address: String,
   zipcode: String,

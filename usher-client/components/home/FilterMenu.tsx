@@ -1,43 +1,33 @@
-import * as React from "react";
+import * as React from 'react';
 
-import { Button, View, FlatList } from "native-base";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { BlurView } from "expo-blur";
+import {  View, FlatList } from 'native-base';
+import { BlurView } from 'expo-blur';
+import FilterButton from './FilterButton';
 
-const filters = [
-  "filter A",
-  "filter B",
-  "filter C",
-  "filter D",
-  "filter E",
-  "filter F",
-  "filter G",
-];
+const filters = ['BCN', 'Today', 'Comedy', 'Tragedy', 'Musical', 'Under 20€'];
 
-type Props = { isOnTop: boolean };
+type Props = {
+  isOnTop: boolean;
+  dispatch: any;
+};
 
-const FilterMenu = ({ isOnTop }: Props) => {
-  const { top } = useSafeAreaInsets();
-  //TODO: Create a proper render item function for filter buttons. Can we use a subcomponent? - YES!!
+const FilterMenu = ({ isOnTop, dispatch }: Props) => {
   const _renderItem = ({ item }: { item: string }) => {
     return (
-      <Button ml={3} borderRadius={20}>
-        {item}
-      </Button>
+      <FilterButton filter={item} dispatch={dispatch} />
     );
   };
 
   return (
     <BlurView intensity={isOnTop ? 100 : 0} tint="dark">
-      <View pb={"4"} pt={`${top}px`} >
+      <View py={5} justifyContent="space-around">
         <FlatList
           showsHorizontalScrollIndicator={false}
-          px={2}
+          contentContainerStyle={{paddingEnd:12}}
           data={filters}
           renderItem={_renderItem}
-          keyExtractor={(item) => {
-            //Hacky key extractor
-            return String(item);
+          keyExtractor={(_item, index) => {
+            return String(index);
           }}
           horizontal
         />

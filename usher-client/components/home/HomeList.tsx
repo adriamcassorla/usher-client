@@ -1,30 +1,57 @@
-import { FlatList, Text } from "native-base";
+import { Divider, FlatList, Text } from "native-base";
 import * as React from "react";
-import { useState } from "react";
+import { useReducer, useState } from "react";
+import { GestureResponderEvent } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Highlights, FilterMenu, EventCard } from "./";
 
 type Props = { events: EventType[] | null };
 type renderParams = {
-  item: EventType | "top" | "filter";
+  item: EventType | "top" | "filter" | "divider" | "reset_button";
 };
 
 const HomeList = ({ events }: Props) => {
-  if (!events) return <Text>Loading...</Text>;
-
-  const [isOnTop, setIsOnTop] = useState(false);
   const { top } = useSafeAreaInsets();
+  const [isOnTop, setIsOnTop] = useState(false);
+
+  const [state, dispatch] = useReducer(reducer, events);
+
+  function reducer(state: any, action: any) {
+    switch (action) {
+      case "Comedy":
+        console.log("Comedy button hit");
+        return state.filter((e) => e.genres.includes("Comedia"));
+      case "init":
+        console.log("clearing filters");
+        return events;
+      default:
+        console.log("reducer activated with action", action);
+        return state;
+    }
+  }
 
   const _renderItem = ({ item }: renderParams) => {
     if (item === "top") return <Highlights />;
-    if (item === "filter") return <FilterMenu isOnTop={isOnTop} />;
+    if (item === "divider") return <Divider m="auto" w="85%" />;
+    if (item === "filter")
+      return <FilterMenu dispatch={dispatch} isOnTop={isOnTop} />;
+    // if (item === 'reset_button')
+    //   return (
+    //     <Button variant="outline" style={{borderColor: 'white', borderRadius: 20, width:'70%'}}onPress={() => dispatch('init')}>
+    //       <Text color='white'>
+    //         Clear filters
+    //         </Text>
+    //     </Button>
+    //   );
     return <EventCard event={item} />;
   };
+  if (!events) return <Text>Loading...</Text>;
 
   return (
     <FlatList
-      data={["top", "filter", ...events]}
-      stickyHeaderIndices={[1]}
+      // @ts-ignore
+      data={["top", "divider", "filter", ...state /*, 'reset_button'*/]}
+      stickyHeaderIndices={[2]}
       removeClippedSubviews={true}
       initialNumToRender={5}
       renderItem={_renderItem}
@@ -33,8 +60,7 @@ const HomeList = ({ events }: Props) => {
       }
       onScroll={(e) => {
         const yPos = e.nativeEvent.contentOffset.y;
-        if (!isOnTop && yPos >= 320 - top) setIsOnTop(true);
-        else if (isOnTop && yPos <= 320 - top) setIsOnTop(false);
+        setIsOnTop(yPos >= 380 - top);
       }}
     />
   );

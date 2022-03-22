@@ -2,7 +2,7 @@ import * as React from "react";
 import { useState } from "react";
 import { NativeBaseProvider } from "native-base";
 
-import { UserProvider } from "./services/contexts/UserContext";
+import { UserContext, UserProvider } from "./services/contexts/UserContext";
 
 import theme from "./styles/theme";
 import Auth from "./content/pages/Auth";

@@ -1,10 +1,9 @@
-import * as React from 'react';
-import { createContext, useContext, useState } from 'react';
-import { getUser } from '../api/user';
+import * as React from "react";
+import { createContext, useContext, useState } from "react";
 
 type UserContextType = {
   user: User | null;
-  populateUser: () => void;
+  populateUser: (user: User | null) => void;
 };
 
 const defaultValue: UserContextType = {
@@ -17,9 +16,8 @@ export const UserContext = createContext<UserContextType>(defaultValue);
 export const UserProvider = ({ children }: any) => {
   const [user, setUser] = useState<User | null>(null);
 
-  const populateUser = async () => {
-    const fetchedUser = await getUser();
-    setUser(fetchedUser);
+  const populateUser = (newUser: User | null) => {
+    setUser(newUser);
   };
 
   return (
