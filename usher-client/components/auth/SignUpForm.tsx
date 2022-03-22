@@ -11,12 +11,8 @@ type Props = {
 const SignUpForm = ({ setUser, setIsNewUser }: Props) => {
   const [formData, setFormData] = React.useState<SignupForm>(signupMock);
 
-  const submitHandler = async (event: GestureResponderEvent) => {
-    signup(formData);
-    const user = await AsyncStorage.getItem("user");
-    if (user) {
-      setUser({ id: "1", favorite_events: [], tickets: [] });
-    }
+  const submitHandler = async () => {
+    signup(formData).then(setUser);
   };
   return (
     <Center w={"80%"} h={"3/4"}>

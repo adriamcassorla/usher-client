@@ -6,11 +6,12 @@ export const signup = async (formData: SignupForm) => {
   const isValid = validateSignup(formData)
   if (isValid !== true) {
     console.error(isValid)
-    return
+    return null
   }
   const created = await createUser(email, password, firstName, lastName);
-  console.warn(created);
-
+  if (typeof created !== 'string') return created
+  console.error(created);
+  return null
 }
 
 const validateSignup = (formData: SignupForm) => {

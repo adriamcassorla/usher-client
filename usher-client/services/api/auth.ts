@@ -1,5 +1,6 @@
 import { gql, GraphQLClient } from "graphql-request";
 import { AsyncStorage } from "react-native";
+import { login } from "../../utils/helpers/login";
 
 const apiURL = process.env.BASE_URL || "http://localhost:4004";
 const client = new GraphQLClient(apiURL);
@@ -31,21 +32,27 @@ export const getJWT = async (email: string, password: string): Promise<User | st
   }
 }
 
-export const createUser = async (email: string, password: string, firstName: string, lastName: string): Promise<String | null> => {
+export const createUser = async (email: string, password: string, firstName: string, lastName: string): Promise<User | null> => {
   const mutation = gql`
     mutation createUser($email: String!, $password: String!, $firstName: String!, $lastName: String!) {
-  createUser(email: $email, password: $password, first_name: $firstName, last_name: $lastName)
+  createUser(email: $email, password: $password, first_name: $firstName, last_name: $lastName) {
+      error
+      token
+      user {
+        id
+        favorite_events {
+          id
+        }
+      }
+    }
   }
   `;
 
   try {
     const { createUser } = await client.request(mutation, { email, password, firstName, lastName });
-    const apiError = new RegExp('^Unsuccesful');
-    if (createUser && !apiError.test(createUser)) {
-      await AsyncStorage.setItem('user', createUser);
-      return 'Welcome to Usher!'
-    }
-    return createUser;
+    if (createUser.error) return createUser.error
+    await AsyncStorage.setItem('user', createUser.token);
+    return createUser.user;
   } catch (e) {
     console.error(e);
     return null;
