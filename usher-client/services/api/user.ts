@@ -30,4 +30,45 @@ export const logInWithToken = async (token: string) => {
   }
 }
 
-export const getUserProfile = () => { };
+export const getUserProfile = async () => {
+  const token = await AsyncStorage.getItem('user');
+  client.setHeader('authorization', `Bearer ${token}`)
+  
+  const query = gql`
+    query GetProfile {
+      getProfile {
+        first_name
+        last_name
+        notifications
+        favorite_events {
+          id
+        }
+        tickets {
+          id
+          show {
+            date
+            event {
+              image
+              name
+              price
+              venue {
+                name 
+                address
+              }
+            }
+          }
+        }
+
+      }
+    }
+  `;
+
+try {
+  const { getProfile } = await client.request(query);
+  const { favorite_events, tickets, first_name, last_name, notifications} = getProfile;
+  return getProfile
+} catch (e) {
+  console.error(e);
+  return null;
+}
+};
