@@ -2,6 +2,7 @@ import * as React from 'react';
 const { useState } = React;
 import { Center, Heading, Image } from 'native-base';
 
+import KeyboardSpacer from 'react-native-keyboard-spacer';
 import LogInForm from '../../components/auth/LogInForm';
 import SignUpForm from '../../components/auth/SignUpForm';
 import GradientProvider from '../../components/GradientProvider';
@@ -25,6 +26,7 @@ const Auth = ({ setUser }: Props) => {
           <LogInForm setUser={setUser} setIsNewUser={setIsNewUser} />
         )}
       </Center>
+      <KeyboardSpacer />
     </GradientProvider>
   );
 };
