@@ -36,7 +36,10 @@ const Search = () => {
   return (
     <GradientProvider>
       <View w="full" h="full" alignItems='center'>
-        <SearchBar />
+        <SearchBar
+          events={events}
+          setResults={setResults}
+        />
         <FlatList
           width='100%'
           data={results}

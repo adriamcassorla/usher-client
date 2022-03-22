@@ -1,6 +1,6 @@
 type EventType = {
   id: number,
-  name: String,
+  name: string,
   price: number,
   type: String,
   genres: String[],
