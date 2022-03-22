@@ -2,7 +2,7 @@ import { gql, GraphQLClient } from "graphql-request";
 import { AsyncStorage } from "react-native";
 import { login } from "../../utils/helpers/login";
 
-const apiURL = process.env.BASE_URL || "http://localhost:4004";
+const apiURL = "https://www.tourn.me/usher";
 const client = new GraphQLClient(apiURL);
 
 export const getJWT = async (email: string, password: string): Promise<User | string | null> => {
