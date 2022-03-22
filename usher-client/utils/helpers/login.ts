@@ -1,13 +1,14 @@
-import { GestureResponderEvent } from "react-native"
+import { AsyncStorage, GestureResponderEvent } from "react-native"
 import { getJWT } from "../../services/api/auth"
+import { logInWithToken } from './../../services/api/user'
 
-export const login = ( event: GestureResponderEvent, formData: LoginForm) => {
+export const login = (event: GestureResponderEvent, formData: LoginForm) => {
   const { email, password } = formData
   const isValid = validateLogin(formData)
   if (isValid !== true) {
     console.error(isValid)
     return
-  } 
+  }
   getJWT(email, password)
 }
 
@@ -20,6 +21,12 @@ const validateLogin = (formData: LoginForm) => {
     return 'Email should be in email format'
   }
   return true
+}
+
+export const getLastUser = async () => {
+  const token = await AsyncStorage.getItem("user");
+  if (!token) return null;
+  return await logInWithToken(token)
 }
 
 export type LoginForm = {

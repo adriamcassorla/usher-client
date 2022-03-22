@@ -8,10 +8,20 @@ import theme from "./styles/theme";
 import Auth from "./content/pages/Auth";
 import MainStack from "./content/navigation/MainStack";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { getLastUser } from "./utils/helpers/login";
 
 export default function App() {
   const [user, setUser] = useState<User | null>(null);
+  const [status, setStatus] = useState<"loading" | "loaded">("loading");
 
+  React.useEffect(() => {
+    getLastUser().then((user) => {
+      setUser(user);
+      setStatus("loaded");
+    });
+  }, []);
+
+  if (status === "loading") return null;
   return (
     <UserProvider>
       <SafeAreaProvider>

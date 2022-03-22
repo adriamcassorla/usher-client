@@ -6,7 +6,7 @@ const client = new GraphQLClient(apiURL);
 
 export const getJWT = async (email: string, password: string): Promise<String | null> => {
   const query = gql`
-    query login($email: String!, $password: String!) {
+    query login($email: String, $password: String) {
       login(email: $email, password: $password)
     }
   `;
