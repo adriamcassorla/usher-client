@@ -1,6 +1,6 @@
 import * as React from 'react';
 const { useState } = React;
-import { Center, Heading, Text } from 'native-base';
+import { Center, Heading, Image } from 'native-base';
 
 import LogInForm from '../../components/auth/LogInForm';
 import SignUpForm from '../../components/auth/SignUpForm';
@@ -16,7 +16,9 @@ const Auth = ({ setUser }: Props) => {
   return (
     <GradientProvider>
       <Center h="full" w="full">
-        <Heading>Welcome to Usher!</Heading>
+        <Heading mt="90px" mb="-60px">
+          <Image source={require('../../assets/usher_icon.png')} alt="Usher icon" size="xl" width="300px"/>
+        </Heading>
         {isNewUser ? (
           <SignUpForm setUser={setUser} setIsNewUser={setIsNewUser} />
         ) : (
