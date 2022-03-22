@@ -20,15 +20,13 @@ const FilterButton = ({dispatch, filter}: Props) => {
   return (
     <Button
       bgColor={isActive? 'primary.600' : 'light.300' }
-      // borderColor={'white' }
-      // borderWidth={1}
       ml={3}
       borderRadius={20}
       onPress={handlePress}
     >
       <Text
       fontWeight='medium'
-      color={isActive? 'white' : 'dark.50' }>
+      color={isActive? 'white' : 'dark.200' }>
         {filter}
         </Text>
     </Button>
