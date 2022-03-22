@@ -1,12 +1,13 @@
-import { Button, Divider, FlatList, Text } from 'native-base';
-import * as React from 'react';
-import { useReducer, useState } from 'react';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Highlights, FilterMenu, EventCard } from './';
+import { Divider, FlatList, Text } from "native-base";
+import * as React from "react";
+import { useReducer, useState } from "react";
+import { GestureResponderEvent } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { Highlights, FilterMenu, EventCard } from "./";
 
 type Props = { events: EventType[] | null };
 type renderParams = {
-  item: EventType | 'top' | 'filter' | 'divider' | 'reset_button';
+  item: EventType | "top" | "filter" | "divider" | "reset_button";
 };
 
 const HomeList = ({ events }: Props) => {
@@ -17,22 +18,22 @@ const HomeList = ({ events }: Props) => {
 
   function reducer(state: any, action: any) {
     switch (action) {
-      case 'Comedy':
-        console.log('Comedy button hit');
-        return state.filter((e) => e.genres.includes('Comedia'));
-      case 'init':
-        console.log('clearing filters');
+      case "Comedy":
+        console.log("Comedy button hit");
+        return state.filter((e) => e.genres.includes("Comedia"));
+      case "init":
+        console.log("clearing filters");
         return events;
       default:
-        console.log('reducer activated with action', action);
+        console.log("reducer activated with action", action);
         return state;
     }
   }
 
   const _renderItem = ({ item }: renderParams) => {
-    if (item === 'top') return <Highlights />;
-    if (item === 'divider') return <Divider m="auto" w="85%" />;
-    if (item === 'filter')
+    if (item === "top") return <Highlights />;
+    if (item === "divider") return <Divider m="auto" w="85%" />;
+    if (item === "filter")
       return <FilterMenu dispatch={dispatch} isOnTop={isOnTop} />;
     // if (item === 'reset_button')
     //   return (
@@ -49,13 +50,13 @@ const HomeList = ({ events }: Props) => {
   return (
     <FlatList
       // @ts-ignore
-      data={['top', 'divider', 'filter', ...state/*, 'reset_button'*/]}
+      data={["top", "divider", "filter", ...state /*, 'reset_button'*/]}
       stickyHeaderIndices={[2]}
       removeClippedSubviews={true}
       initialNumToRender={5}
       renderItem={_renderItem}
       keyExtractor={(item) =>
-        typeof item === 'string' ? item : String(item.id)
+        typeof item === "string" ? item : String(item.id)
       }
       onScroll={(e) => {
         const yPos = e.nativeEvent.contentOffset.y;

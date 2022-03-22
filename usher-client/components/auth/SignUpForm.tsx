@@ -2,7 +2,7 @@ import * as React from "react";
 import { Center, Button, Input, Stack } from "native-base";
 
 type Props = {
-  setUser: React.Dispatch<React.SetStateAction<User | null>>;
+  setUser: (user: User | null) => void;
   setIsNewUser: React.Dispatch<React.SetStateAction<boolean>>;
 };
 

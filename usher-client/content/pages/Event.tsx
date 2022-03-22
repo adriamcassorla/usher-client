@@ -9,35 +9,39 @@ import { getEventInfo } from "../../services/api/events";
 import { EventFooter, EventHeader, EventHero } from "../../components/event";
 import EventTabView from "../../components/event/EventTabView";
 import EventTabHeader from "../../components/event/EventTabHeader";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 type Props = NativeStackScreenProps<MainStackParamList, "Event">;
 
 const Event = ({ route }: Props) => {
   const { eventId, todayShow } = route.params;
   const [eventInfo, setEventInfo] = useState<EventType | null>(null);
   const [tabIndex, setTabIndex] = useState(0);
+  const { top } = useSafeAreaInsets();
+  const [isOnTop, setIsOnTop] = useState(false);
 
   useEffect(() => {
     getEventInfo(eventId, todayShow.length ? true : false).then(setEventInfo);
   }, [eventId]);
 
   if (!eventInfo) return null;
+  const imgHeight = 300;
   return (
     <ScrollView
       style={styles.scrollView}
       contentContainerStyle={styles.contentContainer}
-      stickyHeaderIndices={[3]}
+      stickyHeaderIndices={[0, 2, 3]}
       bg={"light.50"}
       showsVerticalScrollIndicator={false}
     >
+      <EventHeader></EventHeader>
       <Image
         src={eventInfo.image}
         alt="Main event image"
         w={"full"}
-        h={"350px"}
+        h={`${imgHeight}px`}
         mb={-50}
         resizeMode="cover"
       />
-      <EventHeader></EventHeader>
       <EventHero event={eventInfo}></EventHero>
       <EventTabHeader tabIndex={tabIndex} setTabIndex={setTabIndex} />
       <EventTabView event={eventInfo} tabIndex={tabIndex}></EventTabView>
