@@ -1,6 +1,6 @@
 import * as React from "react";
 const { useEffect, useState } = React;
-import { Center, Button, Text, Heading, Image, VStack, Box, Row, Icon } from "native-base";
+import { Center, Button, Text, Heading, Image, VStack, Box, Row, Icon, Divider, Switch } from "native-base";
 import { AsyncStorage } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -19,51 +19,57 @@ const Profile = ({ navigation }: Props) => {
   //TODO: Make API call and set profile data using ID from params
   const [profile, setProfile] = useState(null);
   useEffect(() => {
-    console.log("Getting profile info using id from params");
+    
   }, []);
   // TODO: Pass user info down in navigation props to tix and favs
 
   return (
     <GradientProvider>
+      <Image source={require('../../assets/profile_back.png')} alt="Background shapes" top="-10px" size="xl" height="450px" width="100%" position="absolute"/>
       <VStack h={"full"} w={"full"} alignItems="center" justifyContent="space-evenly">
         <Box>
-          <Image source={require('../../assets/mock_profile.jpeg')} alt="Usher icon" size="xl" width="130px" height="130px" borderRadius="100px" mt="60px"/>
+          <Center>
+            <Image source={require('../../assets/mock_profile.jpeg')} alt="Usher icon" size="xl" width="130px" height="130px" borderRadius="100px" mt="60px"/>
+            <Text mt="20px" mb="-10px" bold color="#1d1d1b" fontSize="2xl">Daddy Yankee</Text>
+          </Center>
         </Box>
-        <Box>
+        <Box alignItems="center">
           <Row justifyContent="space-evenly">
-            <Box justifyContent="space-evenly">
-              <Text color="light.100" mx="10px">Favorites</Text>
-              <Text fontWeight="600" color="light.200">20</Text>
-            </Box>
-            <Box>
-              <Text color="light.100" mx="10px">Tickets</Text>
-              <Text fontWeight="600" color="light.200">20</Text>
-            </Box>
-            <Box>
-              <Text color="light.100" mx="10px">Favorites</Text>
-              <Text fontWeight="600" color="light.200">20</Text>
-            </Box>
+            <Center>
+              <Text color="primary.600" fontWeight="600" mx="25px" fontSize="lg">Tickets</Text>
+              <Text fontWeight={900} color="#1d1d1b" fontSize="md">2</Text>
+            </Center>
+            <Divider thickness="2" mx="2" mr="5" h="8" my="3" bg="primary.600" orientation="vertical"/>
+            <Center justifyContent="space-evenly">
+              <Text color="primary.600" fontWeight="600" mx="10px" fontSize="lg">Favorites</Text>
+              <Text fontWeight={900} color="#1d1d1b" fontSize="md">5</Text>
+            </Center>
           </Row>
         </Box>
         <Row>
-          <Button mx="10px" colorScheme="primary" width="100px" height="50px"
+          <Button mx="10px" bgColor="primary.700" width="100px" height="80px" borderRadius="15px"
             onPress={() => {
               navigation.navigate("Tickets");
             }}
             >
-            <Icon size={5} color={"light.100"} as={<Ionicons name={"fast-food-outline"} />} />
+            <Icon size={10} ml="5px" color={"light.100"} as={<Ionicons name={"calendar-outline"} />} />
             Tickets
           </Button>
-          <Button mx="10px" colorScheme="secondary" width="100px"
+          <Button mx="10px" bgColor="dark.400" width="100px" height="80px" borderRadius="15px"
             onPress={() => {
               navigation.navigate("Favorites");
             }}
             >
+            <Icon size={10} ml="7px" color={"light.100"} as={<Ionicons name={"heart-outline"} />} />
             Favorites
           </Button>
         </Row>
         <Center>
-          <Button colorScheme="secondary"
+          <Row alignItems="center" space={4}>
+            <Text color="white" fontWeight={600} fontSize="lg">Notifications</Text>
+            <Switch size="sm" />
+          </Row>;
+          <Button colorScheme="secondary" variant="link" size="lg"
             onPress={async () => {
               console.log("Logged out!");
               const user = await AsyncStorage.removeItem("user");
