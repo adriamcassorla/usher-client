@@ -82,6 +82,12 @@ export const getUserProfile = async () => {
         notifications
         favorite_events {
           id
+          name
+          price
+          type
+          genres
+          image
+          poster
         }
         tickets {
           id

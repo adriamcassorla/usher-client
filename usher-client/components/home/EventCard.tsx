@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { todayDates, capitalize } from '../../utils/helpers/home';
+import { Ionicons } from "@expo/vector-icons";
 
 import {
   Pressable,
@@ -9,6 +10,7 @@ import {
   Text,
   HStack,
   Badge,
+  Icon,
 } from 'native-base';
 
 import { useNavigation } from '@react-navigation/native';
@@ -23,6 +25,7 @@ type Props = {
 const EventCard = ({ event }: Props) => {
   const navigation = useNavigation<MainStackNavType>();
   return (
+    <Box>
     <Pressable
       onPress={() =>
         navigation.navigate('Event', {
@@ -57,14 +60,18 @@ const EventCard = ({ event }: Props) => {
             <Text color="white" fontWeight="medium" fontSize="md">
               {capitalize(event.name)}
             </Text>
+            {event.venue ?
             <Text color="light.200" fontWeight="medium" fontSize="sm">
               {capitalize(event.venue.name)}
-            </Text>
+            </Text> : null
+            }
+            { event.today_shows ?
             <Box>
               {event.today_shows.length ? (
                 <Text color="white">Today at {todayDates(event)}</Text>
-              ) : null}
-            </Box>
+                ) : null}
+            </Box> : null
+            }
           </VStack>
           <Text flex={1} color="white" fontWeight="medium" fontSize="lg">
             {event.price}€
@@ -72,6 +79,16 @@ const EventCard = ({ event }: Props) => {
         </HStack>
       </Box>
     </Pressable>
+    {/* <Icon 
+          position="absolute"
+          right="40px"
+          top="15px"
+          mt={1}
+          size="7"
+          color="primary.500"
+          as={<Ionicons name={"heart"} />}
+        /> */}
+    </Box>
   );
 };
 
