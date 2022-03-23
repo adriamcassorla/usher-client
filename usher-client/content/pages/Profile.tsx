@@ -75,8 +75,14 @@ const Profile = ({ navigation }: Props) => {
             <Switch size="sm" />
           </Row>;
           <Button colorScheme="secondary" variant="link" size="lg"
-            onPress={() => {
-              AsyncStorage.removeItem("user").then(populateUser);
+            onPress={ async() => {
+              try{
+                AsyncStorage.removeItem("user")
+                populateUser(null);
+              }
+              catch (e) {
+                console.error('Failed to log out with error: ', e)
+              }
             }}
             >
             Log out
