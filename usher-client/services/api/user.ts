@@ -1,7 +1,8 @@
 import { gql, GraphQLClient } from "graphql-request";
 import { AsyncStorage } from "react-native";
 
-const apiURL = "http://localhost:4004";
+//const apiURL = "http://localhost:4004";
+const apiURL = "https://tourn.me/usher";
 const client = new GraphQLClient(apiURL);
 
 export const logInWithToken = async (token: string) => {
@@ -33,7 +34,7 @@ export const logInWithToken = async (token: string) => {
 export const getUserProfile = async () => {
   const token = await AsyncStorage.getItem('user');
   client.setHeader('authorization', `Bearer ${token}`)
-  
+
   const query = gql`
     query GetProfile {
       getProfile {
@@ -52,7 +53,7 @@ export const getUserProfile = async () => {
               name
               price
               venue {
-                name 
+                name
                 address
               }
             }
