@@ -5,22 +5,22 @@ import { capitalize } from '../../utils/helpers/home';
 import QRCode from 'react-native-qrcode-svg';
 const QRlogo = require('../../assets/qrcodelogo.png');
 import moment from 'moment';
+import { isValid } from '../../utils/helpers/tickets';
 
 const TicketCard = ({ ticket }: { ticket: Ticket }) => {
-  const isValid =
-    !ticket.used && +ticket.show.date > Date.now() + 1000 * 60 * 60;
+  const isValidTicket = isValid(ticket);
   return (
     <HStack
       borderRadius={4}
       overflow="hidden"
       alignItems="center"
       my="2"
-      bg={isValid ? "dark.700:alpha.30" : "dark.700:alpha.60"}
+      bg={isValidTicket ? "dark.700:alpha.30" : "dark.700:alpha.60"}
       w="330"
       h="120"
     >
       <Center w={'120'} h={'full'} p="1">
-        {isValid ? (
+        {isValidTicket ? (
           <QRCode
             value={ticket.id}
             size={110}
@@ -47,13 +47,13 @@ const TicketCard = ({ ticket }: { ticket: Ticket }) => {
       </Center>
       <Divider mx="1" style="dashed" h="90%" orientation="vertical" />
       <Box p={1} w="full" h="full" flex={1} justifyContent="center">
-        <Text bold fontSize="md" color={isValid ? "white" : 'gray.700'}>
+        <Text bold fontSize="md" color={isValidTicket ? "white" : 'gray.700'}>
           {capitalize(ticket.show.event.name)}
         </Text>
-        <Text fontSize="sm" color={isValid? "light.50":'gray.600'}>
+        <Text fontSize="sm" color={isValidTicket? "light.50":'gray.700'}>
           {capitalize(ticket.show.event.venue?.name)}
         </Text>
-        <Text fontWeight="medium" fontSize="md" color={isValid? "light.100":"gray.600"}>
+        <Text fontWeight="medium" fontSize="md" color={isValidTicket? "light.100":"gray.700"}>
           {moment(Number(ticket.show.date)).format('MMM Do YY HH:mm')}
         </Text>
       </Box>
