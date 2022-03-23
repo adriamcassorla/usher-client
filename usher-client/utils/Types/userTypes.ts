@@ -12,5 +12,5 @@ type UserProfile = {
 
 type User = {
   id: string,
-  favorite_events: EventType[],
+  favorite_events: number[],
 }

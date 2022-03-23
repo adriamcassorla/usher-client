@@ -19,7 +19,6 @@ type Props = CompositeScreenProps<
 const Favorites = ({ navigation, route }: Props) => {
   
   const { events, populateEvents} = React.useContext(EventsContext)
-  const { user, populateUser } = React.useContext(UserContext)
   const [ parsed, setParsed ] = React.useState<EventType[] | null>(null);
 
   const parseFavorites = () => {
