@@ -9,12 +9,12 @@ import Content from "./content";
 
 export default function App() {
   return (
-    <UserProvider>
-      <SafeAreaProvider>
-        <NativeBaseProvider theme={theme}>
+    <SafeAreaProvider>
+      <NativeBaseProvider theme={theme}>
+        <UserProvider>
           <Content></Content>
-        </NativeBaseProvider>
-      </SafeAreaProvider>
-    </UserProvider>
+        </UserProvider>
+      </NativeBaseProvider>
+    </SafeAreaProvider>
   );
 }

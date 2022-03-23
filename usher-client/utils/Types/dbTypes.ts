@@ -30,10 +30,10 @@ type Venue = {
 }
 
 type Ticket = {
-  id: String,
+  id: string,
   show: Show,
-  show_id: String,
-  used: Boolean,
+  show_id: string,
+  used: boolean,
   user: User,
 }
 
@@ -47,8 +47,8 @@ type Promoter = {
 }
 
 type Show = {
-  id?: String,
-  date: String,
+  id?: string,
+  date: string,
   active_sale: Boolean,
   available_seats?: number,
   tickets?: Ticket[],
