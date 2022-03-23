@@ -33,19 +33,19 @@ const Profile = ({ navigation }: Props) => {
         <Box>
           <Center>
             <Image source={require('../../assets/mock_profile.jpeg')} alt="Usher icon" size="xl" width="130px" height="130px" borderRadius="100px" mt="60px"/>
-            <Text mt="20px" mb="-10px" bold color="#1d1d1b" fontSize="2xl">Daddy Yankee</Text>
+            <Text mt="20px" mb="-10px" bold color="#1d1d1b" fontSize="2xl">{profile?.first_name} {profile?.last_name}</Text>
           </Center>
         </Box>
         <Box alignItems="center">
           <Row justifyContent="space-evenly">
             <Center>
               <Text color="primary.600" fontWeight="600" mx="25px" fontSize="lg">Tickets</Text>
-              <Text fontWeight={900} color="#1d1d1b" fontSize="md">2</Text>
+              <Text fontWeight={900} color="#1d1d1b" fontSize="md">{profile?.tickets.length}</Text>
             </Center>
             <Divider thickness="2" mx="2" mr="5" h="8" my="3" bg="primary.600" orientation="vertical"/>
             <Center justifyContent="space-evenly">
               <Text color="primary.600" fontWeight="600" mx="10px" fontSize="lg">Favorites</Text>
-              <Text fontWeight={900} color="#1d1d1b" fontSize="md">5</Text>
+              <Text fontWeight={900} color="#1d1d1b" fontSize="md">{profile?.favorite_events.length}</Text>
             </Center>
           </Row>
         </Box>
