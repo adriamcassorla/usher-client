@@ -8,7 +8,6 @@ import {
   VStack,
   Actionsheet,
   useDisclose,
-  Box,
 } from "native-base";
 import * as React from "react";
 import { useState, useEffect } from "react";

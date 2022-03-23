@@ -1,16 +1,16 @@
 type UserProfile = {
-  id: String,
-  email: String,
-  password: String,
-  first_name: String,
-  last_name: String,
-  created_at: String,
+  id: string,
+  email: string,
+  password: string,
+  first_name: string,
+  last_name: string,
+  created_at: string,
   favorite_events: EventType[]
   tickets: Ticket[],
   notifications: Boolean,
 }
 
 type User = {
-  id: String,
+  id: string,
   favorite_events: EventType[],
 }

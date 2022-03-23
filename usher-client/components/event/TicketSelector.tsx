@@ -1,14 +1,5 @@
 const moment = require("moment");
-import { useNavigation } from "@react-navigation/native";
-import {
-  Text,
-  Heading,
-  Center,
-  Divider,
-  HStack,
-  VStack,
-  Button,
-} from "native-base";
+import { Text, Heading, Center, Divider, HStack, Button } from "native-base";
 import * as React from "react";
 import { useState, useEffect } from "react";
 import { MainStackNavType } from "../../utils/Types/navTypes";
