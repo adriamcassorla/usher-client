@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { todayDates, capitalize } from '../../utils/helpers/home';
-import { Ionicons } from "@expo/vector-icons";
 
 import {
   Pressable,
@@ -10,7 +9,6 @@ import {
   Text,
   HStack,
   Badge,
-  Icon,
 } from 'native-base';
 
 import { useNavigation } from '@react-navigation/native';
@@ -25,7 +23,6 @@ type Props = {
 const EventCard = ({ event }: Props) => {
   const navigation = useNavigation<MainStackNavType>();
   return (
-    <Box>
     <Pressable
       onPress={() =>
         navigation.navigate('Event', {
@@ -79,16 +76,6 @@ const EventCard = ({ event }: Props) => {
         </HStack>
       </Box>
     </Pressable>
-    {/* <Icon 
-          position="absolute"
-          right="40px"
-          top="15px"
-          mt={1}
-          size="7"
-          color="primary.500"
-          as={<Ionicons name={"heart"} />}
-        /> */}
-    </Box>
   );
 };
 
