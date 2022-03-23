@@ -40,7 +40,7 @@ const Tickets = ({ navigation, route }: Props) => {
     <GradientProvider>
       <View h={'full'} w={'full'} alignItems="center" pt="10">
         <Text fontSize="2xl" w="90%" bold color="white">
-          Your tickets:{' '}
+          Your tickets:
         </Text>
         <FlatList
           width={'full'}
@@ -50,7 +50,7 @@ const Tickets = ({ navigation, route }: Props) => {
           }}
           keyExtractor={(item: Ticket) => String(item.id)}
           renderItem={renderItem}
-          data={route.params.tickets}
+          data={route.params.tickets.sort((a,b) => +a.show.date - +b.show.date)}
         />
       </View>
     </GradientProvider>
