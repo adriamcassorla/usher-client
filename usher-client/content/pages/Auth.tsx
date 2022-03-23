@@ -2,16 +2,10 @@ import * as React from "react";
 const { useState } = React;
 import { Center, Heading, Image } from "native-base";
 
-<<<<<<< HEAD
-import LogInForm from "../../components/auth/LogInForm";
-import SignUpForm from "../../components/auth/SignUpForm";
-import GradientProvider from "../../components/GradientProvider";
-=======
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 import LogInForm from '../../components/auth/LogInForm';
 import SignUpForm from '../../components/auth/SignUpForm';
 import GradientProvider from '../../components/GradientProvider';
->>>>>>> profileStyle
 
 type Props = {
   setUser: (user: User | null) => void;

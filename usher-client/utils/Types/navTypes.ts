@@ -17,8 +17,8 @@ export type MainStackParamList = {
 
 export type ProfileStackParamList = {
   Profile: undefined;
-  Favorites: undefined;
-  Tickets: undefined;
+  Favorites: { favorites: EventType[]};
+  Tickets: { tickets: Ticket[]};
 }
 
 export type MainStackNavType = StackNavigationProp<MainStackParamList>;

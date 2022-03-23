@@ -15,15 +15,8 @@ type Props = CompositeScreenProps<
 >;
 
 const Tickets = ({ navigation, route }: Props) => {
-  React.useEffect(() => {
-    console.log(route)
-  }, [])
 
-  const test = async () => {
-    const token = await AsyncStorage.getItem('user');
-    console.log(token)
-  }
-   test();
+  console.log(route.params);
 
   return (
     <GradientProvider>

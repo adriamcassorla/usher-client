@@ -18,9 +18,9 @@ const Profile = ({ navigation }: Props) => {
   //TODO: Get setUser from context to log out
 
   //TODO: Make API call and set profile data using ID from params
-  const [profile, setProfile] = useState(null);
+  const [profile, setProfile] = useState<UserProfile | null>(null);
   useEffect(() => {
-    getUserProfile().then(console.log)
+    getUserProfile().then(setProfile)
   }, []);
   // TODO: Pass user info down in navigation props to tix and favs
 // 
@@ -50,7 +50,8 @@ const Profile = ({ navigation }: Props) => {
         <Row>
           <Button mx="10px" bgColor="primary.700" width="100px" height="80px" borderRadius="15px"
             onPress={() => {
-              navigation.navigate("Tickets");
+              if (profile)
+              navigation.navigate("Tickets", {tickets: profile?.tickets})
             }}
             >
             <Icon size={10} ml="5px" color={"light.100"} as={<Ionicons name={"calendar-outline"} />} />
@@ -58,7 +59,8 @@ const Profile = ({ navigation }: Props) => {
           </Button>
           <Button mx="10px" bgColor="dark.400" width="100px" height="80px" borderRadius="15px"
             onPress={() => {
-              navigation.navigate("Favorites");
+              if (profile)
+              navigation.navigate("Favorites", { favorites: profile?.favorite_events});
             }}
             >
             <Icon size={10} ml="7px" color={"light.100"} as={<Ionicons name={"heart-outline"} />} />
