@@ -12,7 +12,10 @@ type Props = CompositeScreenProps<
   BottomTabScreenType
 >;
 
-const Tickets = ({ navigation }: Props) => {
+const Tickets = ({ navigation, route }: Props) => {
+
+  console.log(route.params);
+
   return (
     <Center h={"full"} w={"full"} bgColor={"dark.50"}>
       <Text>Tickets</Text>
