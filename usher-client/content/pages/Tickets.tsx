@@ -46,7 +46,7 @@ const Tickets = ({ navigation, route }: Props) => {
 
   return (
     <GradientProvider>
-      <View h={'full'} w={'full'} alignItems="center" pt="10">
+      <View h={'full'} w={'full'} alignItems="center" mt={0}>
         <SectionList
           width={'full'}
           contentContainerStyle={{
