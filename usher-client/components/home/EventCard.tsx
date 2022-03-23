@@ -33,9 +33,10 @@ const EventCard = ({ event }: Props) => {
     >
       <Box
         alignSelf={'center'}
-        bgColor={'dark.400'}
+        bgColor={"dark.50:alpha.40"}
         shadow={2}
-        mb={3}
+        p={1}
+        mb={4}
         rounded="lg"
         w="90%"
       >

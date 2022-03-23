@@ -17,7 +17,7 @@ import {
   ProfileStackParamList,
 } from '../../utils/Types/navTypes';
 import GradientProvider from '../../components/GradientProvider';
-import { AsyncStorage } from 'react-native';
+import { AsyncStorage, Pressable } from 'react-native';
 import { capitalize } from '../../utils/helpers/home';
 import TicketCard from '../../components/profile/TicketCard';
 type Props = CompositeScreenProps<
@@ -25,11 +25,14 @@ type Props = CompositeScreenProps<
   BottomTabScreenType
 >;
 
-
 const Tickets = ({ navigation, route }: Props) => {
-  const renderItem = ({ item }: {item:Ticket}) => {
+  const renderItem = ({ item }: { item: Ticket }) => {
     console.log(item);
-    return (<TicketCard ticket={item} />);
+    return (
+      <Pressable onPress={() => console.log('show qr code', item.id)}>
+        <TicketCard ticket={item} />
+      </Pressable>
+    );
   };
 
   return (

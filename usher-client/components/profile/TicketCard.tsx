@@ -9,7 +9,7 @@ const TicketCard = ({ ticket }: { ticket: Ticket }) => {
       overflow="hidden"
       aligntickets="center"
       my="3"
-      bg="white"
+      bg="dark.800:alpha.30"
       w="330"
       h="120"
     >
