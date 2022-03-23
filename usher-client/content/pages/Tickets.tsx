@@ -1,5 +1,14 @@
 import * as React from 'react';
-import { Center, FlatList, Image, HStack, Text, View, Box } from 'native-base';
+import {
+  Center,
+  FlatList,
+  Image,
+  HStack,
+  Text,
+  View,
+  Box,
+  Divider,
+} from 'native-base';
 
 import type { CompositeScreenProps } from '@react-navigation/native';
 import type { StackScreenProps } from '@react-navigation/stack';
@@ -9,35 +18,18 @@ import {
 } from '../../utils/Types/navTypes';
 import GradientProvider from '../../components/GradientProvider';
 import { AsyncStorage } from 'react-native';
+import { capitalize } from '../../utils/helpers/home';
+import TicketCard from '../../components/profile/TicketCard';
 type Props = CompositeScreenProps<
   StackScreenProps<ProfileStackParamList, 'Tickets'>,
   BottomTabScreenType
 >;
 
-type RenderParams = {
-  item: Ticket;
-};
 
 const Tickets = ({ navigation, route }: Props) => {
-  const renderItem = ({ item }: RenderParams) => {
+  const renderItem = ({ item }: {item:Ticket}) => {
     console.log(item);
-    return (
-
-      <HStack borderRadius={4} overflow='hidden' my="3" bg="blue.800" w="330" h="120">
-        <Image
-          src={item.show.event.image}
-          alt={`${item.show.event.name} poster`}
-          w={'120'}
-          h={'full'}
-          />
-        <Box bg="white">
-          <Text fontStize="sm">
-            {/* {item.show.event.venue.name} */}
-            EVENT CARD
-            </Text>
-        </Box>
-      </HStack>
-    );
+    return (<TicketCard ticket={item} />);
   };
 
   return (
