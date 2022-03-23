@@ -1,4 +1,4 @@
-import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
+ import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import type { StackNavigationProp, StackScreenProps } from "@react-navigation/stack";
 
 export type HomeTabParamList = {
