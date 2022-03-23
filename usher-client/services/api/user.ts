@@ -1,9 +1,48 @@
 import { gql, GraphQLClient } from "graphql-request";
 import { AsyncStorage } from "react-native";
+import { login } from "../../utils/helpers/login";
 
 //const apiURL = "http://localhost:4004";
 const apiURL = "https://tourn.me/usher";
 const client = new GraphQLClient(apiURL);
+
+export const addFav = async (eventId: number) => {
+  const token = await AsyncStorage.getItem('user')
+  client.setHeader('authorization', `Bearer ${token}`)
+  const mutation = gql`
+    mutation AddFav($eventId: Int!) {
+      addFav(eventId: 200) {
+        id
+      }
+    }
+    `
+    try {
+      const { addFav } = await client.request(mutation);
+      return addFav
+    } catch (e) {
+      console.error(e);
+      return
+    }
+  }
+
+  export const deleteFav = async (eventId: number) => {
+    const token = await AsyncStorage.getItem('user')
+    client.setHeader('authorization', `Bearer ${token}`)
+    const mutation = gql`
+      mutation DeleteFav($eventId: Int!) {
+        deleteFav(eventId: 200) {
+          id
+        }
+      }
+      `
+      try {
+        const { deleteFav } = await client.request(mutation);
+        return deleteFav
+      } catch (e) {
+        console.error(e);
+        return
+      }
+    }
 
 export const logInWithToken = async (token: string) => {
   client.setHeader('authorization', `Bearer ${token}`)
@@ -66,7 +105,6 @@ export const getUserProfile = async () => {
 
 try {
   const { getProfile } = await client.request(query);
-  const { favorite_events, tickets, first_name, last_name, notifications} = getProfile;
   return getProfile
 } catch (e) {
   console.error(e);
