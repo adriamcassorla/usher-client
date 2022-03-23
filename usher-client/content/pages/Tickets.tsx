@@ -1,5 +1,13 @@
 import * as React from 'react';
-import { Text, View, Divider, SectionList, HStack } from 'native-base';
+import {
+  Text,
+  View,
+  Divider,
+  SectionList,
+  HStack,
+  Center,
+  Box,
+} from 'native-base';
 
 import type { CompositeScreenProps } from '@react-navigation/native';
 import type { StackScreenProps } from '@react-navigation/stack';
@@ -8,21 +16,24 @@ import {
   ProfileStackParamList,
 } from '../../utils/Types/navTypes';
 import GradientProvider from '../../components/GradientProvider';
-import { AsyncStorage, Pressable } from 'react-native';
+import { Modal, Pressable } from 'react-native';
 import { capitalize } from '../../utils/helpers/home';
 import TicketCard from '../../components/profile/TicketCard';
 import { sortTickets } from '../../utils/helpers/tickets';
+import { BlurView } from 'expo-blur';
+import QRModal from '../../components/profile/QRModal';
 type Props = CompositeScreenProps<
   StackScreenProps<ProfileStackParamList, 'Tickets'>,
   BottomTabScreenType
 >;
 
 const Tickets = ({ navigation, route }: Props) => {
+  const [modalId, setModalId] = React.useState<string | null>(null);
   const sections = sortTickets(route.params.tickets);
   const renderItem = ({ item }: { item: Ticket }) => {
     //TODO Make QR code modal on press
     return (
-      <Pressable onPress={() => console.log('show qr code', item.id)}>
+      <Pressable onPress={() => setModalId(item.id)}>
         <TicketCard ticket={item} />
       </Pressable>
     );
@@ -33,32 +44,44 @@ const Tickets = ({ navigation, route }: Props) => {
   }: {
     section: { title: string };
   }) => (
-    <HStack w={330}>
-      <Text
-        fontSize="2xl"
-        bold
-        color={title === 'Active tickets' ? 'white' : 'light.300'}
-      >
-        {title}
-      </Text>
-    </HStack>
+    <Text
+      w={330}
+      my={3}
+      fontSize="2xl"
+      bold
+      color={title === 'Active tickets' ? 'white' : 'light.300'}
+    >
+      {title}
+    </Text>
   );
 
   return (
     <GradientProvider>
       <View h={'full'} w={'full'} alignItems="center" mt={0}>
-        <SectionList
-          width={'full'}
-          contentContainerStyle={{
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-          keyExtractor={(item: Ticket) => String(item.id)}
-          renderItem={renderItem}
-          renderSectionHeader={renderSectionHeader}
-          sections={sections}
-          stickySectionHeadersEnabled={false}
-        />
+        <Modal animationType="fade" transparent visible={modalId != null}>
+          <Pressable onPress={() => setModalId(null)}>
+            {modalId && <QRModal ticketId={modalId}></QRModal>}
+          </Pressable>
+        </Modal>
+
+        {sections.length ? (
+          <SectionList
+            width={'full'}
+            contentContainerStyle={{
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+            keyExtractor={(item: Ticket) => String(item.id)}
+            renderItem={renderItem}
+            renderSectionHeader={renderSectionHeader}
+            sections={sections}
+            stickySectionHeadersEnabled={false}
+          />
+        ) : (
+          <Text w={330} my={3} fontSize="2xl" bold color={'white'}>
+            No purchases yet...
+          </Text>
+        )}
       </View>
     </GradientProvider>
   );
