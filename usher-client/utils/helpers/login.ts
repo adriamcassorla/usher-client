@@ -1,4 +1,4 @@
-import { AsyncStorage, GestureResponderEvent } from "react-native"
+import { AsyncStorage } from "react-native"
 import { getJWT } from "../../services/api/auth"
 import { logInWithToken } from './../../services/api/user'
 
