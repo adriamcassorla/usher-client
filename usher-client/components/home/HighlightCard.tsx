@@ -27,7 +27,7 @@ const HighlightCard = ({ event, copy, promo }: Props) => {
       onPress={() =>
         navigation.navigate("Event", {
           eventId: event.id,
-          todayShow: event.today_shows,
+          todayShows: event.today_shows,
         })
       }
     >

@@ -1,5 +1,14 @@
 import * as React from 'react';
-import { Center, FlatList, Text, View } from 'native-base';
+import {
+  Center,
+  FlatList,
+  Image,
+  HStack,
+  Text,
+  View,
+  Box,
+  Divider,
+} from 'native-base';
 
 import type { CompositeScreenProps } from '@react-navigation/native';
 import type { StackScreenProps } from '@react-navigation/stack';
@@ -8,15 +17,23 @@ import {
   ProfileStackParamList,
 } from '../../utils/Types/navTypes';
 import GradientProvider from '../../components/GradientProvider';
-import { AsyncStorage } from 'react-native';
+import { AsyncStorage, Pressable } from 'react-native';
+import { capitalize } from '../../utils/helpers/home';
+import TicketCard from '../../components/profile/TicketCard';
 type Props = CompositeScreenProps<
-  StackScreenProps<ProfileStackParamList, 'Favorites'>,
+  StackScreenProps<ProfileStackParamList, 'Tickets'>,
   BottomTabScreenType
 >;
 
 const Tickets = ({ navigation, route }: Props) => {
-
-  console.log(route.params);
+  const renderItem = ({ item }: { item: Ticket }) => {
+    console.log(item);
+    return (
+      <Pressable onPress={() => console.log('show qr code', item.id)}>
+        <TicketCard ticket={item} />
+      </Pressable>
+    );
+  };
 
   return (
     <GradientProvider>
@@ -24,11 +41,16 @@ const Tickets = ({ navigation, route }: Props) => {
         <Text fontSize="2xl" w="90%" bold color="white">
           Your tickets:{' '}
         </Text>
-        {/* <FlatList
-          keyExtractor={(item) => item.id}
-          renderItem={renderitem}
-          data={mocktickets}
-        /> */}
+        <FlatList
+          width={'full'}
+          contentContainerStyle={{
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+          keyExtractor={(item: Ticket) => String(item.id)}
+          renderItem={renderItem}
+          data={route.params.tickets}
+        />
       </View>
     </GradientProvider>
   );
