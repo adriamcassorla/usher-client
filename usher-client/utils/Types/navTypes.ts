@@ -1,4 +1,4 @@
- import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
+import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import type { StackNavigationProp, StackScreenProps } from "@react-navigation/stack";
 
 export type HomeTabParamList = {
@@ -12,13 +12,13 @@ export type MainStackParamList = {
   Main: undefined;
   Event: { eventId: number, todayShows: Show[] };
   Payment: { showId: string, nSeats: number };
-  Confirmation: undefined;
+  Confirmation: { event: string, date: string, nSeats: number };
 }
 
 export type ProfileStackParamList = {
   Profile: undefined;
-  Favorites: { favorites: EventType[]};
-  Tickets: { tickets: Ticket[]};
+  Favorites: { favorites: EventType[] };
+  Tickets: { tickets: Ticket[] };
 }
 
 export type MainStackNavType = StackNavigationProp<MainStackParamList>;

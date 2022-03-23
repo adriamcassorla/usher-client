@@ -4,20 +4,27 @@ import { AsyncStorage } from "react-native";
 const apiURL = "https://tourn.me/usher";
 const client = new GraphQLClient(apiURL);
 
-export const generateTicket = async (userId: string, showId: string) => {
+export const generateTicket = async (showId: string, nSeats: number) => {
   const jwt = await AsyncStorage.getItem('user');
   client.setHeader('authorization', `Bearer ${jwt}`)
   const mutation = gql`
-    mutation Mutation($userId: String!, $showId: String!) {
-      createTicket(userId: $userId, showId: $showId) {
-        id
+    mutation CreateTickets($showId: String!, $nSeats: Int!) {
+      createTickets(show_id: $showId, nSeats: $nSeats) {
+        error
+        show {
+          date
+          event {
+            name
+          }
+        }
       }
     }
   `;
 
   try {
-    const { createTicket } = await client.request(mutation, { userId, showId });
-    return createTicket as string
+    const { createTickets } = await client.request(mutation, { showId, nSeats });
+    if (createTickets.error) console.error(createTickets.error);
+    return createTickets.show as Show
   } catch (e) {
     console.error(e);
     return null;

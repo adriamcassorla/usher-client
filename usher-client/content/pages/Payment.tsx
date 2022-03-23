@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useEffect } from "react";
-import { Button, Center, Text } from "native-base";
+import { Button, Flex, Text } from "native-base";
 
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { MainStackParamList } from "../../utils/Types/navTypes";
@@ -12,7 +12,13 @@ const Payment = ({ navigation, route }: Props) => {
   const { showId, nSeats } = route.params;
   const { user } = React.useContext(UserContext);
   return (
-    <Center h={"full"} w={"full"} bgColor={"dark.50"}>
+    <Flex
+      h={"full"}
+      w={"full"}
+      bgColor={"dark.50"}
+      justifyContent={"center"}
+      alignItems={"center"}
+    >
       <Text>Payment page for:</Text>
       <Text>ShowId: {showId}</Text>
       <Text>With {nSeats} number of seats:</Text>
@@ -20,15 +26,20 @@ const Payment = ({ navigation, route }: Props) => {
         colorScheme="primary"
         onPress={async () => {
           if (user) {
-            const ticket = await generateTicket(user.id, showId);
-            console.log(ticket);
-            navigation.navigate("Confirmation");
+            const show = await generateTicket(showId, nSeats);
+            if (show) {
+              navigation.navigate("Confirmation", {
+                event: show.event!.name,
+                date: show.date,
+                nSeats,
+              });
+            }
           }
         }}
       >
         Pay
       </Button>
-    </Center>
+    </Flex>
   );
 };
 
