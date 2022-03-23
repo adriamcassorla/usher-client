@@ -5,10 +5,13 @@ import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { MainStackParamList } from "../../utils/Types/navTypes";
 type Props = NativeStackScreenProps<MainStackParamList, "Payment">;
 
-const Payment = ({ navigation }: Props) => {
+const Payment = ({ navigation, route }: Props) => {
+  const { showId, nSeats } = route.params;
   return (
     <Center h={"full"} w={"full"} bgColor={"dark.50"}>
-      <Text>Payment</Text>
+      <Text>Payment page for:</Text>
+      <Text>ShowId: {showId}</Text>
+      <Text>With {nSeats} number of seats:</Text>
       <Button
         colorScheme="primary"
         onPress={() => {

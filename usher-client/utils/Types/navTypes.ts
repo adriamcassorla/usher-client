@@ -10,8 +10,8 @@ export type HomeTabParamList = {
 
 export type MainStackParamList = {
   Main: undefined;
-  Event: { eventId: number, todayShow: Show[] };
-  Payment: { showId: string };
+  Event: { eventId: number, todayShows: Show[] };
+  Payment: { showId: string, nSeats: number };
   Confirmation: undefined;
 }
 
