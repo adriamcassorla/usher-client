@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { todayDates, capitalize } from '../../utils/helpers/home';
+import * as React from "react";
+import { todayDates, capitalize } from "../../utils/helpers/home";
 
 import {
   Pressable,
@@ -9,12 +9,12 @@ import {
   Text,
   HStack,
   Badge,
-} from 'native-base';
+} from "native-base";
 
-import { useNavigation } from '@react-navigation/native';
-import { MainStackNavType } from '../../utils/Types/navTypes';
+import { useNavigation } from "@react-navigation/native";
+import { MainStackNavType } from "../../utils/Types/navTypes";
 
-const default_card_image = require('../../assets/default_card_image.jpg');
+const default_card_image = require("../../assets/default_card_image.jpg");
 
 type Props = {
   event: EventType;
@@ -25,15 +25,15 @@ const EventCard = ({ event }: Props) => {
   return (
     <Pressable
       onPress={() =>
-        navigation.navigate('Event', {
+        navigation.navigate("Event", {
           eventId: event.id,
-          todayShow: event.today_shows,
+          todayShows: event.today_shows,
         })
       }
     >
       <Box
-        alignSelf={'center'}
-        bgColor={'dark.400'}
+        alignSelf={"center"}
+        bgColor={"dark.400"}
         shadow={2}
         mb={3}
         rounded="lg"
@@ -47,13 +47,19 @@ const EventCard = ({ event }: Props) => {
           height={150}
           roundedTop="md"
         />
-        <HStack alignItems={'center'}>
+        <HStack alignItems={"center"}>
           <VStack flex={4} mt={-4} pl={3} pr={2} pb={2} roundedBottom="md">
-        <Badge w={20} bg="tertiary.700" left={2} top={-2} postion='absolute'>
-          <Text color="white" fontSize="xs" fontWeight={'medium'}>
-            {event.type}
-          </Text>
-        </Badge>
+            <Badge
+              w={20}
+              bg="tertiary.700"
+              left={2}
+              top={-2}
+              postion="absolute"
+            >
+              <Text color="white" fontSize="xs" fontWeight={"medium"}>
+                {event.type}
+              </Text>
+            </Badge>
             <Text color="white" fontWeight="medium" fontSize="md">
               {capitalize(event.name)}
             </Text>

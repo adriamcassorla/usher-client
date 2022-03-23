@@ -9,6 +9,7 @@ import {
   Badge,
   Flex,
   useToken,
+  View,
 } from "native-base";
 import * as React from "react";
 import { capitalize, todayDates } from "../../utils/helpers/home";
@@ -41,14 +42,16 @@ const EventHero = ({ event }: Props) => {
           h={"140px"}
           w={"60%"}
           space={"xs"}
-          justifyContent={"space-around"}
+          justifyContent={"space-between"}
         >
-          <Heading size="md" color={"dark.50"}>
-            {capitalize(event.name)}
-          </Heading>
-          <Text color={"dark.300"}>{event.venue.name}</Text>
+          <View>
+            <Heading size="md" color={"dark.50"}>
+              {capitalize(event.name)}
+            </Heading>
+            <Text color={"dark.300"}>{event.venue.name}</Text>
+          </View>
           {event.today_shows ? (
-            <Badge w={"80%"} color={"dark.500"}>
+            <Badge w={"80%"} color={"dark.500"} shadow={1}>
               {todayDates(event)}
             </Badge>
           ) : null}

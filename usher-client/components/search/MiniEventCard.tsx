@@ -1,9 +1,9 @@
-import { Text, Image, HStack, VStack } from 'native-base';
-import * as React from 'react';
-import { useNavigation } from '@react-navigation/native';
-import { MainStackNavType } from '../../utils/Types/navTypes';
-import { capitalize } from '../../utils/helpers/home';
-import { Pressable } from 'react-native';
+import { Text, Image, HStack, VStack } from "native-base";
+import * as React from "react";
+import { useNavigation } from "@react-navigation/native";
+import { MainStackNavType } from "../../utils/Types/navTypes";
+import { capitalize } from "../../utils/helpers/home";
+import { Pressable } from "react-native";
 
 type Props = {
   event: EventType;
@@ -14,23 +14,23 @@ const MiniEventCard = ({ event }: Props) => {
   return (
     <Pressable
       onPress={() =>
-        navigation.navigate('Event', {
+        navigation.navigate("Event", {
           eventId: event.id,
-          todayShow: event.today_shows,
+          todayShows: event.today_shows,
         })
       }
     >
       <HStack
         mb={2}
         style={{
-          alignSelf: 'center',
-          width: '90%',
-          backgroundColor: 'transparent',
+          alignSelf: "center",
+          width: "90%",
+          backgroundColor: "transparent",
           paddingX: 2,
         }}
       >
         <Image
-          style={{width:60, height:86, overflow:'hidden', borderRadius: 6 }}
+          style={{ width: 60, height: 86, overflow: "hidden", borderRadius: 6 }}
           src={event.poster}
           alt={`${event.name} poster`}
           resizeMode="stretch"
