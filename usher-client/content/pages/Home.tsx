@@ -1,6 +1,6 @@
 import * as React from 'react';
 const { useContext, useEffect, useState } = React;
-import { Center, useToken } from 'native-base';
+import { Center } from 'native-base';
 
 import { EventsContext } from '../../services/contexts/EventsContext';
 import HomeList from '../../components/home/HomeList';
