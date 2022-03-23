@@ -28,6 +28,7 @@ type Props = CompositeScreenProps<
 const Tickets = ({ navigation, route }: Props) => {
   const renderItem = ({ item }: { item: Ticket }) => {
     console.log(item);
+    //TODO Make QR code modal on press
     return (
       <Pressable onPress={() => console.log('show qr code', item.id)}>
         <TicketCard ticket={item} />

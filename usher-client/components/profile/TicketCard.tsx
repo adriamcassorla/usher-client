@@ -2,6 +2,8 @@ import * as React from 'react';
 import { HStack, Text, Image, Center, Divider, Box } from 'native-base';
 import { capitalize } from '../../utils/helpers/home';
 
+import moment from 'moment'
+
 const TicketCard = ({ ticket }: { ticket: Ticket }) => {
   return (
     <HStack
@@ -28,11 +30,11 @@ const TicketCard = ({ ticket }: { ticket: Ticket }) => {
         <Text bold fontSize="lg" fontColor="black">
           {capitalize(ticket.show.event.name)}
         </Text>
-        <Text bold fontSize="lg" fontColor="black">
+        <Text bold fontSize="md" fontColor="black">
           {capitalize(ticket.show.event.venue?.name)}
         </Text>
         <Text bold fontSize="lg" fontColor="black">
-          {capitalize(ticket.show.event?.name)}
+          {moment(Number(ticket.show.date)).format('MMM Do YY HH:mm')}
         </Text>
       </Box>
     </HStack>
