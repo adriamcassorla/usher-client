@@ -64,14 +64,18 @@ const EventCard = ({ event }: Props) => {
             <Text color="white" fontWeight="medium" fontSize="md">
               {capitalize(event.name)}
             </Text>
+            {event.venue ?
             <Text color="light.200" fontWeight="medium" fontSize="sm">
               {capitalize(event.venue.name)}
-            </Text>
+            </Text> : null
+            }
+            { event.today_shows ?
             <Box>
               {event.today_shows.length ? (
                 <Text color="white">Today at {todayDates(event)}</Text>
-              ) : null}
-            </Box>
+                ) : null}
+            </Box> : null
+            }
           </VStack>
           <Text flex={1} color="white" fontWeight="medium" fontSize="lg">
             {event.price}€
