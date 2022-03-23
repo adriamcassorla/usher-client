@@ -10,10 +10,10 @@ const QRModal = ({ ticketId }: { ticketId: string }) => {
     <BlurView
       style={{ height: '100%', width: '100%' }}
       tint="dark"
-      intensity={90}
+      intensity={100}
     >
       <Center w="full" h="full">
-        <Center w="230" h="230" borderRadius={12} overflow='hidden'>
+        <Center w="240" h="240" borderRadius={16} overflow="hidden">
           <QRCode
             value={ticketId}
             size={240}
