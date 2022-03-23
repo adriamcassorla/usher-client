@@ -4,26 +4,28 @@ import { Center, Button, Text, Heading, Image, VStack, Box, Row, Icon, Divider, 
 import { AsyncStorage } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
+
 import type { CompositeScreenProps } from "@react-navigation/native";
+import { UserContext } from "../../services/contexts/UserContext";
+
 import type { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import { HomeTabParamList, StackScreenType } from "../../utils/Types/navTypes";
 import GradientProvider from "../../components/GradientProvider";
 import { getUserProfile } from "../../services/api/user";
 type Props = CompositeScreenProps<
-  StackScreenType,
-  BottomTabScreenProps<HomeTabParamList, "ProfileStack">
+StackScreenType,
+BottomTabScreenProps<HomeTabParamList, "ProfileStack">
 >;
 
 const Profile = ({ navigation }: Props) => {
-  //TODO: Get setUser from context to log out
+  const { populateUser } = React.useContext(UserContext);
 
-  //TODO: Make API call and set profile data using ID from params
   const [profile, setProfile] = useState<UserProfile | null>(null);
   useEffect(() => {
-    // getUserProfile().then(console.log)
+    getUserProfile().then(setProfile)
   }, []);
   // TODO: Pass user info down in navigation props to tix and favs
-//
+
   return (
     <GradientProvider>
       <Image source={require('../../assets/profile_back.png')} alt="Background shapes" top="-10px" size="xl" height="450px" width="100%" position="absolute"/>
@@ -73,9 +75,8 @@ const Profile = ({ navigation }: Props) => {
             <Switch size="sm" />
           </Row>;
           <Button colorScheme="secondary" variant="link" size="lg"
-            onPress={async () => {
-              console.log("Logged out!");
-              const user = await AsyncStorage.removeItem("user");
+            onPress={() => {
+              AsyncStorage.removeItem("user").then(populateUser);
             }}
             >
             Log out
