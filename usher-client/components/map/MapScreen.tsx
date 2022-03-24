@@ -13,17 +13,17 @@ type Props = {
 
 const MapScreen = ({ selectedVenue, setSelectedVenue, events }: Props) => {
   const [venues, setVenues] = useState<Venue[] | null>(null);
-  // useEffect(() => {
-  //   if (events) {
-  //     let uniqueVenues: Venue[] = [];
-  //     events.forEach((event) => {
-  //       if (!uniqueVenues.some((venue) => venue.id === event.venue.id)) {
-  //         uniqueVenues.push(event.venue);
-  //       }
-  //     });
-  //     setVenues(uniqueVenues);
-  //   }
-  // }, [events]);
+  useEffect(() => {
+    if (events) {
+      let uniqueVenues: Venue[] = [];
+      events.forEach((event) => {
+        if (!uniqueVenues.some((venue) => venue.id === event.venue.id)) {
+          uniqueVenues.push(event.venue);
+        }
+      });
+      setVenues(uniqueVenues);
+    }
+  }, [events]);
 
   const initialRegion = {
     latitudeDelta: 0.06,
