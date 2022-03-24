@@ -16,10 +16,9 @@ const FavButton = ({ eventId }: Props) => {
   );
 
   React.useEffect(() => {
-    if (user) {
-      setIsFavorite(user?.favorite_ids?.includes(eventId)!);
-    }
-  }, [user]);
+    if (user) setIsFavorite(user?.favorite_ids?.includes(eventId)!);
+    return () => {};
+  }, [user?.favorite_ids?.length]);
 
   const handlePress = async () => {
     setIsFavorite((fav) => !fav);

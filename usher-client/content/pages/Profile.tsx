@@ -31,11 +31,12 @@ type Props = CompositeScreenProps<
 const Profile = ({ navigation }: Props) => {
   const { populateUser } = React.useContext(UserContext);
 
+  // TODO check duplicate user info - get in tix directly from ctx
   const [profile, setProfile] = useState<UserProfile | null>(null);
   useFocusEffect(() => {
     getUserProfile().then(setProfile);
   });
-  // TODO: Pass user info down in navigation props to tix and favs
+  // TODO -------------------------------------------------------
 
   return (
     <GradientProvider>
