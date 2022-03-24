@@ -3,8 +3,6 @@ import { Button, Icon } from "native-base";
 import { Ionicons } from "@expo/vector-icons";
 import toggleFav from "../utils/helpers/favs";
 import { UserContext } from "../services/contexts/UserContext";
-import { useFocusEffect } from "@react-navigation/native";
-import { useCallback } from "react";
 
 type Props = {
   eventId: number;
@@ -21,12 +19,7 @@ const FavButton = ({ eventId }: Props) => {
     const updatedUser = { ...user, favorite_ids } as UserProfile;
     populateUser(updatedUser);
   };
-  useFocusEffect(
-    useCallback(() => {
-      const unsubscribe = setIsFavorite(user?.favorite_ids.includes(eventId)!);
-      return unsubscribe;
-    }, [])
-  );
+
   return (
     <Button
       pt={3}

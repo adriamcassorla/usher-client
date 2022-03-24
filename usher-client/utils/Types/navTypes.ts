@@ -17,7 +17,7 @@ export type MainStackParamList = {
 
 export type ProfileStackParamList = {
   Profile: undefined;
-  Favorites: { favorites: EventType[] };
+  Favorites: undefined;
   Tickets: { tickets: Ticket[] };
 }
 

@@ -3,9 +3,9 @@ export function isValid(ticket: Ticket) {
 };
 
 export function sortTickets(tickets: Ticket[]) {
-  return [
+  const sections = [
     { title: 'Active tickets', data: tickets.filter((tik) => isValid(tik)).sort((a, b) => +a.show.date - +b.show.date) },
     { title: 'Past tickets', data: tickets.filter((tik) => !isValid(tik)).sort((a, b) => +a.show.date - +b.show.date) },
   ];
-
+  return sections.filter((sec) => sec.data.length)
 }
