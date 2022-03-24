@@ -5,12 +5,7 @@ type UserProfile = {
   first_name: string,
   last_name: string,
   created_at: string,
-  favorite_events: EventType[]
+  favorite_ids: number[]
   tickets: Ticket[],
   notifications: Boolean,
-}
-
-type User = {
-  id: string,
-  favorite_events: EventType[],
 }

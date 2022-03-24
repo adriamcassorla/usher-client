@@ -1,6 +1,6 @@
 import { AsyncStorage } from "react-native"
 import { getJWT } from "../../services/api/auth"
-import { logInWithToken } from './../../services/api/user'
+import { getUserProfile } from './../../services/api/user'
 
 export const login = async (formData: LoginForm) => {
   const { email, password } = formData
@@ -27,9 +27,7 @@ const validateLogin = (formData: LoginForm) => {
 }
 
 export const getLastUser = async () => {
-  const token = await AsyncStorage.getItem("user");
-  if (!token) return null;
-  return await logInWithToken(token)
+  return await getUserProfile()
 }
 
 export type LoginForm = {

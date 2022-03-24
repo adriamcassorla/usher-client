@@ -2,8 +2,8 @@ import * as React from "react";
 import { createContext, useContext, useState } from "react";
 
 type UserContextType = {
-  user: User | null;
-  populateUser: (newUser: User | null) => void;
+  user: UserProfile | null;
+  populateUser: (newUser: UserProfile | null) => void;
 };
 
 const defaultValue: UserContextType = {
@@ -14,9 +14,9 @@ const defaultValue: UserContextType = {
 export const UserContext = createContext<UserContextType>(defaultValue);
 
 export const UserProvider = ({ children }: any) => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<UserProfile | null>(null);
 
-  const populateUser = (newUser: User | null) => {
+  const populateUser = (newUser: UserProfile | null) => {
     setUser(newUser);
   };
 

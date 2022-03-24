@@ -1,14 +1,14 @@
 import { gql, GraphQLClient } from "graphql-request";
 import { AsyncStorage } from "react-native";
 
-//const apiURL = "http://localhost:4004";
+
 const apiURL = "https://tourn.me/usher";
 const client = new GraphQLClient(apiURL);
 
-export const getJWT = async (email: string, password: string): Promise<User | string | null> => {
+export const getJWT = async (email: string, password: string): Promise<UserProfile | string | null> => {
   const query = gql`
-    query login($email: String, $password: String) {
-      login(email: $email, password: $password) {
+    query getUser($email: String, $password: String) {
+      getUser(email: $email, password: $password) {
         error
         token
         user {
@@ -22,17 +22,17 @@ export const getJWT = async (email: string, password: string): Promise<User | st
   `;
 
   try {
-    const { login } = await client.request(query, { email, password });
-    if (login.error) return login.error
-    await AsyncStorage.setItem('user', login.token);
-    return login.user;
+    const { getUser } = await client.request(query, { email, password });
+    if (getUser.error) return getUser.error
+    await AsyncStorage.setItem('user', getUser.token);
+    return getUser.user;
   } catch (e) {
     console.error(e);
     return 'Internal error';
   }
 }
 
-export const createUser = async (email: string, password: string, firstName: string, lastName: string): Promise<User | null> => {
+export const createUser = async (email: string, password: string, firstName: string, lastName: string): Promise<UserProfile | null> => {
   const mutation = gql`
     mutation createUser($email: String!, $password: String!, $firstName: String!, $lastName: String!) {
   createUser(email: $email, password: $password, first_name: $firstName, last_name: $lastName) {

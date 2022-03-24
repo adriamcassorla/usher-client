@@ -8,43 +8,29 @@ import {
   ProfileStackParamList,
 } from "../../utils/Types/navTypes";
 import { EventsContext } from "../../services/contexts/EventsContext";
-import EventCard from "../../components/home/EventCard";
 import { UserContext } from "../../services/contexts/UserContext";
+import EventCard from "../../components/home/EventCard";
 
 type Props = CompositeScreenProps<
   StackScreenProps<ProfileStackParamList, "Favorites">,
   BottomTabScreenType
 >;
 
-const Favorites = ({ navigation, route }: Props) => {
+const Favorites = ({ navigation }: Props) => {
   
   const { events, populateEvents} = React.useContext(EventsContext)
-  const { user, populateUser } = React.useContext(UserContext)
-  const [ parsed, setParsed ] = React.useState<EventType[] | null>(null);
-
-  const parseFavorites = () => {
-    const favIds = route.params.favorites.map(event => event.id);
-    const todayFavs = events?.filter(event => favIds.includes(event.id))
-    return route.params.favorites.map(event => {
-      if (todayFavs) 
-      for (let todayEvent of todayFavs) {
-        if (event.id === todayEvent.id) {
-          event.today_shows = todayEvent.today_shows
-          return event
-        }
-      }
-      event.today_shows = []
-      return event
-      })
-  }
+  const { user, populateUser} = React.useContext(UserContext)
+  const [ favorites, setFavorites ] = React.useState<EventType[] | undefined>(undefined);
 
   React.useEffect(() => {
-    setParsed(parseFavorites())
-  }, [])
+    const favs = events?.filter(event => user?.favorite_ids.includes(event.id))
+    console.log(favs)
+    setFavorites(favs)
+  }, [user])
   return (
     <FlatList
       mt="30px"
-      data={parsed}
+      data={favorites}
       renderItem={({ item } : { item : EventType } )=> <EventCard event={item}/>}
       keyExtractor={(item) => item.id.toString()}
     />
