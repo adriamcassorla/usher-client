@@ -1,10 +1,8 @@
 import * as React from "react";
-const { useEffect, useState } = React;
 import {
   Center,
   Button,
   Text,
-  Heading,
   Image,
   VStack,
   Box,
@@ -16,27 +14,19 @@ import {
 import { AsyncStorage } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
-import { CompositeScreenProps, useFocusEffect } from "@react-navigation/native";
+import { CompositeScreenProps } from "@react-navigation/native";
 import { UserContext } from "../../services/contexts/UserContext";
 
 import type { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import { HomeTabParamList, StackScreenType } from "../../utils/Types/navTypes";
 import GradientProvider from "../../components/GradientProvider";
-import { getUserProfile } from "../../services/api/user";
 type Props = CompositeScreenProps<
   StackScreenType,
   BottomTabScreenProps<HomeTabParamList, "ProfileStack">
 >;
 
 const Profile = ({ navigation }: Props) => {
-  const { populateUser } = React.useContext(UserContext);
-
-  // TODO check duplicate user info - get in tix directly from ctx
-  const [profile, setProfile] = useState<UserProfile | null>(null);
-  useFocusEffect(() => {
-    getUserProfile().then(setProfile);
-  });
-  // TODO -------------------------------------------------------
+  const { user, populateUser } = React.useContext(UserContext);
 
   return (
     <GradientProvider>
@@ -67,7 +57,7 @@ const Profile = ({ navigation }: Props) => {
               mt="60px"
             />
             <Text mt="20px" mb="-10px" bold color="#1d1d1b" fontSize="2xl">
-              {profile?.first_name} {profile?.last_name}
+              {user?.first_name} {user?.last_name}
             </Text>
           </Center>
         </Box>
@@ -83,7 +73,7 @@ const Profile = ({ navigation }: Props) => {
                 Tickets
               </Text>
               <Text fontWeight={900} color="#1d1d1b" fontSize="md">
-                {profile?.tickets.length}
+                {user?.tickets.length}
               </Text>
             </Center>
             <Divider
@@ -105,7 +95,7 @@ const Profile = ({ navigation }: Props) => {
                 Favorites
               </Text>
               <Text fontWeight={900} color="#1d1d1b" fontSize="md">
-                {profile?.favorite_ids.length}
+                {user?.favorite_ids.length}
               </Text>
             </Center>
           </Row>
@@ -117,10 +107,7 @@ const Profile = ({ navigation }: Props) => {
             width="100px"
             height="80px"
             borderRadius="15px"
-            onPress={() => {
-              if (profile)
-                navigation.navigate("Tickets", { tickets: profile?.tickets });
-            }}
+            onPress={() => navigation.navigate("Tickets")}
           >
             <Icon
               size={10}
@@ -136,9 +123,7 @@ const Profile = ({ navigation }: Props) => {
             width="100px"
             height="80px"
             borderRadius="15px"
-            onPress={() => {
-              if (profile) navigation.navigate("Favorites");
-            }}
+            onPress={() => navigation.navigate("Favorites")}
           >
             <Icon
               size={10}

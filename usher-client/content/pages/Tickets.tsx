@@ -1,37 +1,25 @@
 import * as React from 'react';
+import { Modal, Pressable } from 'react-native';
 import {
   Text,
   View,
-  Divider,
   SectionList,
-  HStack,
-  Center,
-  Box,
 } from 'native-base';
 
-import type { CompositeScreenProps } from '@react-navigation/native';
-import type { StackScreenProps } from '@react-navigation/stack';
-import {
-  BottomTabScreenType,
-  ProfileStackParamList,
-} from '../../utils/Types/navTypes';
 import GradientProvider from '../../components/GradientProvider';
-import { Modal, Pressable } from 'react-native';
-import { capitalize } from '../../utils/helpers/home';
 import TicketCard from '../../components/profile/TicketCard';
-import { isValid, sortTickets } from '../../utils/helpers/tickets';
-import { BlurView } from 'expo-blur';
 import QRModal from '../../components/profile/QRModal';
-type Props = CompositeScreenProps<
-  StackScreenProps<ProfileStackParamList, 'Tickets'>,
-  BottomTabScreenType
->;
+import { isValid, sortTickets } from '../../utils/helpers/tickets';
+import { UserContext } from '../../services/contexts/UserContext';
 
-const Tickets = ({ navigation, route }: Props) => {
+
+const Tickets = () => {
+  const {user} = React.useContext(UserContext)
+  const sections = sortTickets(user!.tickets);
+
   const [modalId, setModalId] = React.useState<string | null>(null);
-  const sections = sortTickets(route.params.tickets);
+
   const renderItem = ({ item }: { item: Ticket }) => {
-    //TODO Make QR code modal on press
     return (
       <Pressable disabled={!isValid(item)} onPress={() => setModalId(item.id)}>
         <TicketCard ticket={item} />
