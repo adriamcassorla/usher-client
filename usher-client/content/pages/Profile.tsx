@@ -95,17 +95,8 @@ const Profile = ({ navigation }: Props) => {
               orientation="vertical"
             />
             <Center justifyContent="space-evenly">
-              <Text
-                color="primary.600"
-                fontWeight="600"
-                mx="10px"
-                fontSize="lg"
-              >
-                Favorites
-              </Text>
-              <Text fontWeight={900} color="#1d1d1b" fontSize="md">
-                {profile?.favorite_events.length}
-              </Text>
+              <Text color="primary.600" fontWeight="600" mx="10px" fontSize="lg">Favorites</Text>
+              <Text fontWeight={900} color="#1d1d1b" fontSize="md">{profile?.favorite_ids.length}</Text>
             </Center>
           </Row>
         </Box>
@@ -137,9 +128,7 @@ const Profile = ({ navigation }: Props) => {
             borderRadius="15px"
             onPress={() => {
               if (profile)
-                navigation.navigate('Favorites', {
-                  favorites: profile?.favorite_events,
-                });
+              navigation.navigate("Favorites");
             }}
           >
             <Icon

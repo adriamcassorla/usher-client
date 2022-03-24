@@ -10,9 +10,11 @@ import {
   HStack,
   Badge,
 } from "native-base";
+import FavButton from "../FavButton";
 
 import { useNavigation } from "@react-navigation/native";
 import { MainStackNavType } from "../../utils/Types/navTypes";
+import { UserContext } from "../../services/contexts/UserContext";
 
 const default_card_image = require("../../assets/default_card_image.jpg");
 
@@ -22,7 +24,10 @@ type Props = {
 
 const EventCard = ({ event }: Props) => {
   const navigation = useNavigation<MainStackNavType>();
+
   return (
+    <Box>
+
     <Pressable
       onPress={() =>
         navigation.navigate("Event", {
@@ -30,7 +35,7 @@ const EventCard = ({ event }: Props) => {
           todayShows: event.today_shows,
         })
       }
-    >
+      >
       <Box
         alignSelf={'center'}
         bgColor={"dark.50:alpha.40"}
@@ -39,7 +44,7 @@ const EventCard = ({ event }: Props) => {
         mb={4}
         rounded="lg"
         w="90%"
-      >
+        >
         <Image
           src={event.image}
           defaultSource={default_card_image}
@@ -47,7 +52,7 @@ const EventCard = ({ event }: Props) => {
           resizeMode="cover"
           height={150}
           roundedTop="md"
-        />
+          />
         <HStack alignItems={"center"}>
           <VStack flex={4} mt={-4} pl={3} pr={2} pb={2} roundedBottom="md">
             <Badge
@@ -56,7 +61,7 @@ const EventCard = ({ event }: Props) => {
               left={2}
               top={-2}
               postion="absolute"
-            >
+              >
               <Text color="white" fontSize="xs" fontWeight={"medium"}>
                 {event.type}
               </Text>
@@ -83,6 +88,10 @@ const EventCard = ({ event }: Props) => {
         </HStack>
       </Box>
     </Pressable>
+    <Box position="absolute" right="40px" top="15px">
+      <FavButton eventId={event.id}/>
+    </Box>
+    </Box>
   );
 };
 
