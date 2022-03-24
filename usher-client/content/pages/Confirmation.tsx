@@ -1,15 +1,17 @@
-import * as React from 'react';
-const moment = require('moment');
-import { Button, Center, Flex, Heading, Text, useToast } from 'native-base';
-import { MainStackParamList } from '../../utils/Types/navTypes';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { capitalize } from '../../utils/helpers/home';
+import * as React from "react";
+const moment = require("moment");
+import { Button, Center, Flex, Heading, Text, useToast } from "native-base";
+import { MainStackParamList } from "../../utils/Types/navTypes";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { capitalize } from "../../utils/helpers/home";
+import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
 import ConfirmationGif from '../../components/ConfirmationGif';
 
 type Props = NativeStackScreenProps<MainStackParamList, 'Confirmation'>;
 
 const Confirmation = ({ navigation, route }: Props) => {
   const { event, nSeats, date } = route.params;
+  const tabBarHeight = useBottomTabBarHeight();
   const toast = useToast();
   return (
     <Flex
@@ -43,10 +45,10 @@ const Confirmation = ({ navigation, route }: Props) => {
           toast.show({
             status: 'success',
             title:
-              'Ticket' +
-              (nSeats > 1 ? 's' : '') +
-              ' added to your profile page.',
-            mb: '45px',
+              "Ticket" +
+              (nSeats > 1 ? "s" : "") +
+              " added to your profile page.",
+            mb: tabBarHeight,
             mx: 5,
           });
           navigation.navigate('Main');

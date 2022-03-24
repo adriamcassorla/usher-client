@@ -4,7 +4,7 @@ import { login, LoginForm, loginMock } from "../../utils/helpers/login";
 import { focusStyle } from "../../styles/authStyles";
 
 type Props = {
-  setUser: (user: User | null) => void;
+  setUser: (user: UserProfile | null) => void;
   setIsNewUser: React.Dispatch<React.SetStateAction<boolean>>;
 };
 

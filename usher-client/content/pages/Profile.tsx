@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 import {
   Center,
   Button,
@@ -10,19 +10,19 @@ import {
   Icon,
   Divider,
   Switch,
-} from 'native-base';
-import { AsyncStorage } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+} from "native-base";
+import { AsyncStorage } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
-import { CompositeScreenProps } from '@react-navigation/native';
-import { UserContext } from '../../services/contexts/UserContext';
+import { CompositeScreenProps } from "@react-navigation/native";
+import { UserContext } from "../../services/contexts/UserContext";
 
-import type { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
-import { HomeTabParamList, StackScreenType } from '../../utils/Types/navTypes';
-import GradientProvider from '../../components/GradientProvider';
+import type { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
+import { HomeTabParamList, StackScreenType } from "../../utils/Types/navTypes";
+import GradientProvider from "../../components/GradientProvider";
 type Props = CompositeScreenProps<
   StackScreenType,
-  BottomTabScreenProps<HomeTabParamList, 'ProfileStack'>
+  BottomTabScreenProps<HomeTabParamList, "ProfileStack">
 >;
 
 const Profile = ({ navigation }: Props) => {
@@ -31,7 +31,7 @@ const Profile = ({ navigation }: Props) => {
   return (
     <GradientProvider>
       <Image
-        source={require('../../assets/profile_back.png')}
+        source={require("../../assets/profile_back.png")}
         alt="Background shapes"
         top="-10px"
         size="xl"
@@ -40,15 +40,15 @@ const Profile = ({ navigation }: Props) => {
         position="absolute"
       />
       <VStack
-        h={'full'}
-        w={'full'}
+        h={"full"}
+        w={"full"}
         alignItems="center"
         justifyContent="space-evenly"
       >
         <Box>
           <Center>
             <Image
-              source={require('../../assets/mock_profile.jpeg')}
+              source={require("../../assets/mock_profile.jpeg")}
               alt="Usher icon"
               size="xl"
               width="130px"
@@ -107,13 +107,13 @@ const Profile = ({ navigation }: Props) => {
             width="100px"
             height="80px"
             borderRadius="15px"
-            onPress={() => navigation.navigate('Tickets')}
+            onPress={() => navigation.navigate("Tickets")}
           >
             <Icon
               size={10}
               ml="5px"
-              color={'light.100'}
-              as={<Ionicons name={'calendar-outline'} />}
+              color={"light.100"}
+              as={<Ionicons name={"calendar-outline"} />}
             />
             Tickets
           </Button>
@@ -123,13 +123,13 @@ const Profile = ({ navigation }: Props) => {
             width="100px"
             height="80px"
             borderRadius="15px"
-            onPress={() => navigation.navigate('Favorites')}
+            onPress={() => navigation.navigate("Favorites")}
           >
             <Icon
               size={10}
               ml="7px"
-              color={'light.100'}
-              as={<Ionicons name={'heart-outline'} />}
+              color={"light.100"}
+              as={<Ionicons name={"heart-outline"} />}
             />
             Favorites
           </Button>
@@ -148,10 +148,10 @@ const Profile = ({ navigation }: Props) => {
             size="lg"
             onPress={async () => {
               try {
-                AsyncStorage.removeItem('user');
                 populateUser(null);
+                await AsyncStorage.clear();
               } catch (e) {
-                console.error('Failed to log out with error: ', e);
+                console.error("Failed to log out with error: ", e);
               }
             }}
           >

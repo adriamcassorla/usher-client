@@ -1,4 +1,3 @@
-import { AsyncStorage } from "react-native"
 import { getJWT } from "../../services/api/auth"
 import { getUserProfile } from './../../services/api/user'
 
@@ -24,10 +23,6 @@ const validateLogin = (formData: LoginForm) => {
     return 'Email should be in email format'
   }
   return true
-}
-
-export const getLastUser = async () => {
-  return await getUserProfile()
 }
 
 export type LoginForm = {

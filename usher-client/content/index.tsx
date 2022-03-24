@@ -3,15 +3,15 @@ import * as React from "react";
 import MainStack from "./navigation/MainStack";
 import { useState } from "react";
 import { UserContext } from "../services/contexts/UserContext";
-import { getLastUser } from "../utils/helpers/login";
 import { Auth } from "./pages";
+import { getUserProfile } from "../services/api/user";
 
 const index = () => {
   const { user, populateUser } = React.useContext(UserContext);
   const [status, setStatus] = useState<"loading" | "loaded">("loading");
 
   React.useEffect(() => {
-    getLastUser().then((user) => {
+    getUserProfile().then((user) => {
       populateUser(user);
       setStatus("loaded");
     });

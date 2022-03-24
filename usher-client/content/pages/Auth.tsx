@@ -1,21 +1,15 @@
 import * as React from "react";
 const { useState } = React;
-import {
-  Center,
-  Flex,
-  Heading,
-  Image,
-  KeyboardAvoidingView,
-  View,
-} from "native-base";
+import { Flex, Image, View } from "native-base";
 
 import KeyboardSpacer from "react-native-keyboard-spacer";
 import LogInForm from "../../components/auth/LogInForm";
 import SignUpForm from "../../components/auth/SignUpForm";
 import GradientProvider from "../../components/GradientProvider";
+import { AsyncStorage } from "react-native";
 
 type Props = {
-  setUser: (user: User | null) => void;
+  setUser: (user: UserProfile | null) => void;
 };
 
 const Auth = ({ setUser }: Props) => {

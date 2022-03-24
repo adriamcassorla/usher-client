@@ -1,14 +1,14 @@
-import * as React from 'react';
-import { FlatList, View, Text, } from 'native-base';
+import * as React from "react";
+import { FlatList, View, Text } from "native-base";
 
-import { EventsContext } from '../../services/contexts/EventsContext';
-import { UserContext } from '../../services/contexts/UserContext';
-import EventCard from '../../components/home/EventCard';
+import { EventsContext } from "../../services/contexts/EventsContext";
+import { UserContext } from "../../services/contexts/UserContext";
+import EventCard from "../../components/home/EventCard";
 
 const Favorites = () => {
   const { events } = React.useContext(EventsContext);
   const { user } = React.useContext(UserContext);
-  const [loading, setLoading] =React.useState(true);
+  const [loading, setLoading] = React.useState(true);
   const [favorites, setFavorites] = React.useState<EventType[] | undefined>(
     undefined
   );
@@ -23,7 +23,7 @@ const Favorites = () => {
 
   if (!favorites?.length && !loading)
     return (
-      <View h={'100%'} w={'100%'} alignItems="center" mt={0}>
+      <View h={"100%"} w={"100%"} alignItems="center" mt={0}>
         {!favorites?.length && (
           <Text
             w={330}
@@ -31,7 +31,7 @@ const Favorites = () => {
             textAlign="center"
             fontSize="2xl"
             bold
-            color={'white'}
+            color={"white"}
           >
             No events saved yet, go explore! 🕺
           </Text>
