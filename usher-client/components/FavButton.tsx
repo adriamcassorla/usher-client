@@ -12,13 +12,14 @@ const FavButton = ({ eventId }: Props) => {
   const { user, populateUser } = React.useContext(UserContext);
 
   const [isFavorite, setIsFavorite] = React.useState(
-    user?.favorite_ids.includes(eventId)!
+    user?.favorite_ids?.includes(eventId)!
   );
 
-  React.useEffect(
-    () => setIsFavorite(user?.favorite_ids.includes(eventId)!),
-    [user]
-  );
+  React.useEffect(() => {
+    if (user) {
+      setIsFavorite(user?.favorite_ids?.includes(eventId)!);
+    }
+  }, [user]);
 
   const handlePress = async () => {
     setIsFavorite((fav) => !fav);

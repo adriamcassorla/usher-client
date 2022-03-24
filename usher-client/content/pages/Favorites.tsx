@@ -11,19 +11,15 @@ import { EventsContext } from "../../services/contexts/EventsContext";
 import { UserContext } from "../../services/contexts/UserContext";
 import EventCard from "../../components/home/EventCard";
 
-type Props = CompositeScreenProps<
-  StackScreenProps<ProfileStackParamList, "Favorites">,
-  BottomTabScreenType
->;
 
-const Favorites = ({ navigation }: Props) => {
+const Favorites = () => {
 
   const { events, populateEvents} = React.useContext(EventsContext)
   const { user, populateUser} = React.useContext(UserContext)
   const [ favorites, setFavorites ] = React.useState<EventType[] | undefined>(undefined);
 
   React.useEffect(() => {
-    const favs = events?.filter(event => user?.favorite_ids.includes(event.id))
+    const favs = events?.filter(event => user?.favorite_ids?.includes(event.id))
     setFavorites(favs)
   }, [user])
   return (
