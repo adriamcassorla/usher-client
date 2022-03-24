@@ -11,8 +11,21 @@ type Props = NativeStackScreenProps<MainStackParamList, 'Confirmation'>;
 
 const Confirmation = ({ navigation, route }: Props) => {
   const { event, nSeats, date } = route.params;
-  const tabBarHeight = useBottomTabBarHeight();
   const toast = useToast();
+
+  setTimeout(()=> {
+      toast.show({
+        status: 'success',
+        title:
+          "Ticket" +
+          (nSeats > 1 ? "s" : "") +
+          " added to your profile page.",
+        mb: 8,
+        mx: 5,
+      });
+      navigation.navigate('Main');
+  }, 3000)
+
   return (
     <Flex
       h={'full'}
@@ -39,7 +52,7 @@ const Confirmation = ({ navigation, route }: Props) => {
       </Center>
 
 
-      <Button
+      {/* <Button
         colorScheme="primary"
         onPress={() => {
           toast.show({
@@ -48,14 +61,14 @@ const Confirmation = ({ navigation, route }: Props) => {
               "Ticket" +
               (nSeats > 1 ? "s" : "") +
               " added to your profile page.",
-            mb: tabBarHeight,
+            mb: 40,
             mx: 5,
           });
           navigation.navigate('Main');
         }}
       >
         All done, Return Home
-      </Button>
+      </Button> */}
     </Flex>
   );
 };
