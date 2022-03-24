@@ -19,7 +19,7 @@ import GradientProvider from '../../components/GradientProvider';
 import { Modal, Pressable } from 'react-native';
 import { capitalize } from '../../utils/helpers/home';
 import TicketCard from '../../components/profile/TicketCard';
-import { sortTickets } from '../../utils/helpers/tickets';
+import { isValid, sortTickets } from '../../utils/helpers/tickets';
 import { BlurView } from 'expo-blur';
 import QRModal from '../../components/profile/QRModal';
 type Props = CompositeScreenProps<
@@ -33,7 +33,7 @@ const Tickets = ({ navigation, route }: Props) => {
   const renderItem = ({ item }: { item: Ticket }) => {
     //TODO Make QR code modal on press
     return (
-      <Pressable onPress={() => setModalId(item.id)}>
+      <Pressable disabled={!isValid(item)} onPress={() => setModalId(item.id)}>
         <TicketCard ticket={item} />
       </Pressable>
     );
