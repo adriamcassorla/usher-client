@@ -1,28 +1,41 @@
 import { Dimensions, FlatList } from "react-native";
-import { Box, Text, PresenceTransition } from "native-base";
+import { Box, Text, PresenceTransition, Center } from "native-base";
 import * as React from "react";
 import { useEffect, useState } from "react";
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
 import { BlurView } from "expo-blur";
 import MiniEventCard from "../search/MiniEventCard";
+import Carousel from "react-native-snap-carousel";
 
 type Props = {
-  venueId: string;
-  events: EventType[];
+  venueId: string | null;
+  events: EventType[] | null;
 };
 
 const MapEventList = ({ venueId, events }: Props) => {
   const tabBarHeight = useBottomTabBarHeight();
   const height = 150;
+  const width = Dimensions.get("screen").width;
   const top = Dimensions.get("screen").height - height - tabBarHeight;
   const [venueEvents, setVenueEvents] = useState<EventType[] | null>(null);
 
-  const _renderItem = ({ event }: { event: EventType }) => (
-    <MiniEventCard event={event}></MiniEventCard>
+  const _renderItem = ({ item }: { item: EventType }) => (
+    <Box
+      bg={"dark.50:alpha.80"}
+      h={"120px"}
+      rounded={20}
+      shadow={5}
+      mt={"3%"}
+      justifyContent={"center"}
+    >
+      <MiniEventCard event={item}></MiniEventCard>
+    </Box>
   );
 
   useEffect(() => {
-    setVenueEvents(events.filter((event) => event.venue.id === venueId));
+    if (events) {
+      setVenueEvents(events.filter((event) => event.venue.id === venueId));
+    }
   }, [venueId, events]);
 
   return (
@@ -48,15 +61,14 @@ const MapEventList = ({ venueId, events }: Props) => {
         }}
       >
         {venueEvents ? (
-          <FlatList
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={{ paddingEnd: 12 }}
+          <Carousel
+            sliderWidth={width}
+            itemWidth={width * 0.98}
             data={venueEvents}
             renderItem={_renderItem}
-            keyExtractor={(_item, index) => {
-              return String(index);
-            }}
-            horizontal
+            horizontal={true}
+            firstItem={0}
+            loop={false}
           />
         ) : null}
       </BlurView>
