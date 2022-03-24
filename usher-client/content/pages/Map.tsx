@@ -30,7 +30,7 @@ const Map = ({ navigation }: Props) => {
         setSelectedVenue={setSelectedVenue}
       />
       <MapEventList venueId={selectedVenue} events={filtered}></MapEventList>
-      <FilterMenu isOnTop filters={filters} setFilters={setFilters} />
+      <FilterMenu isOnTop={false} filters={filters} setFilters={setFilters} />
     </ZStack>
   );
 };

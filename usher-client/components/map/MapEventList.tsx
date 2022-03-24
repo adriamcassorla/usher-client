@@ -1,5 +1,5 @@
 import { Dimensions, FlatList } from "react-native";
-import { Box, Text, PresenceTransition, Center } from "native-base";
+import { Box, Text, PresenceTransition, Center, View } from "native-base";
 import * as React from "react";
 import { useEffect, useState } from "react";
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
@@ -21,10 +21,10 @@ const MapEventList = ({ venueId, events }: Props) => {
 
   const _renderItem = ({ item }: { item: EventType }) => (
     <Box
-      bg={"dark.50:alpha.80"}
+      bg={"dark.59:alpha.90"}
       h={"120px"}
       rounded={20}
-      shadow={5}
+      shadow={10}
       mt={"3%"}
       justifyContent={"center"}
     >
@@ -51,15 +51,7 @@ const MapEventList = ({ venueId, events }: Props) => {
         },
       }}
     >
-      <BlurView
-        intensity={70}
-        style={{
-          position: "absolute",
-          height,
-          top,
-          width: "100%",
-        }}
-      >
+      <View position={"absolute"} height={height} top={top} with={"full"}>
         {venueEvents ? (
           <Carousel
             sliderWidth={width}
@@ -71,7 +63,7 @@ const MapEventList = ({ venueId, events }: Props) => {
             loop={false}
           />
         ) : null}
-      </BlurView>
+      </View>
     </PresenceTransition>
   );
 };
