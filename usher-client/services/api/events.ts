@@ -23,6 +23,7 @@ export const getCityEvents = async (city: string, dayRange: number = 3): Promise
           active_sale
         }
         venue {
+          id
           name
           latitude
           longitude

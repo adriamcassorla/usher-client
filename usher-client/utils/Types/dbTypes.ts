@@ -16,7 +16,7 @@ type EventType = {
 }
 
 type Venue = {
-  id: String,
+  id: string,
   name: string,
   external_url?: String,
   address: String,
