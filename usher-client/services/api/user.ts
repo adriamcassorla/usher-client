@@ -16,33 +16,33 @@ export const addFav = async (eventId: number) => {
       }
     }
     `
-    try {
-      const { addFav } = await client.request(mutation);
-      return addFav
-    } catch (e) {
-      console.error(e);
-      return
-    }
+  try {
+    const { addFav } = await client.request(mutation);
+    return addFav
+  } catch (e) {
+    console.error(e);
+    return
   }
+}
 
-  export const deleteFav = async (eventId: number) => {
-    const token = await AsyncStorage.getItem('user')
-    client.setHeader('authorization', `Bearer ${token}`)
-    const mutation = gql`
+export const deleteFav = async (eventId: number) => {
+  const token = await AsyncStorage.getItem('user')
+  client.setHeader('authorization', `Bearer ${token}`)
+  const mutation = gql`
       mutation DeleteFav($eventId: Int!) {
         deleteFav(eventId: 200) {
           id
         }
       }
       `
-      try {
-        const { deleteFav } = await client.request(mutation);
-        return deleteFav
-      } catch (e) {
-        console.error(e);
-        return
-      }
-    }
+  try {
+    const { deleteFav } = await client.request(mutation);
+    return deleteFav
+  } catch (e) {
+    console.error(e);
+    return
+  }
+}
 
 export const logInWithToken = async (token: string) => {
   client.setHeader('authorization', `Bearer ${token}`)
@@ -77,6 +77,7 @@ export const getUserProfile = async () => {
   const query = gql`
     query GetProfile {
       getProfile {
+        id
         first_name
         last_name
         notifications
@@ -109,11 +110,11 @@ export const getUserProfile = async () => {
     }
   `;
 
-try {
-  const { getProfile } = await client.request(query);
-  return getProfile
-} catch (e) {
-  console.error(e);
-  return null;
-}
+  try {
+    const { getProfile } = await client.request(query);
+    return getProfile
+  } catch (e) {
+    console.error(e);
+    return null;
+  }
 };

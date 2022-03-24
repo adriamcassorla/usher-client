@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Center, Button, Stack, Input, FormControl } from "native-base";
+import { Button, Stack, Input, FormControl, VStack } from "native-base";
 import { login, LoginForm, loginMock } from "../../utils/helpers/login";
 import { focusStyle } from "../../styles/authStyles";
 
@@ -15,7 +15,7 @@ const LogInForm = ({ setUser, setIsNewUser }: Props) => {
     login(formData).then(setUser);
   };
   return (
-    <Center w={"80%"} h={"3/4"}>
+    <VStack w={"80%"} justifyContent={"center"}>
       <FormControl>
         <Stack space={"md"} w="100%" maxW="400px" mb={20}>
           <Input
@@ -64,11 +64,11 @@ const LogInForm = ({ setUser, setIsNewUser }: Props) => {
         onPress={() => {
           setIsNewUser(true);
         }}
-        _pressed={{_text: {color: "light.200"}}}
+        _pressed={{ _text: { color: "light.200" } }}
       >
         New user? Sign up!
       </Button>
-    </Center>
+    </VStack>
   );
 };
 
