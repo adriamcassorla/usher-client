@@ -5,6 +5,7 @@ import { useState } from "react";
 import { UserContext } from "../services/contexts/UserContext";
 import { Auth } from "./pages";
 import { getUserProfile } from "../services/api/user";
+import { Spinner } from "native-base";
 
 const index = () => {
   const { user, populateUser } = React.useContext(UserContext);
@@ -17,7 +18,7 @@ const index = () => {
     });
   }, []);
 
-  if (status === "loading") return null;
+  if (status === "loading") return <Spinner color="primary.500" />;
   if (!user) return <Auth setUser={populateUser}></Auth>;
   else return <MainStack></MainStack>;
 };

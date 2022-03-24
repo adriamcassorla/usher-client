@@ -3,11 +3,11 @@ import { useState, useEffect, useContext } from "react";
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import { HomeTabParamList } from "../../utils/Types/navTypes";
 import MapScreen from "../../components/map/MapScreen";
-import { View, ZStack } from "native-base";
+import MapEventList from "../../components/map/MapEventList";
+import { ZStack } from "native-base";
 import { FilterMenu } from "../../components/home";
 import { EventsContext } from "../../services/contexts/EventsContext";
 import { filterEvents } from "../../utils/helpers/filter";
-import MapEventList from "../../components/map/MapEventList";
 type Props = BottomTabScreenProps<HomeTabParamList, "Map">;
 
 const Map = ({ navigation }: Props) => {

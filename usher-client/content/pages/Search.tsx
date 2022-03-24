@@ -1,14 +1,12 @@
-import * as React from 'react';
-import { useCallback, useState, useContext } from 'react';
+import * as React from "react";
+import { useState, useContext } from "react";
 
-import { View, FlatList, Text } from 'native-base';
+import { View, FlatList, Text } from "native-base";
 
-import MiniEventCard from '../../components/search/MiniEventCard';
-import SearchBar from '../../components/search/SearchBar';
-import { EventsContext } from '../../services/contexts/EventsContext';
-import { useFocusEffect } from '@react-navigation/native';
-import GradientProvider from '../../components/GradientProvider';
-import { BlurView } from 'expo-blur';
+import MiniEventCard from "../../components/search/MiniEventCard";
+import SearchBar from "../../components/search/SearchBar";
+import { EventsContext } from "../../services/contexts/EventsContext";
+import GradientProvider from "../../components/GradientProvider";
 
 const Search = () => {
   const { events } = useContext(EventsContext);
@@ -40,8 +38,10 @@ const Search = () => {
             mb={2}
           >
             {results?.length
-              ? `Found ${results.length} event${results.length > 1 ? 's' : ''} matching your search`
-              : 'No results. Try something else!'}
+              ? `Found ${results.length} event${
+                  results.length > 1 ? "s" : ""
+                } matching your search`
+              : "No results. Try something else!"}
           </Text>
         )}
         <FlatList
