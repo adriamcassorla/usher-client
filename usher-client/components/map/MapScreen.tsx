@@ -1,18 +1,17 @@
 import { Dimensions, StyleSheet } from "react-native";
 import * as React from "react";
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
-import { useContext, useEffect, useState } from "react";
-import { EventsContext } from "../../services/contexts/EventsContext";
+import { useEffect, useState } from "react";
 import MapStyle from "./../../styles/mapStyle";
 import MapMarker from "./MapMarker";
 
 type Props = {
   selectedVenue: string | null;
   setSelectedVenue: React.Dispatch<React.SetStateAction<string | null>>;
+  events: EventType[] | null;
 };
 
-const MapScreen = ({ selectedVenue, setSelectedVenue }: Props) => {
-  const { events } = useContext(EventsContext);
+const MapScreen = ({ selectedVenue, setSelectedVenue, events }: Props) => {
   const [venues, setVenues] = useState<Venue[] | null>(null);
   // useEffect(() => {
   //   if (events) {
@@ -40,6 +39,7 @@ const MapScreen = ({ selectedVenue, setSelectedVenue }: Props) => {
       customMapStyle={MapStyle}
       provider={PROVIDER_GOOGLE}
       showsUserLocation={true}
+      //@ts-ignore
       ref={mapRef}
     >
       {venues.map((venue) => (
@@ -48,6 +48,7 @@ const MapScreen = ({ selectedVenue, setSelectedVenue }: Props) => {
           selectedVenue={selectedVenue}
           setSelectedVenue={setSelectedVenue}
           mapRef={mapRef}
+          key={venue.id}
         ></MapMarker>
       ))}
     </MapView>
@@ -58,6 +59,8 @@ export default MapScreen;
 
 const styles = StyleSheet.create({
   map: {
+    position: "absolute",
+    top: 0,
     width: "100%",
     height: Dimensions.get("screen").height,
   },

@@ -4,11 +4,13 @@ import { Button, Flex, Heading, Text, useToast } from "native-base";
 import { MainStackParamList } from "../../utils/Types/navTypes";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { capitalize } from "../../utils/helpers/home";
+import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
 
 type Props = NativeStackScreenProps<MainStackParamList, "Confirmation">;
 
 const Confirmation = ({ navigation, route }: Props) => {
   const { event, nSeats, date } = route.params;
+  const tabBarHeight = useBottomTabBarHeight();
   const toast = useToast();
   return (
     <Flex
@@ -37,7 +39,7 @@ const Confirmation = ({ navigation, route }: Props) => {
               "Ticket" +
               (nSeats > 1 ? "s" : "") +
               " added to your profile page.",
-            mb: "45px",
+            mb: tabBarHeight,
             mx: 5,
           });
           navigation.navigate("Main");
