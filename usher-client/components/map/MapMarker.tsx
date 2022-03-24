@@ -17,11 +17,32 @@ const MapMarker = ({
 }: Props) => {
   const [primary700, dark500] = useToken("colors", ["primary.700", "dark.500"]);
   const basicRegion = {
-    latitudeDelta: 0.04,
-    longitudeDelta: 0.04,
+    latitudeDelta: 0.06,
+    longitudeDelta: 0.06,
     latitude: 41.387,
     longitude: 2.17,
   };
+
+  const handlePress = (venue: Venue) => {
+    if (venue.id === selectedVenue) {
+      markerRef.current?.hideCallout();
+      setSelectedVenue(null);
+      mapRef.current?.animateToRegion(basicRegion);
+    } else {
+      setSelectedVenue(venue.id);
+      mapRef.current?.animateToRegion(
+        {
+          latitudeDelta: 0.04,
+          longitudeDelta: 0.04,
+          latitude: venue.latitude,
+          longitude: venue.longitude,
+        },
+        300
+      );
+    }
+  };
+
+  const markerRef = React.useRef<Marker>();
   return (
     <Marker
       title={venue.name}
@@ -31,20 +52,11 @@ const MapMarker = ({
       }}
       pinColor={selectedVenue === venue.id ? primary700 : dark500}
       opacity={selectedVenue === venue.id ? 1 : 0.8}
-      key={venue.id!}
-      onPress={() => {
-        setSelectedVenue(venue.id);
-        mapRef.current?.animateToRegion(
-          {
-            ...basicRegion,
-            latitude: venue.latitude,
-            longitude: venue.longitude,
-          },
-          300
-        );
-      }}
+      onPress={() => handlePress(venue)}
+      //@ts-ignore
+      ref={markerRef}
     >
-      <Callout tooltip={true}>
+      <Callout tooltip={true} onPress={() => handlePress(venue)}>
         <Center bg={"dark.900"} rounded={20} mb={1} py={1} px={2}>
           <Heading color={"primary.500"} size={"md"}>
             {venue.name}
