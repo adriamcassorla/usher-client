@@ -1,12 +1,13 @@
 import * as React from "react";
 const moment = require("moment");
-import { Button, Flex, Heading, Text, useToast } from "native-base";
+import { Button, Center, Flex, Heading, Text, useToast } from "native-base";
 import { MainStackParamList } from "../../utils/Types/navTypes";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { capitalize } from "../../utils/helpers/home";
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
+import ConfirmationGif from '../../components/ConfirmationGif';
 
-type Props = NativeStackScreenProps<MainStackParamList, "Confirmation">;
+type Props = NativeStackScreenProps<MainStackParamList, 'Confirmation'>;
 
 const Confirmation = ({ navigation, route }: Props) => {
   const { event, nSeats, date } = route.params;
@@ -14,27 +15,35 @@ const Confirmation = ({ navigation, route }: Props) => {
   const toast = useToast();
   return (
     <Flex
-      h={"full"}
-      w={"80%"}
-      ml={"10%"}
-      bgColor={"dark.50"}
-      justifyContent={"space-around"}
-      alignItems={"center"}
+      h={'full'}
+      w={'80%'}
+      ml={'10%'}
+      alignItems={'center'}
+      justifycontent='center'
     >
-      <Heading color={"light.50"} fontSize={"5xl"}>
-        Congrats!!!
-      </Heading>
-      <Text color={"light.100"} fontSize={"3xl"} textAlign={"center"}>
-        You just got {nSeats} tickets for {capitalize(event)}.
-      </Text>
-      <Text color={"light.200"} fontSize={"2xl"} textAlign={"center"}>
-        See you there at {moment(Number(date)).format("HH:mm")}!
-      </Text>
+      <ConfirmationGif></ConfirmationGif>
+
+      <Center>
+        <Text bold color={'light.50'} fontSize={'3xl'}>
+          Booking confirmed!
+        </Text>
+        <Text color={'light.100'} fontSize={'xl'} textAlign={'center'}>
+          You just got {nSeats} ticket{nSeats > 1 && 's'} for:
+        </Text>
+        <Text color={'light.100'} fontWeight='medium' fontSize={'xl'} textAlign={'center'}>
+           {capitalize(event)}.
+        </Text>
+        <Text color={'light.200'} fontSize={'xl'} textAlign={'center'}>
+          See you there at {moment(Number(date)).format('HH:mm')}!
+        </Text>
+      </Center>
+
+
       <Button
         colorScheme="primary"
         onPress={() => {
           toast.show({
-            status: "success",
+            status: 'success',
             title:
               "Ticket" +
               (nSeats > 1 ? "s" : "") +
@@ -42,7 +51,7 @@ const Confirmation = ({ navigation, route }: Props) => {
             mb: tabBarHeight,
             mx: 5,
           });
-          navigation.navigate("Main");
+          navigation.navigate('Main');
         }}
       >
         All done, Return Home
