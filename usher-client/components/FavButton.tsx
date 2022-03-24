@@ -19,17 +19,7 @@ const FavButton = ({eventId}: Props) => {
     const updatedUser = {...user, favorite_ids } as UserProfile
     populateUser(updatedUser)
   }
-  useFocusEffect(
-    useCallback(
-      () => {
-        console.log('rerendering')
-        const unsubscribe = setIsFavorite(user?.favorite_ids.includes(eventId)!)
-        return unsubscribe
-      },
-      []
-    )
-    
-  );
+  
     return (
       <Button
       pt={3}
