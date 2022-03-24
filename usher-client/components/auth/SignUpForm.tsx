@@ -1,8 +1,7 @@
 import * as React from "react";
-import { Center, Button, Input, Stack, FormControl, Text } from "native-base";
+import { Button, Input, Stack, FormControl, VStack } from "native-base";
 import { signup, signupMock, SignupForm } from "../../utils/helpers/signup";
 import { focusStyle } from "../../styles/authStyles";
-
 type Props = {
   setUser: (user: User | null) => void;
   setIsNewUser: React.Dispatch<React.SetStateAction<boolean>>;
@@ -15,7 +14,7 @@ const SignUpForm = ({ setUser, setIsNewUser }: Props) => {
     signup(formData).then(setUser);
   };
   return (
-    <Center w={"80%"} h={"3/4"}>
+    <VStack w={"80%"} justifyContent={"center"}>
       <FormControl>
         <Stack space={"md"} w="100%" maxW="400px" mb={20}>
           <Input
@@ -70,7 +69,13 @@ const SignUpForm = ({ setUser, setIsNewUser }: Props) => {
           />
         </Stack>
 
-        <Button variant="solid" colorScheme="primary" onPress={submitHandler} mt="-30px" size="lg">
+        <Button
+          variant="solid"
+          colorScheme="primary"
+          onPress={submitHandler}
+          mt="-30px"
+          size="lg"
+        >
           Sign up
         </Button>
       </FormControl>
@@ -82,11 +87,11 @@ const SignUpForm = ({ setUser, setIsNewUser }: Props) => {
         onPress={() => {
           setIsNewUser(false);
         }}
-        _pressed={{_text: {color: "light.200"}}}
+        _pressed={{ _text: { color: "light.200" } }}
       >
         Already have an account? Log in!
       </Button>
-    </Center>
+    </VStack>
   );
 };
 

@@ -6,8 +6,6 @@ const apiURL = "http://localhost:4004/graphql";
 const client = new GraphQLClient(apiURL);
 
 export const getCityEvents = async (city: string, dayRange: number = 3): Promise<EventType[] | null> => {
-  const jwt = await AsyncStorage.getItem('user');
-  client.setHeader('authorization', `Bearer ${jwt}`)
   const query = gql`
     query GetCityEvents($city: String!, $dayRange: Int!) {
       getCityEvents(city: $city, dayRange: $dayRange) {
@@ -23,6 +21,7 @@ export const getCityEvents = async (city: string, dayRange: number = 3): Promise
           active_sale
         }
         venue {
+          id
           name
           latitude
           longitude

@@ -15,36 +15,38 @@ export const addFav = async (eventId: number) => {
       }
     }
     `
-    try {
-      const { addFav } = await client.request(mutation, {eventId});
-      return addFav.favorite_ids
-    } catch (e) {
-      console.error(e);
-      return
-    }
+  try {
+    const { addFav } = await client.request(mutation, { eventId });
+    return addFav.favorite_ids
+  } catch (e) {
+    console.error(e);
+    return
   }
+}
 
-  export const deleteFav = async (eventId: number) => {
-    const token = await AsyncStorage.getItem('user')
-    client.setHeader('authorization', `Bearer ${token}`)
-    const mutation = gql`
+
+export const deleteFav = async (eventId: number) => {
+  const token = await AsyncStorage.getItem('user')
+  client.setHeader('authorization', `Bearer ${token}`)
+  const mutation = gql`
       mutation DeleteFav($eventId: Int!) {
         deleteFav(eventId: $eventId) {
           favorite_ids
         }
       }
       `
-      try {
-        const { deleteFav } = await client.request(mutation, {eventId});
-        return deleteFav.favorite_ids
-      } catch (e) {
-        console.error(e);
-        return
-      }
-    }
+  try {
+    const { deleteFav } = await client.request(mutation, { eventId });
+    return deleteFav.favorite_ids
+  } catch (e) {
+    console.error(e);
+    return
+  }
+}
 
 export const getUserProfile = async () => {
   const token = await AsyncStorage.getItem('user');
+  if (!token) return null
   client.setHeader('authorization', `Bearer ${token}`)
 
   const query = gql`
@@ -78,12 +80,12 @@ export const getUserProfile = async () => {
     }
   `;
 
-try {
-  const { getUser } = await client.request(query);
-  if (getUser.error) return null
-  return getUser.user as UserProfile
-} catch (e) {
-  console.error(e);
-  return null;
-}
+  try {
+    const { getUser } = await client.request(query);
+    if (getUser.error) return null
+    return getUser.user as UserProfile
+  } catch (e) {
+    console.error(e);
+    return null;
+  }
 };

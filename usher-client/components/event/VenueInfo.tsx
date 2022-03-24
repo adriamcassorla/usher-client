@@ -1,10 +1,10 @@
 import { View, Heading, Text, Button } from "native-base";
-import { StyleSheet } from "react-native";
+import { Linking, StyleSheet } from "react-native";
 
 import * as React from "react";
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
-
 import MapStyle from "./../../styles/mapStyle";
+const mapsURL = "https://maps.google.com/?saddr=";
 
 const VenueInfo = ({ venue }: { venue: Venue }) => {
   const region = {
@@ -33,7 +33,17 @@ const VenueInfo = ({ venue }: { venue: Venue }) => {
       <Text color={"dark.300"}>
         {venue.address} {venue.city} {venue.zipcode}
       </Text>
-      <Button w={"50%"} ml={"20%"} mt={5} variant="outline">
+      <Button
+        w={"50%"}
+        ml={"20%"}
+        mt={5}
+        variant="outline"
+        onPress={async () => {
+          await Linking.openURL(
+            mapsURL + venue.latitude + "," + venue.longitude
+          );
+        }}
+      >
         Get directions
       </Button>
     </View>
