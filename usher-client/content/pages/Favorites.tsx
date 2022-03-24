@@ -17,14 +17,13 @@ type Props = CompositeScreenProps<
 >;
 
 const Favorites = ({ navigation }: Props) => {
-  
+
   const { events, populateEvents} = React.useContext(EventsContext)
   const { user, populateUser} = React.useContext(UserContext)
   const [ favorites, setFavorites ] = React.useState<EventType[] | undefined>(undefined);
 
   React.useEffect(() => {
     const favs = events?.filter(event => user?.favorite_ids.includes(event.id))
-    console.log(favs)
     setFavorites(favs)
   }, [user])
   return (
@@ -33,6 +32,7 @@ const Favorites = ({ navigation }: Props) => {
       data={favorites}
       renderItem={({ item } : { item : EventType } )=> <EventCard event={item}/>}
       keyExtractor={(item) => item.id.toString()}
+      extraData={user}
     />
   );
 };

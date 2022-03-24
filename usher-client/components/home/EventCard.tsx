@@ -14,7 +14,6 @@ import FavButton from "../FavButton";
 
 import { useNavigation } from "@react-navigation/native";
 import { MainStackNavType } from "../../utils/Types/navTypes";
-import { UserContext } from "../../services/contexts/UserContext";
 
 const default_card_image = require("../../assets/default_card_image.jpg");
 
