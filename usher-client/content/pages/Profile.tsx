@@ -45,7 +45,7 @@ const Profile = ({ navigation }: Props) => {
             <Divider thickness="2" mx="2" mr="5" h="8" my="3" bg="primary.600" orientation="vertical"/>
             <Center justifyContent="space-evenly">
               <Text color="primary.600" fontWeight="600" mx="10px" fontSize="lg">Favorites</Text>
-              <Text fontWeight={900} color="#1d1d1b" fontSize="md">{profile?.favorite_events.length}</Text>
+              <Text fontWeight={900} color="#1d1d1b" fontSize="md">{profile?.favorite_ids.length}</Text>
             </Center>
           </Row>
         </Box>
@@ -62,7 +62,7 @@ const Profile = ({ navigation }: Props) => {
           <Button mx="10px" bgColor="dark.400" width="100px" height="80px" borderRadius="15px"
             onPress={() => {
               if (profile)
-              navigation.navigate("Favorites", { favorites: profile?.favorite_events});
+              navigation.navigate("Favorites");
             }}
             >
             <Icon size={10} ml="7px" color={"light.100"} as={<Ionicons name={"heart-outline"} />} />

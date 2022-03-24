@@ -10,42 +10,29 @@ type Props = {
 
 const FavButton = ({eventId}: Props) => {
   const { user, populateUser } = React.useContext(UserContext);
-  const [isFavorite, setIsFavorite] = React.useState(user?.favorite_events.includes(eventId));
+  const [isFavorite, setIsFavorite] = React.useState(false);
   const handlePress = async () => {
-    console.log(user?.favorite_events)
-    const newUser = await toggleFav(eventId, user?.favorite_events)
-    populateUser(newUser)
-    
-    setIsFavorite(favorite => !favorite)
+    // currently returns an array of objects
+    setIsFavorite(fav => !fav);
+    const favorite_ids = await toggleFav(eventId, isFavorite)
+    const updatedUser = {...user, favorite_ids } as UserProfile
+    populateUser(updatedUser)
   }
 
-    return ( !isFavorite ? 
+    return (
       <Button
       pt={3}
       borderRadius="full"
       w={10}
       h={10}
       variant={"unstyled"}
-      bg="primary.700"
-      _pressed={{ bg: "primary.100" }}
+      bg="white"
+      opacity={isFavorite ? "1" : "0.8"}
+      _pressed={{ opacity: 0.5 }}
       onPress={handlePress}
       >
-      <Icon as={Ionicons} name="heart" color={"light.50"} size={7}/>
+      <Icon as={Ionicons} name={!isFavorite ? "heart-outline" : "heart"} color={"primary.700"} size={7}/>
     </Button>
-  :
-      <Button
-      pt={3}
-      borderRadius="full"
-      w={10}
-      h={10}
-      variant={"unstyled"}
-      bg="light.50"
-      _pressed={{ bg: "primary.100" }}
-      onPress={handlePress}
-      >
-      <Icon as={Ionicons} name="heart" color={"primary.700"} size={7}/>
-    </Button>
-
     )
 };
 
