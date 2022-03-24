@@ -26,9 +26,9 @@ const FavButton = ({ eventId }: Props) => {
       borderRadius="full"
       w={10}
       h={10}
-      variant={"unstyled"}
+      variant={'unstyled'}
       bg="white"
-      opacity={isFavorite ? "1" : "0.8"}
+      opacity={isFavorite ? '1' : '0.8'}
       _pressed={{ opacity: 0.5 }}
       onPress={handlePress}
     >
