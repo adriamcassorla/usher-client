@@ -7,9 +7,8 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 const MapEventList = ({ venueId }: { venueId: string | null }) => {
   const tabBarHeight = useBottomTabBarHeight();
   const { bottom } = useSafeAreaInsets();
-  const height = 100;
-  const top =
-    Dimensions.get("screen").height - 100 - height - tabBarHeight - bottom;
+  const height = 150;
+  const top = Dimensions.get("screen").height - height - tabBarHeight - bottom;
   return (
     <PresenceTransition
       visible={venueId ? true : false}
@@ -23,9 +22,15 @@ const MapEventList = ({ venueId }: { venueId: string | null }) => {
         },
       }}
     >
-      <Flex w="full" mt={"60%"} h="20%" justifyContent={"center"}>
+      <Flex
+        w="full"
+        top={`${top}px`}
+        h={"150px"}
+        justifyContent={"center"}
+        direction="column"
+      >
         <Center
-          h={150}
+          h={"150px"}
           w={"full"}
           bg="light.50"
           rounded="md"
