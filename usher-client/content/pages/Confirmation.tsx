@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useEffect } from "react";
 const moment = require("moment");
 import { Button, Center, Flex, Heading, Text, useToast } from "native-base";
 import { MainStackParamList } from "../../utils/Types/navTypes";
@@ -11,6 +12,20 @@ type Props = NativeStackScreenProps<MainStackParamList, "Confirmation">;
 const Confirmation = ({ navigation, route }: Props) => {
   const { event, nSeats, date } = route.params;
   const toast = useToast();
+
+  useEffect(() => {
+    setTimeout(() => {
+      navigation.navigate("Main");
+      toast.show({
+        status: "success",
+        title:
+          "Ticket" + (nSeats > 1 ? "s" : "") + " added to your profile page.",
+        mb: 8,
+        mx: 5,
+      });
+    }, 3000);
+  }, []);
+
   return (
     <Flex
       h={"full"}
@@ -21,7 +36,7 @@ const Confirmation = ({ navigation, route }: Props) => {
     >
       <ConfirmationGif></ConfirmationGif>
 
-      <Center>
+      <Center mt={"80px"}>
         <Text bold color={"light.50"} fontSize={"3xl"}>
           Booking confirmed!
         </Text>
@@ -41,7 +56,7 @@ const Confirmation = ({ navigation, route }: Props) => {
         </Text>
       </Center>
 
-      <Button
+      {/* <Button
         colorScheme="primary"
         onPress={() => {
           toast.show({
@@ -57,7 +72,7 @@ const Confirmation = ({ navigation, route }: Props) => {
         }}
       >
         All done, Return Home
-      </Button>
+      </Button> */}
     </Flex>
   );
 };
