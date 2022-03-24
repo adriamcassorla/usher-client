@@ -1,14 +1,30 @@
-import { Dimensions } from "react-native";
-import { Center, Flex, PresenceTransition } from "native-base";
+import { Dimensions, FlatList } from "react-native";
+import { Box, Text, PresenceTransition } from "native-base";
 import * as React from "react";
+import { useEffect, useState } from "react";
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { BlurView } from "expo-blur";
+import MiniEventCard from "../search/MiniEventCard";
 
-const MapEventList = ({ venueId }: { venueId: string | null }) => {
+type Props = {
+  venueId: string;
+  events: EventType[];
+};
+
+const MapEventList = ({ venueId, events }: Props) => {
   const tabBarHeight = useBottomTabBarHeight();
-  const { bottom } = useSafeAreaInsets();
   const height = 150;
-  const top = Dimensions.get("screen").height - height - tabBarHeight - bottom;
+  const top = Dimensions.get("screen").height - height - tabBarHeight;
+  const [venueEvents, setVenueEvents] = useState<EventType[] | null>(null);
+
+  const _renderItem = ({ event }: { event: EventType }) => (
+    <MiniEventCard event={event}></MiniEventCard>
+  );
+
+  useEffect(() => {
+    setVenueEvents(events.filter((event) => event.venue.id === venueId));
+  }, [venueId, events]);
+
   return (
     <PresenceTransition
       visible={venueId ? true : false}
@@ -22,25 +38,28 @@ const MapEventList = ({ venueId }: { venueId: string | null }) => {
         },
       }}
     >
-      <Flex
-        w="full"
-        top={`${top}px`}
-        h={"150px"}
-        justifyContent={"center"}
-        direction="column"
+      <BlurView
+        intensity={70}
+        style={{
+          position: "absolute",
+          height,
+          top,
+          width: "100%",
+        }}
       >
-        <Center
-          h={"150px"}
-          w={"full"}
-          bg="light.50"
-          rounded="md"
-          _text={{
-            color: "dark.50",
-          }}
-        >
-          Hola
-        </Center>
-      </Flex>
+        {venueEvents ? (
+          <FlatList
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={{ paddingEnd: 12 }}
+            data={venueEvents}
+            renderItem={_renderItem}
+            keyExtractor={(_item, index) => {
+              return String(index);
+            }}
+            horizontal
+          />
+        ) : null}
+      </BlurView>
     </PresenceTransition>
   );
 };

@@ -29,8 +29,8 @@ const Map = ({ navigation }: Props) => {
         selectedVenue={selectedVenue}
         setSelectedVenue={setSelectedVenue}
       />
+      <MapEventList venueId={selectedVenue} events={filtered}></MapEventList>
       <FilterMenu isOnTop filters={filters} setFilters={setFilters} />
-      <MapEventList venueId={selectedVenue}></MapEventList>
     </ZStack>
   );
 };
