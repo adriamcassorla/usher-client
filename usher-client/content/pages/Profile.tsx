@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 const { useEffect, useState } = React;
 import {
   Center,
@@ -12,20 +12,20 @@ import {
   Icon,
   Divider,
   Switch,
-} from 'native-base';
-import { AsyncStorage } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+} from "native-base";
+import { AsyncStorage } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
-import { CompositeScreenProps, useFocusEffect } from '@react-navigation/native';
-import { UserContext } from '../../services/contexts/UserContext';
+import { CompositeScreenProps, useFocusEffect } from "@react-navigation/native";
+import { UserContext } from "../../services/contexts/UserContext";
 
-import type { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
-import { HomeTabParamList, StackScreenType } from '../../utils/Types/navTypes';
-import GradientProvider from '../../components/GradientProvider';
-import { getUserProfile } from '../../services/api/user';
+import type { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
+import { HomeTabParamList, StackScreenType } from "../../utils/Types/navTypes";
+import GradientProvider from "../../components/GradientProvider";
+import { getUserProfile } from "../../services/api/user";
 type Props = CompositeScreenProps<
   StackScreenType,
-  BottomTabScreenProps<HomeTabParamList, 'ProfileStack'>
+  BottomTabScreenProps<HomeTabParamList, "ProfileStack">
 >;
 
 const Profile = ({ navigation }: Props) => {
@@ -41,7 +41,7 @@ const Profile = ({ navigation }: Props) => {
   return (
     <GradientProvider>
       <Image
-        source={require('../../assets/profile_back.png')}
+        source={require("../../assets/profile_back.png")}
         alt="Background shapes"
         top="-10px"
         size="xl"
@@ -50,15 +50,15 @@ const Profile = ({ navigation }: Props) => {
         position="absolute"
       />
       <VStack
-        h={'full'}
-        w={'full'}
+        h={"full"}
+        w={"full"}
         alignItems="center"
         justifyContent="space-evenly"
       >
         <Box>
           <Center>
             <Image
-              source={require('../../assets/mock_profile.jpeg')}
+              source={require("../../assets/mock_profile.jpeg")}
               alt="Usher icon"
               size="xl"
               width="130px"
@@ -96,8 +96,17 @@ const Profile = ({ navigation }: Props) => {
               orientation="vertical"
             />
             <Center justifyContent="space-evenly">
-              <Text color="primary.600" fontWeight="600" mx="10px" fontSize="lg">Favorites</Text>
-              <Text fontWeight={900} color="#1d1d1b" fontSize="md">{profile?.favorite_ids.length}</Text>
+              <Text
+                color="primary.600"
+                fontWeight="600"
+                mx="10px"
+                fontSize="lg"
+              >
+                Favorites
+              </Text>
+              <Text fontWeight={900} color="#1d1d1b" fontSize="md">
+                {profile?.favorite_ids.length}
+              </Text>
             </Center>
           </Row>
         </Box>
@@ -110,14 +119,14 @@ const Profile = ({ navigation }: Props) => {
             borderRadius="15px"
             onPress={() => {
               if (profile)
-                navigation.navigate('Tickets', { tickets: profile?.tickets });
+                navigation.navigate("Tickets", { tickets: profile?.tickets });
             }}
           >
             <Icon
               size={10}
               ml="5px"
-              color={'light.100'}
-              as={<Ionicons name={'calendar-outline'} />}
+              color={"light.100"}
+              as={<Ionicons name={"calendar-outline"} />}
             />
             Tickets
           </Button>
@@ -128,15 +137,14 @@ const Profile = ({ navigation }: Props) => {
             height="80px"
             borderRadius="15px"
             onPress={() => {
-              if (profile)
-              navigation.navigate("Favorites");
+              if (profile) navigation.navigate("Favorites");
             }}
           >
             <Icon
               size={10}
               ml="7px"
-              color={'light.100'}
-              as={<Ionicons name={'heart-outline'} />}
+              color={"light.100"}
+              as={<Ionicons name={"heart-outline"} />}
             />
             Favorites
           </Button>
@@ -155,10 +163,10 @@ const Profile = ({ navigation }: Props) => {
             size="lg"
             onPress={async () => {
               try {
-                AsyncStorage.removeItem('user');
                 populateUser(null);
+                await AsyncStorage.clear();
               } catch (e) {
-                console.error('Failed to log out with error: ', e);
+                console.error("Failed to log out with error: ", e);
               }
             }}
           >

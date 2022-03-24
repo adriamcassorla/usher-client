@@ -8,8 +8,9 @@ const apiURL = "https://tourn.me/usher";
 const client = new GraphQLClient(apiURL);
 
 export const getCityEvents = async (city: string, dayRange: number = 3): Promise<EventType[] | null> => {
-  const jwt = await AsyncStorage.getItem('user');
-  client.setHeader('authorization', `Bearer ${jwt}`)
+  // const jwt = await AsyncStorage.getItem('user');
+  // client.setHeader('authorization', `Bearer ${jwt}`)
+  console.log('Dame mas eveeeeents!!!!!')
   const query = gql`
     query GetCityEvents($city: String!, $dayRange: Int!) {
       getCityEvents(city: $city, dayRange: $dayRange) {

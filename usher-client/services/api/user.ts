@@ -45,6 +45,7 @@ export const deleteFav = async (eventId: number) => {
 
 export const getUserProfile = async () => {
   const token = await AsyncStorage.getItem('user');
+  if (!token) return null
   client.setHeader('authorization', `Bearer ${token}`)
 
   const query = gql`

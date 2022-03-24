@@ -1,23 +1,37 @@
 import { gql, GraphQLClient } from "graphql-request";
 import { AsyncStorage } from "react-native";
 
-// const apiURL = "http://localhost:4004";
-// const apiURL = "http://192.168.1.108:4004";
-const apiURL = "https://tourn.me/usher";
+const apiURL = "http://localhost:4004";
 const client = new GraphQLClient(apiURL);
 
 export const getJWT = async (email: string, password: string): Promise<UserProfile | string | null> => {
   const query = gql`
     query getUser($email: String, $password: String) {
       getUser(email: $email, password: $password) {
+        user {
+          first_name
+          last_name
+          notifications
+          favorite_ids
+          tickets {
+            id
+            show {
+              date
+              event {
+                image
+                name
+                price
+                venue {
+                  name
+                  address
+                }
+              }
+            }
+          }
+
+        }
         error
         token
-        user {
-          id
-          favorite_events {
-            id
-          }
-        }
       }
     }
   `;
@@ -37,14 +51,30 @@ export const createUser = async (email: string, password: string, firstName: str
   const mutation = gql`
     mutation createUser($email: String!, $password: String!, $firstName: String!, $lastName: String!) {
   createUser(email: $email, password: $password, first_name: $firstName, last_name: $lastName) {
-      error
-      token
       user {
-        id
-        favorite_events {
-          id
+          first_name
+          last_name
+          notifications
+          favorite_ids
+          tickets {
+            id
+            show {
+              date
+              event {
+                image
+                name
+                price
+                venue {
+                  name
+                  address
+                }
+              }
+            }
+          }
+
         }
-      }
+        error
+        token
     }
   }
   `;
