@@ -1,9 +1,8 @@
 import { gql, GraphQLClient } from "graphql-request";
 import { AsyncStorage } from "react-native";
-import { login } from "../../utils/helpers/login";
 
-// const apiURL = "http://localhost:4004";
-const apiURL = "https://tourn.me/usher";
+const apiURL = "http://localhost:4004/graphql";
+// const apiURL = "https://tourn.me/usher";
 const client = new GraphQLClient(apiURL);
 
 export const addFav = async (eventId: number) => {
