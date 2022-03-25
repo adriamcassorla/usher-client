@@ -1,12 +1,13 @@
-import * as React from "react";
-import { useState, useContext } from "react";
+import * as React from 'react';
+import { useState, useContext } from 'react';
 
-import { View, FlatList, Text } from "native-base";
+import { View, FlatList, Text, Button } from 'native-base';
 
-import MiniEventCard from "../../components/search/MiniEventCard";
-import SearchBar from "../../components/search/SearchBar";
-import { EventsContext } from "../../services/contexts/EventsContext";
-import GradientProvider from "../../components/GradientProvider";
+import MiniEventCard from '../../components/search/MiniEventCard';
+import SearchBar from '../../components/search/SearchBar';
+import { EventsContext } from '../../services/contexts/EventsContext';
+import GradientProvider from '../../components/GradientProvider';
+import { sendPushNotification } from '../../utils/helpers/notifications';
 
 const Search = () => {
   const { events } = useContext(EventsContext);
@@ -39,9 +40,9 @@ const Search = () => {
           >
             {results?.length
               ? `Found ${results.length} event${
-                  results.length > 1 ? "s" : ""
+                  results.length > 1 ? 's' : ''
                 } matching your search`
-              : "No results. Try something else!"}
+              : 'No results. Try something else!'}
           </Text>
         )}
         <FlatList
@@ -50,6 +51,15 @@ const Search = () => {
           renderItem={_renderItem}
           keyExtractor={(item) => String(item.id)}
         />
+        {/* <Button
+          onPress={async () =>
+            await sendPushNotification(
+              'ExponentPushToken[qVeyR8Ngx4Pxe8gY2m04ry]'
+            )
+          }
+        >
+          This is a button
+        </Button> */}
       </View>
     </GradientProvider>
   );
