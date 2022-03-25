@@ -12,6 +12,7 @@ import {
 import * as React from "react";
 import { useState, useEffect } from "react";
 import { Dimensions } from "react-native";
+import KeyboardSpacer from "react-native-keyboard-spacer";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { MainStackNavType } from "../../utils/Types/navTypes";
 import EventPayment from "./EventPayment";
@@ -91,6 +92,7 @@ const EventFooter = ({ price, shows, eventName }: { price: number; shows: Show[]
               setQuantity={setQuantity}
               ></TicketSelector>
             }
+            <KeyboardSpacer/>
           </Actionsheet.Content>
         </Actionsheet>
       </Flex>

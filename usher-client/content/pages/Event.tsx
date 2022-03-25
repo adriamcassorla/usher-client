@@ -10,6 +10,7 @@ import { EventFooter, EventHeader, EventHero } from "../../components/event";
 import EventTabView from "../../components/event/EventTabView";
 import EventTabHeader from "../../components/event/EventTabHeader";
 import { useStatusContext } from "../../services/contexts/StatusContext";
+import KeyboardSpacer from "react-native-keyboard-spacer";
 type Props = NativeStackScreenProps<MainStackParamList, "Event">;
 
 const Event = ({ route }: Props) => {
@@ -55,7 +56,7 @@ const Event = ({ route }: Props) => {
           eventName={eventInfo.name}
           price={eventInfo.price}
           shows={eventInfo.today_shows}
-        ></EventFooter>
+        />
       ) : null}
     </View>
   );
