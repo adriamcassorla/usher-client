@@ -1,33 +1,28 @@
+import { Center } from "native-base";
 import * as React from "react";
 import { StyleSheet, View } from "react-native";
 const LottieView = require("lottie-react-native");
 
-export default class ConfirmationGif extends React.Component {
+export class Loader extends React.Component {
   componentDidMount() {
     this.animation.play(0, 55);
   }
 
   render() {
     return (
-      <View style={styles.animationContainer}>
+      <Center w={"full"} h={"full"} bg={"dark.50"}>
         <LottieView
-          loop={false}
+          loop={true}
           ref={(animation) => {
             this.animation = animation;
           }}
           style={{
-            width: 280,
-            height: 280,
+            width: "70%",
+            height: 150,
           }}
-          source={require("../assets/purchase-confirmation.json")}
+          source={require("../../assets/loaderDots.json")}
         />
-      </View>
+      </Center>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  animationContainer: {
-    marginTop: 120,
-  },
-});

@@ -5,7 +5,7 @@ import { Button, Center, Flex, Heading, Text, useToast } from "native-base";
 import { MainStackParamList } from "../../utils/Types/navTypes";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { capitalize } from "../../utils/helpers/home";
-import ConfirmationGif from "../../components/ConfirmationGif";
+import ConfirmationGif from "../../components/Animations/ConfirmationGif";
 
 type Props = NativeStackScreenProps<MainStackParamList, "Confirmation">;
 
