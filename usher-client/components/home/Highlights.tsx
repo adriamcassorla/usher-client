@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useContext, useCallback } from "react";
-import { Center, Text, useSafeArea } from "native-base";
+import { Center, Spinner, Text, useSafeArea } from "native-base";
 
 import { useFocusEffect } from "@react-navigation/native";
 import { EventsContext } from "../../services/contexts/EventsContext";
@@ -27,7 +27,7 @@ const Highlights = () => {
     pt: 2,
   });
 
-  if (!topEvents) return <Text>Loading...</Text>;
+  if (!topEvents) return <Spinner color="primary.500" />;
   return (
     <Center h={"370"} w={"full"} {...safeAreaProps} mb={`${-top + 10}px`}>
       <HighlightsCarrousel topEvents={topEvents} />

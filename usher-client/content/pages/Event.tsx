@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
-import { ScrollView, Image } from "native-base";
+import { ScrollView, Image, Spinner } from "native-base";
 import { View, StyleSheet } from "react-native";
 
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
@@ -20,7 +20,7 @@ const Event = ({ route }: Props) => {
     getEventInfo(eventId, todayShows.length ? true : false).then(setEventInfo);
   }, [eventId]);
 
-  if (!eventInfo) return null;
+  if (!eventInfo) return <Spinner color="primary.500" />;
   const imgHeight = 300;
   return (
     <View style={{ flex: 1 }}>

@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { StyleSheet, View } from 'react-native';
-const LottieView = require('lottie-react-native');
+import * as React from "react";
+import { StyleSheet, View } from "react-native";
+const LottieView = require("lottie-react-native");
 
 export default class ConfirmationGif extends React.Component {
   componentDidMount() {
@@ -19,7 +19,7 @@ export default class ConfirmationGif extends React.Component {
             width: 280,
             height: 280,
           }}
-          source={require('../assets/lf30_editor_t3au0zhm.json')}
+          source={require("../assets/lf30_editor_t3au0zhm.json")}
         />
       </View>
     );
@@ -28,6 +28,6 @@ export default class ConfirmationGif extends React.Component {
 
 const styles = StyleSheet.create({
   animationContainer: {
-    marginTop:80,
+    marginTop: 120,
   },
 });
