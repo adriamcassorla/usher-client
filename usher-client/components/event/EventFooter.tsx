@@ -14,9 +14,10 @@ import { useState, useEffect } from "react";
 import { Dimensions } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { MainStackNavType } from "../../utils/Types/navTypes";
+import EventPayment from "./EventPayment";
 import TicketSelector from "./TicketSelector";
 
-const EventFooter = ({ price, shows }: { price: number; shows: Show[] }) => {
+const EventFooter = ({ price, shows, eventName }: { price: number; shows: Show[]; eventName: string; }) => {
   let { bottom } = useSafeAreaInsets();
   bottom = bottom > 22 ? bottom : 22;
   const height = 60 + bottom;
@@ -24,6 +25,9 @@ const EventFooter = ({ price, shows }: { price: number; shows: Show[] }) => {
   const { isOpen, onOpen, onClose } = useDisclose();
   const navigation = useNavigation<MainStackNavType>();
   const [seats, setSeats] = useState(0);
+  const [ticketSelected, setTicketSelected] = useState(false);
+  const [showId, setShowId] = useState<string | null>(null);
+  const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
     let leftSeats = 0;
@@ -64,12 +68,29 @@ const EventFooter = ({ price, shows }: { price: number; shows: Show[] }) => {
         </Button>
         <Actionsheet isOpen={isOpen} onClose={onClose}>
           <Actionsheet.Content>
-            <TicketSelector
+            { ticketSelected ?
+              <EventPayment
+              setTicketSelected={setTicketSelected}
+              showId={showId}
+              onClose={onClose}
+              navigation={navigation}
+              quantity={quantity}
+              eventName={eventName}
+              price={price}
+              ></EventPayment>
+            :
+              <TicketSelector
               shows={shows}
               seats={seats}
               navigation={navigation}
               onClose={onClose}
-            ></TicketSelector>
+              setTicketSelected={setTicketSelected}
+              setShowId={setShowId}
+              showId={showId}
+              quantity={quantity}
+              setQuantity={setQuantity}
+              ></TicketSelector>
+            }
           </Actionsheet.Content>
         </Actionsheet>
       </Flex>

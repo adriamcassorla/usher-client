@@ -2,7 +2,7 @@ import * as React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 
-import { Event, Payment, Confirmation } from "../pages";
+import { Event, Confirmation } from "../pages";
 import HomeNavigator from "./HomeNavigator";
 import { MainStackParamList } from "../../utils/Types/navTypes";
 import { useToken } from "native-base";
@@ -40,11 +40,6 @@ const MainStack = () => {
           options={{ headerShown: false }}
           name="Event"
           component={Event}
-        />
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="Payment"
-          component={Payment}
         />
         <Stack.Screen
           options={{ headerShown: false }}

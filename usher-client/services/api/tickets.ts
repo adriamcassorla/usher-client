@@ -1,7 +1,8 @@
 import { gql, GraphQLClient } from "graphql-request";
 import { AsyncStorage } from "react-native";
 
-const apiURL = "https://tourn.me/usher";
+const apiURL = "http://localhost:4004/graphql";
+// const apiURL = "https://tourn.me/usher";
 
 const client = new GraphQLClient(apiURL);
 
