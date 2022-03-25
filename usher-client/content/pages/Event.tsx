@@ -52,6 +52,7 @@ const Event = ({ route }: Props) => {
       </ScrollView>
       {todayShows.length ? (
         <EventFooter
+          eventName={eventInfo.name}
           price={eventInfo.price}
           shows={eventInfo.today_shows}
         ></EventFooter>

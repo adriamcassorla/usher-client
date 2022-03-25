@@ -10,7 +10,7 @@ import ConfirmationGif from "../../components/Animations/ConfirmationGif";
 type Props = NativeStackScreenProps<MainStackParamList, "Confirmation">;
 
 const Confirmation = ({ navigation, route }: Props) => {
-  const { event, nSeats, date } = route.params;
+  const { event, seats, date } = route.params;
   const toast = useToast();
 
   useEffect(() => {
@@ -19,7 +19,7 @@ const Confirmation = ({ navigation, route }: Props) => {
       toast.show({
         status: "success",
         title:
-          "Ticket" + (nSeats > 1 ? "s" : "") + " added to your profile page.",
+          "Ticket" + (seats > 1 ? "s" : "") + " added to your profile page.",
         mb: 8,
         mx: 5,
       });
@@ -41,7 +41,7 @@ const Confirmation = ({ navigation, route }: Props) => {
           Booking confirmed!
         </Text>
         <Text color={"light.100"} fontSize={"xl"} textAlign={"center"}>
-          You just got {nSeats} ticket{nSeats > 1 && "s"} for:
+          You just got {seats} ticket{seats > 1 && "s"} for:
         </Text>
         <Text
           color={"light.100"}
@@ -63,7 +63,7 @@ const Confirmation = ({ navigation, route }: Props) => {
             status: "success",
             title:
               "Ticket" +
-              (nSeats > 1 ? "s" : "") +
+              (seats > 1 ? "s" : "") +
               " added to your profile page.",
             mb: 40,
             mx: 5,

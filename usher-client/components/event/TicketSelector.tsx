@@ -10,12 +10,15 @@ type Props = {
   seats: number;
   onClose: () => void;
   navigation: MainStackNavType;
+  setTicketSelected: React.Dispatch<React.SetStateAction<boolean>>;
+  showId: string | null;
+  setShowId: React.Dispatch<React.SetStateAction<string | null>>;
+  quantity: number;
+  setQuantity: React.Dispatch<React.SetStateAction<number>>;
 };
 
-const TicketSelector = ({ shows, seats, navigation, onClose }: Props) => {
+const TicketSelector = ({ shows, seats, navigation, onClose, setTicketSelected, showId, setShowId, quantity, setQuantity }: Props) => {
   const maxTickets = seats < 5 ? seats : 5;
-  const [quantity, setQuantity] = useState(1);
-  const [showId, setShowId] = useState<string | null>(null);
 
   useEffect(() => {
     if (shows.length === 1) setShowId(shows[0].id!);
@@ -78,8 +81,9 @@ const TicketSelector = ({ shows, seats, navigation, onClose }: Props) => {
         rounded={20}
         onPress={() => {
           if (showId) {
-            onClose();
-            navigation.navigate("Payment", { showId, nSeats: quantity });
+            setTicketSelected(true);
+            // onClose();
+            // navigation.navigate("Payment", { showId, nSeats: quantity });
           } else {
             console.log("a show must be selected before paying");
           }
