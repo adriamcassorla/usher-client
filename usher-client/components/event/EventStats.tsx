@@ -1,21 +1,34 @@
-import { View, Text, HStack, Icon, Heading, Box } from "native-base";
+import { View, Text, HStack, Icon } from "native-base";
 import { Ionicons } from "@expo/vector-icons";
 import * as React from "react";
 import { capitalize } from "../../utils/helpers/home";
+const moment = require("moment");
+require("moment/locale/en-gb");
+moment.locale("en-gb");
 
 const EventStats = ({ event }: { event: EventType }) => {
   const stats = [
     {
-      stat: event.language ? event.language : null,
+      stat: event.language ? "Language: " + event.language : null,
       icon: "globe-outline",
     },
     {
-      stat: event.duration ? String(event.duration + "min") : null,
+      stat: event.duration
+        ? "Duration: " + String(event.duration + "min")
+        : null,
       icon: "time-outline",
     },
     {
-      stat: event.genres.length ? event.genres.join("  |  ") : null,
+      stat: event.genres.length
+        ? "Generes: " + event.genres.join("  |  ")
+        : null,
       icon: "pizza-outline",
+    },
+    {
+      stat: event.next_show
+        ? "Next Show: " + moment(Number(event.next_show.date)).calendar()
+        : null,
+      icon: "calendar-outline",
     },
   ];
 

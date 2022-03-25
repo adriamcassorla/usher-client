@@ -13,6 +13,7 @@ type EventType = {
   venue: Venue,
   shows: Show[],
   today_shows: Show[],
+  next_show: Show
 }
 
 type Venue = {

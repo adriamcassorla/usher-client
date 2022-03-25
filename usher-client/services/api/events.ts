@@ -63,7 +63,7 @@ export const getEventInfo = async (eventID: number, isToday: boolean): Promise<E
       latitude
       longitude
     }
-    shows {
+    next_show {
       date
     }
     today_shows @include(if: $isToday){
