@@ -135,13 +135,6 @@ const Profile = ({ navigation }: Props) => {
           </Button>
         </Row>
         <Center>
-          <Row alignItems="center" space={4}>
-            <Text color="white" fontWeight={600} fontSize="lg">
-              Notifications
-            </Text>
-            <Switch size="sm" />
-          </Row>
-          ;
           <Button
             colorScheme="secondary"
             variant="link"
