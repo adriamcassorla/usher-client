@@ -8,4 +8,5 @@ type UserProfile = {
   favorite_ids: number[]
   tickets: Ticket[],
   notifications: Boolean,
+  notificationsToken?: string
 }

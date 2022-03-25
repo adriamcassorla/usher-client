@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
-import { ScrollView, Image, Spinner } from "native-base";
+import { ScrollView, Image} from "native-base";
 import { View, StyleSheet } from "react-native";
 
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
