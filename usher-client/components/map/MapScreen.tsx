@@ -4,6 +4,7 @@ import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 import { useEffect, useState } from "react";
 import MapStyle from "./../../styles/mapStyle";
 import MapMarker from "./MapMarker";
+import { useStatusContext } from "../../services/contexts/StatusContext";
 
 type Props = {
   selectedVenue: string | null;
@@ -13,6 +14,7 @@ type Props = {
 
 const MapScreen = ({ selectedVenue, setSelectedVenue, events }: Props) => {
   const [venues, setVenues] = useState<Venue[] | null>(null);
+  const { status, changeStatus } = useStatusContext();
   useEffect(() => {
     if (events) {
       let uniqueVenues: Venue[] = [];
@@ -41,16 +43,21 @@ const MapScreen = ({ selectedVenue, setSelectedVenue, events }: Props) => {
       showsUserLocation={true}
       //@ts-ignore
       ref={mapRef}
+      onMapReady={() => {
+        changeStatus("loaded");
+      }}
     >
-      {venues.map((venue) => (
-        <MapMarker
-          venue={venue}
-          selectedVenue={selectedVenue}
-          setSelectedVenue={setSelectedVenue}
-          mapRef={mapRef}
-          key={venue.id}
-        ></MapMarker>
-      ))}
+      {status === "loaded"
+        ? venues.map((venue) => (
+            <MapMarker
+              venue={venue}
+              selectedVenue={selectedVenue}
+              setSelectedVenue={setSelectedVenue}
+              mapRef={mapRef}
+              key={venue.id}
+            ></MapMarker>
+          ))
+        : null}
     </MapView>
   ) : null;
 };

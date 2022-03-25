@@ -7,10 +7,13 @@ import { EventsProvider } from "../../services/contexts/EventsContext";
 import { HomeTabParamList } from "../../utils/Types/navTypes";
 import { Icon } from "native-base";
 import { Ionicons } from "@expo/vector-icons";
+import { useStatusContext } from "../../services/contexts/StatusContext";
 
 const Tabs = createBottomTabNavigator<HomeTabParamList>();
 
 const HomeNavigator = () => {
+  const { changeStatus } = useStatusContext();
+
   const tabIcon = (color: string, size: number, name: string) => {
     return <Icon size={size} color={color} as={<Ionicons name={name} />} />;
   };

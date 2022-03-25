@@ -9,19 +9,24 @@ import { getEventInfo } from "../../services/api/events";
 import { EventFooter, EventHeader, EventHero } from "../../components/event";
 import EventTabView from "../../components/event/EventTabView";
 import EventTabHeader from "../../components/event/EventTabHeader";
+import { useStatusContext } from "../../services/contexts/StatusContext";
 type Props = NativeStackScreenProps<MainStackParamList, "Event">;
 
 const Event = ({ route }: Props) => {
   const { eventId, todayShows } = route.params;
   const [eventInfo, setEventInfo] = useState<EventType | null>(null);
   const [tabIndex, setTabIndex] = useState(0);
+  const { changeStatus } = useStatusContext();
 
   useEffect(() => {
-    getEventInfo(eventId, todayShows.length ? true : false).then(setEventInfo);
+    changeStatus("loading");
+    getEventInfo(eventId, todayShows.length ? true : false).then((data) => {
+      setEventInfo(data);
+    });
   }, [eventId]);
 
-  if (!eventInfo) return <Spinner color="primary.500" />;
   const imgHeight = 300;
+  if (!eventInfo) return null;
   return (
     <View style={{ flex: 1 }}>
       <ScrollView
@@ -39,6 +44,7 @@ const Event = ({ route }: Props) => {
           h={`${imgHeight}px`}
           mb={-50}
           resizeMode="cover"
+          onLoad={() => changeStatus("loaded")}
         />
         <EventHero event={eventInfo}></EventHero>
         <EventTabHeader tabIndex={tabIndex} setTabIndex={setTabIndex} />

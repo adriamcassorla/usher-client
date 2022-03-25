@@ -16,6 +16,9 @@ export const generateTicket = async (showId: string, nSeats: number) => {
           date
           event {
             name
+            venue {
+              name
+            }
           }
         }
       }

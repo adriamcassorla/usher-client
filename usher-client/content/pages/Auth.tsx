@@ -6,7 +6,8 @@ import KeyboardSpacer from "react-native-keyboard-spacer";
 import LogInForm from "../../components/auth/LogInForm";
 import SignUpForm from "../../components/auth/SignUpForm";
 import GradientProvider from "../../components/GradientProvider";
-import { AsyncStorage } from "react-native";
+import { useEffect } from "react";
+import { useStatusContext } from "../../services/contexts/StatusContext";
 
 type Props = {
   setUser: (user: UserProfile | null) => void;
@@ -14,6 +15,11 @@ type Props = {
 
 const Auth = ({ setUser }: Props) => {
   const [isNewUser, setIsNewUser] = useState(false);
+  const { changeStatus } = useStatusContext();
+
+  useEffect(() => {
+    changeStatus("loaded");
+  }, []);
 
   return (
     <GradientProvider>
