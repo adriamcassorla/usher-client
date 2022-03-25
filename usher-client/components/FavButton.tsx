@@ -42,7 +42,7 @@ const FavButton = ({ eventId }: Props) => {
       <Icon
         as={Ionicons}
         name={!isFavorite ? "heart-outline" : "heart"}
-        color={"primary.700"}
+        color={"primary.500"}
         size={7}
       />
     </Button>

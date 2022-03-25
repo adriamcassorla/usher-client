@@ -31,7 +31,7 @@ const Event = ({ route }: Props) => {
         bg={"light.50"}
         showsVerticalScrollIndicator={false}
       >
-        <EventHeader></EventHeader>
+        <EventHeader eventId={eventId}/>
         <Image
           src={eventInfo.image}
           alt="Main event image"
