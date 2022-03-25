@@ -1,18 +1,18 @@
 import * as React from "react";
-import { useContext, useCallback } from "react";
+import { useCallback, useState } from "react";
 import { Center, Spinner, Text, useSafeArea } from "native-base";
 
 import { useFocusEffect } from "@react-navigation/native";
-import { EventsContext } from "../../services/contexts/EventsContext";
+import { useEventsContext } from "../../services/contexts/EventsContext";
 import { getRandomTopEvents } from "../../utils/helpers/home";
 import HighlightsCarrousel from "./HighlightsCarrousel";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const Highlights = () => {
   const { top } = useSafeAreaInsets();
-  const { events } = useContext(EventsContext);
+  const { events } = useEventsContext();
 
-  const [topEvents, setTopEvents] = React.useState<EventType[] | null>(null);
+  const [topEvents, setTopEvents] = useState<EventType[] | null>(null);
 
   useFocusEffect(
     useCallback(() => {

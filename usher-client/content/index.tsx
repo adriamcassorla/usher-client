@@ -1,24 +1,22 @@
 import * as React from "react";
-
 import MainStack from "./navigation/MainStack";
-import { useState } from "react";
-import { UserContext } from "../services/contexts/UserContext";
+import { useUserContext } from "../services/contexts/UserContext";
 import { Auth } from "./pages";
 import { getUserProfile } from "../services/api/user";
-import { Spinner } from "native-base";
+import { useState } from "react";
 
 const index = () => {
-  const { user, populateUser } = React.useContext(UserContext);
-  const [status, setStatus] = useState<"loading" | "loaded">("loading");
+  const { user, populateUser } = useUserContext();
+  const [isCheckingUser, setIsCheckingUser] = useState(true);
 
   React.useEffect(() => {
     getUserProfile().then((user) => {
       populateUser(user);
-      setStatus("loaded");
+      setIsCheckingUser(false);
     });
   }, []);
 
-  if (status === "loading") return <Spinner color="primary.500" />;
+  if (isCheckingUser) return null;
   if (!user) return <Auth setUser={populateUser}></Auth>;
   else return <MainStack></MainStack>;
 };

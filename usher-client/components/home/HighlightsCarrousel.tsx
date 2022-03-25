@@ -4,6 +4,7 @@ import Carousel from "react-native-snap-carousel";
 import { Dimensions } from "react-native";
 import HighlightCard from "./HighlightCard";
 import { getMockCopy, getMockPromos } from "../../utils/helpers/home";
+import { useStatusContext } from "../../services/contexts/StatusContext";
 
 type Props = {
   topEvents: EventType[];
@@ -12,6 +13,8 @@ type Props = {
 const HighlightsCarrousel = ({ topEvents }: Props) => {
   const [copy, setCopy] = React.useState<string[]>([""]);
   const [promos, setPromos] = React.useState<string[]>([""]);
+
+  const { changeStatus } = useStatusContext();
 
   React.useEffect(() => {
     setCopy(getMockCopy(topEvents.length));
@@ -30,9 +33,13 @@ const HighlightsCarrousel = ({ topEvents }: Props) => {
       itemWidth={320}
       data={topEvents}
       renderItem={_renderItem}
-      horizontal={true}
+      hasParallaxImages={true}
       firstItem={1}
       loop={false}
+      sliderHeight={370}
+      onLayout={() => {
+        setTimeout(() => changeStatus("loaded"), 100);
+      }}
     />
   );
 };

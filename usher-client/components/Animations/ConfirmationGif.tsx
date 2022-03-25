@@ -19,7 +19,7 @@ export default class ConfirmationGif extends React.Component {
             width: 280,
             height: 280,
           }}
-          source={require("../assets/lf30_editor_t3au0zhm.json")}
+          source={require("../../assets/lf30_editor_t3au0zhm.json")}
         />
       </View>
     );
