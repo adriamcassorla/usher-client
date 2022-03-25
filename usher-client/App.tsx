@@ -2,7 +2,7 @@ import * as React from "react";
 import { NativeBaseProvider, View } from "native-base";
 import { UserProvider } from "./services/contexts/UserContext";
 import { initStripe } from '@stripe/stripe-react-native';
-
+import {REACT_APP_STRIPE_PUBLISHABLE_KEY} from 'react-native-dotenv';
 import theme from "./styles/theme";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import Content from "./content";
@@ -12,7 +12,7 @@ export default function App() {
 
   React.useEffect(() => {
     initStripe({
-      publishableKey: process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY as string
+      publishableKey: REACT_APP_STRIPE_PUBLISHABLE_KEY as string
     })
   }, [])
 
