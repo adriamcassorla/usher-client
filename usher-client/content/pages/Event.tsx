@@ -36,7 +36,7 @@ const Event = ({ route }: Props) => {
         bg={"light.50"}
         showsVerticalScrollIndicator={false}
       >
-        <EventHeader eventId={eventId}/>
+        <EventHeader eventId={eventId} />
         <Image
           src={eventInfo.image}
           alt="Main event image"
@@ -69,6 +69,6 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     flexGrow: 1,
-    paddingBottom: 500,
+    paddingBottom: 700,
   },
 });

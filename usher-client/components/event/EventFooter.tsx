@@ -17,7 +17,8 @@ import { MainStackNavType } from "../../utils/Types/navTypes";
 import TicketSelector from "./TicketSelector";
 
 const EventFooter = ({ price, shows }: { price: number; shows: Show[] }) => {
-  const { bottom } = useSafeAreaInsets();
+  let { bottom } = useSafeAreaInsets();
+  bottom = bottom > 22 ? bottom : 22;
   const height = 60 + bottom;
   const top = Dimensions.get("screen").height - height;
   const { isOpen, onOpen, onClose } = useDisclose();
