@@ -1,23 +1,28 @@
 import * as React from "react";
-import { CardField, useConfirmPayment, useStripe } from '@stripe/stripe-react-native';
-import { useEffect } from "react";
-import { Button, Text } from "native-base";
-import { StyleSheet, View } from 'react-native';
-import type { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { MainStackParamList } from "../../utils/Types/navTypes";
+import { CardField, useConfirmPayment} from '@stripe/stripe-react-native';
+import { Button, Divider, Heading, Text } from "native-base";
+import { AsyncStorage, StyleSheet, View } from 'react-native';
+import { MainStackNavType } from "../../utils/Types/navTypes";
 import { generateTicket } from "../../services/api/tickets";
-import { UserContext } from "../../services/contexts/UserContext";
 import fetchPaymentIntentClientSecret from "../../services/api/stripe";
-type Props = NativeStackScreenProps<MainStackParamList, "Payment">;
+type Props = {
+  navigation: MainStackNavType;
+  quantity: number
+  onClose: () => void;
+  setTicketSelected: React.Dispatch<React.SetStateAction<boolean>>;
+  showId: string | null;
+  eventName: string;
+  price: number;
+};
 type BillingDetails = {email: string}
 
-const Payment = ({ navigation, route }: Props) => {
-
+const Payment = ({ navigation, quantity, onClose, setTicketSelected, showId, eventName, price}: Props) => {
   const [card, setCard] = React.useState(false);
-
+  const seats = quantity;
   const {confirmPayment, loading} = useConfirmPayment();
 
   const handlePayPress = async () => {
+    console.log('paying')
     const billingDetails: BillingDetails = {
       email: 'testing@testing.com',
     };
@@ -30,7 +35,7 @@ const Payment = ({ navigation, route }: Props) => {
       type: 'Card',
       billingDetails,
     });
-
+    console.log('incoming paymentIntent', paymentIntent)
     if (error) {
       console.log('Payment confirmation error', error);
     } else if (paymentIntent) {
@@ -39,10 +44,12 @@ const Payment = ({ navigation, route }: Props) => {
 
     return paymentIntent
   }
-  const { showId, nSeats } = route.params;
-  const { user } = React.useContext(UserContext);
   return (
       <View style={{width: '90%', flexDirection: 'column', alignItems: 'center'}}>
+        <Heading fontSize="lg" color="light.500">
+          Insert payment details
+        </Heading>
+        <Divider my="2" w={"90%"} />
         <CardField
           postalCodeEnabled={false}
           placeholder={{number: '4242 4242 4242 4242',}}
@@ -56,26 +63,33 @@ const Payment = ({ navigation, route }: Props) => {
             console.log('focusField', focusedField);
           }}
         />
-        <Text color="light.50">Payment page for:</Text>
-        <Text color="light.50">ShowId: {showId}</Text>
-        <Text color="light.50">With {nSeats} number of seats:</Text>
+        <Text fontSize="md" color={"light.400"} alignSelf="center">
+        You have selected {seats} seats for {eventName}
+         </Text>
+
         <Button
+          my="15px"
           alignSelf="center"
           width="50%"
           isDisabled={!card}
           colorScheme="primary"
           onPress={async () => {
             try{
-              if (user) {
+              const token = await AsyncStorage.getItem('user');
+              if (token) {
                 const confirmedPayment = await handlePayPress();
                 if (confirmedPayment) {
-                  const show = await generateTicket(showId, nSeats);
-                  if (show) {
-                    navigation.navigate("Confirmation", {
-                      event: show.event!.name,
-                      date: show.date,
-                      seats,
-                    });
+                  if(showId) {
+                    
+                    const show = await generateTicket(showId, seats);
+                    if (show) {
+                      navigation.navigate("Confirmation", {
+                        event: show.event!.name,
+                        date: show.date,
+                        seats,
+                      });
+                      onClose();
+                    }
                   }
                 }
               }
@@ -83,8 +97,16 @@ const Payment = ({ navigation, route }: Props) => {
               console.error(e)
             }
           }}
+          >
+          {`Pay ${price * quantity} €`}
+        </Button>
+        <Button
+          colorScheme="primary"
+          variant="link"
+          onPress={() => {setTicketSelected(false)}}
+          _pressed={{ _text: { color: "light.200" } }}
         >
-          Pay 10€
+          Back to tickets selection
         </Button>
       </View>
   );

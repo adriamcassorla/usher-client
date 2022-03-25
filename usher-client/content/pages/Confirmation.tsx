@@ -8,7 +8,7 @@ import { capitalize } from "../../utils/helpers/home";
 type Props = NativeStackScreenProps<MainStackParamList, "Confirmation">;
 
 const Confirmation = ({ navigation, route }: Props) => {
-  const { event, nSeats, date } = route.params;
+  const { event, seats, date } = route.params;
   const toast = useToast();
   return (
     <Flex
@@ -23,7 +23,7 @@ const Confirmation = ({ navigation, route }: Props) => {
         Congrats!!!
       </Heading>
       <Text color={"light.100"} fontSize={"3xl"} textAlign={"center"}>
-        You just got {nSeats} tickets for {capitalize(event)}.
+        You just got {seats} tickets for {capitalize(event)}.
       </Text>
       <Text color={"light.200"} fontSize={"2xl"} textAlign={"center"}>
         See you there at {moment(Number(date)).format("HH:mm")}!
@@ -35,7 +35,7 @@ const Confirmation = ({ navigation, route }: Props) => {
             status: "success",
             title:
               "Ticket" +
-              (nSeats > 1 ? "s" : "") +
+              (seats > 1 ? "s" : "") +
               " added to your profile page.",
             mb: "45px",
             mx: 5,
