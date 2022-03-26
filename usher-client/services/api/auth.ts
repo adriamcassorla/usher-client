@@ -1,14 +1,18 @@
-import { gql, GraphQLClient } from "graphql-request";
-import { AsyncStorage } from "react-native";
+import { gql, GraphQLClient } from 'graphql-request';
+import { AsyncStorage } from 'react-native';
 
-const apiURL = "https://tourn.me/usher/api";
+const apiURL = 'https://tourn.me/usher/api';
 const client = new GraphQLClient(apiURL);
 
-export const getJWT = async (email: string, password: string): Promise<UserProfile | string | null> => {
+export const getJWT = async (
+  email: string,
+  password: string
+): Promise<UserProfile | string | null> => {
   const query = gql`
     query getUser($email: String, $password: String) {
       getUser(email: $email, password: $password) {
         user {
+          id
           first_name
           last_name
           notifications
@@ -28,7 +32,6 @@ export const getJWT = async (email: string, password: string): Promise<UserProfi
               }
             }
           }
-
         }
         error
         token
@@ -38,19 +41,30 @@ export const getJWT = async (email: string, password: string): Promise<UserProfi
 
   try {
     const { getUser } = await client.request(query, { email, password });
-    if (getUser.error) return getUser.error
+    if (getUser.error) return getUser.error;
     await AsyncStorage.setItem('user', getUser.token);
     return getUser.user;
   } catch (e) {
     return 'Internal error';
   }
-}
+};
 
 export const createUser = async (email: string, password: string, firstName: string, lastName: string) => {
   const mutation = gql`
-    mutation createUser($email: String!, $password: String!, $firstName: String!, $lastName: String!) {
-  createUser(email: $email, password: $password, first_name: $firstName, last_name: $lastName) {
-      user {
+    mutation createUser(
+      $email: String!
+      $password: String!
+      $firstName: String!
+      $lastName: String!
+    ) {
+      createUser(
+        email: $email
+        password: $password
+        first_name: $firstName
+        last_name: $lastName
+      ) {
+        user {
+          id
           first_name
           last_name
           notifications
@@ -70,12 +84,11 @@ export const createUser = async (email: string, password: string, firstName: str
               }
             }
           }
-
         }
         error
         token
+      }
     }
-  }
   `;
 
   try {
@@ -86,4 +99,4 @@ export const createUser = async (email: string, password: string, firstName: str
   } catch (e) {
     return 'Network error while creating a new user';
   }
-}
+};

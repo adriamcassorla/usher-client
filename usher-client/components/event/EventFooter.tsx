@@ -12,13 +12,22 @@ import {
 import * as React from "react";
 import { useState, useEffect } from "react";
 import { Dimensions } from "react-native";
+import KeyboardSpacer from "react-native-keyboard-spacer";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useUserContext } from "../../services/contexts/UserContext";
 import { MainStackNavType } from "../../utils/Types/navTypes";
 import EventPayment from "./EventPayment";
 import TicketSelector from "./TicketSelector";
 
-const EventFooter = ({ price, shows, eventName }: { price: number; shows: Show[]; eventName: string; }) => {
+const EventFooter = ({
+  price,
+  shows,
+  eventName,
+}: {
+  price: number;
+  shows: Show[];
+  eventName: string;
+}) => {
   let { bottom } = useSafeAreaInsets();
   bottom = bottom > 22 ? bottom : 22;
   const height = 60 + bottom;
@@ -70,31 +79,32 @@ const EventFooter = ({ price, shows, eventName }: { price: number; shows: Show[]
         </Button>
         <Actionsheet isOpen={isOpen} onClose={onClose}>
           <Actionsheet.Content>
-            { ticketSelected ?
+            {ticketSelected ? (
               <EventPayment
-              setTicketSelected={setTicketSelected}
-              showId={showId}
-              onClose={onClose}
-              navigation={navigation}
-              quantity={quantity}
-              eventName={eventName}
-              price={price}
-              email={user?.email}
+                setTicketSelected={setTicketSelected}
+                showId={showId}
+                onClose={onClose}
+                navigation={navigation}
+                quantity={quantity}
+                eventName={eventName}
+                price={price}
+                email={user?.email}
               ></EventPayment>
-            :
+            ) : (
               <TicketSelector
-              shows={shows}
-              seats={seats}
-              navigation={navigation}
-              onClose={onClose}
-              setTicketSelected={setTicketSelected}
-              setShowId={setShowId}
-              showId={showId}
-              quantity={quantity}
-              setQuantity={setQuantity}
+                shows={shows}
+                seats={seats}
+                navigation={navigation}
+                onClose={onClose}
+                setTicketSelected={setTicketSelected}
+                setShowId={setShowId}
+                showId={showId}
+                quantity={quantity}
+                setQuantity={setQuantity}
               ></TicketSelector>
-            }
+            )}
           </Actionsheet.Content>
+          <KeyboardSpacer />
         </Actionsheet>
       </Flex>
     </Center>
