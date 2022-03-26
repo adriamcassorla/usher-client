@@ -13,6 +13,7 @@ import * as React from "react";
 import { useState, useEffect } from "react";
 import { Dimensions } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useUserContext } from "../../services/contexts/UserContext";
 import { MainStackNavType } from "../../utils/Types/navTypes";
 import EventPayment from "./EventPayment";
 import TicketSelector from "./TicketSelector";
@@ -22,6 +23,7 @@ const EventFooter = ({ price, shows, eventName }: { price: number; shows: Show[]
   bottom = bottom > 22 ? bottom : 22;
   const height = 60 + bottom;
   const top = Dimensions.get("screen").height - height;
+  const { user, populateUser } = useUserContext();
   const { isOpen, onOpen, onClose } = useDisclose();
   const navigation = useNavigation<MainStackNavType>();
   const [seats, setSeats] = useState(0);
@@ -77,6 +79,7 @@ const EventFooter = ({ price, shows, eventName }: { price: number; shows: Show[]
               quantity={quantity}
               eventName={eventName}
               price={price}
+              email={user?.email}
               ></EventPayment>
             :
               <TicketSelector

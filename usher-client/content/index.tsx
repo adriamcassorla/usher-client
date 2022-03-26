@@ -8,14 +8,12 @@ import { useState } from "react";
 const index = () => {
   const { user, populateUser } = useUserContext();
   const [isCheckingUser, setIsCheckingUser] = useState(true);
-
   React.useEffect(() => {
     getUserProfile().then((user) => {
       populateUser(user);
       setIsCheckingUser(false);
     });
   }, []);
-
   if (isCheckingUser) return null;
   if (!user) return <Auth setUser={populateUser}></Auth>;
   else return <MainStack></MainStack>;

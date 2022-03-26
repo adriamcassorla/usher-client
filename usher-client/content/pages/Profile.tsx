@@ -37,8 +37,8 @@ const Profile = ({ navigation }: Props) => {
         alt="Background shapes"
         top="-10px"
         size="xl"
-        height="450px"
-        width="100%"
+        height="85%"
+        width="110%"
         position="absolute"
       />
       <VStack

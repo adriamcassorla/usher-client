@@ -6,14 +6,18 @@ import { MainStackParamList } from "../../utils/Types/navTypes";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { capitalize } from "../../utils/helpers/home";
 import ConfirmationGif from "../../components/Animations/ConfirmationGif";
+import { getUserProfile } from "../../services/api/user";
+import { useUserContext } from "../../services/contexts/UserContext";
 
 type Props = NativeStackScreenProps<MainStackParamList, "Confirmation">;
 
 const Confirmation = ({ navigation, route }: Props) => {
   const { event, seats, date } = route.params;
   const toast = useToast();
+  const { user, populateUser } = useUserContext();
 
   useEffect(() => {
+    getUserProfile().then((user) => populateUser(user))
     setTimeout(() => {
       navigation.navigate("Main");
       toast.show({

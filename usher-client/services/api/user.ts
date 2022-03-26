@@ -54,6 +54,7 @@ export const getUserProfile = async () => {
         user {
           first_name
           last_name
+          email
           notifications
           favorite_ids
           tickets {
