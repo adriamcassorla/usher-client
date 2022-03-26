@@ -23,6 +23,7 @@ export const getJWT = async (
               date
               event {
                 image
+                poster
                 name
                 price
                 venue {
@@ -75,6 +76,7 @@ export const createUser = async (email: string, password: string, firstName: str
               date
               event {
                 image
+                poster
                 name
                 price
                 venue {

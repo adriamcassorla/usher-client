@@ -61,6 +61,7 @@ export const getUserProfile = async () => {
               date
               event {
                 image
+                poster
                 name
                 price
                 venue {
