@@ -17,7 +17,7 @@ import {
   setFavsNotificationHandler,
 } from '../../utils/helpers/notifications';
 
-const Home = () => {
+const Home = ({ navigation }) => {
   // * NOTE *  City should be a state depending on picker
   const city = 'Barcelona';
 
@@ -37,10 +37,20 @@ const Home = () => {
   }, [events]);
 
   // Update fav notifications when likes change
-  // Possible bug notifying for sold out event because events are not updated for client during session
   useEffect(() => {
     if (user && events) setFavsNotificationHandler(user, events);
   }, [user]);
+
+  // Add listener to nav to event page on notification interaction
+  useEffect(() => {
+    const subscription = Notifications.addNotificationResponseReceivedListener(
+      (response) => {
+        const eventId = response.notification.request.content.data.eventId;
+        navigation.navigate('Event', { eventId, todayShows: [1, 2] });
+      }
+    );
+    return () => subscription.remove();
+  }, []);
 
   return (
     <GradientProvider>
