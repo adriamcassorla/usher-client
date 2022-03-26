@@ -66,7 +66,36 @@ const theme = extendTheme({
     }
   },
   config: {
-    useSystemColorMode: true,
+    useSystemColorMode: false,
+  },
+  fontConfig: {
+    Jost: {
+      300: {
+        normal: 'Jost_300Light',
+        italic: 'Jost_300Light_Italic',
+      },
+      400: {
+        normal: 'Jost_400Regular',
+        italic: 'Jost_400Regular_Italic',
+      },
+      500: {
+        normal: 'Jost_500Medium',
+        italic: 'Jost_500Medium_Italic'
+      },
+      600: {
+        normal: 'Jost_600SemiBold',
+        italic: 'Jost_600SemiBold_Italic',
+      },
+      700: {
+        normal: 'Jost_700Bold',
+        italic: 'Jost_700Bold_Italic'
+      }
+    },
+  },
+  fonts: {
+    heading: 'Jost',
+    body: 'Jost',
+    mono: 'Jost',
   },
 });
 
