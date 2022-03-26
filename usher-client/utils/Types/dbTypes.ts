@@ -35,7 +35,7 @@ type Ticket = {
   show: Show,
   show_id: string,
   used: boolean,
-  user: User,
+  user: UserProfile,
 }
 
 type Promoter = {

@@ -6,11 +6,13 @@ import { Platform } from 'react-native';
 
 export function setNotificationHandler () {
   Notifications.setNotificationHandler({
-    handleNotification: async () => ({
+    handleNotification: async (notification:Notifications.Notification) => {
+      console.log(notification);
+      return ({
       shouldShowAlert: true,
       shouldPlaySound: true,
       shouldSetBadge: true,
-    }),
+    })}
   });
 }
 

@@ -1,6 +1,6 @@
 
 const fetchPaymentIntentClientSecret = async () => {
-  const response = await fetch('https://tourn.me/usher/api/stripe/create-payment-intent', {
+  const response = await fetch('https://tourn.me/stripe/create-payment-intent', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
