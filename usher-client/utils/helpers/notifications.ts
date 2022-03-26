@@ -73,8 +73,7 @@ export async function scheduleFavNotification(
           },
         },
         trigger: {
-          seconds: 3,
-          // date: new Date(+favEvent.next_show.date - threeHours),
+          date: notificationTime,
         },
       });
       console.log(notificationId);
