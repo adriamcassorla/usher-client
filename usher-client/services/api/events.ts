@@ -4,7 +4,7 @@ import { AsyncStorage } from "react-native";
 const apiURL = "https://tourn.me/usher/api";
 const client = new GraphQLClient(apiURL);
 
-export const getCityEvents = async (city: string, dayRange: number = 3): Promise<EventType[] | null> => {
+export const getCityEvents = async (city: string, dayRange: number = 3): Promise<EventType[]> => {
   const query = gql`
     query GetCityEvents($city: String!, $dayRange: Int!) {
       getCityEvents(city: $city, dayRange: $dayRange) {
@@ -29,14 +29,8 @@ export const getCityEvents = async (city: string, dayRange: number = 3): Promise
       }
     }
   `;
-
-  try {
-    const events = await client.request(query, { city, dayRange });
-    return events.getCityEvents as EventType[];
-  } catch (e) {
-    console.error(e);
-    return null;
-  }
+  const events = await client.request(query, { city, dayRange });
+  return events.getCityEvents as EventType[];
 };
 
 
@@ -80,7 +74,6 @@ export const getEventInfo = async (eventID: number, isToday: boolean): Promise<E
     return event.getEvent as EventType;
   }
   catch (e) {
-    console.error(e);
-    return null;
+    throw new Error('Network error while fetching info.')
   }
 };

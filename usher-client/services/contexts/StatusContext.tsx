@@ -1,11 +1,12 @@
 import * as React from "react";
 import { createContext, useContext, useState } from "react";
-import { Modal } from "native-base";
+import { Modal, useToast } from "native-base";
 import { Loader } from "../../components/Animations/Loader";
 
+type Status = "loading" | "loaded" | "error";
 type StatusContextType = {
-  status: "loading" | "loaded" | "error";
-  changeStatus: (newStatus: "loading" | "loaded" | "error") => void;
+  status: Status;
+  changeStatus: (newStatus: Status, error?: string) => void;
 };
 
 const defaultValue: StatusContextType = {
@@ -16,12 +17,20 @@ const defaultValue: StatusContextType = {
 export const StatusContext = createContext<StatusContextType>(defaultValue);
 
 export const StatusProvider = ({ children }: any) => {
-  const [status, setStatus] = useState<"loading" | "loaded" | "error">(
-    "loading"
-  );
+  const toast = useToast();
+  const [status, setStatus] = useState<Status>("loading");
 
-  const changeStatus = (newStatus: "loading" | "loaded" | "error") => {
+  const changeStatus = (newStatus: Status, error?: string) => {
     setStatus(newStatus);
+    if (error) {
+      toast.show({
+        status: "error",
+        title: "Oups... there has been an error! 🤔",
+        description: error,
+        mb: 8,
+        mx: 5,
+      });
+    }
   };
 
   return (

@@ -42,12 +42,11 @@ export const getJWT = async (email: string, password: string): Promise<UserProfi
     await AsyncStorage.setItem('user', getUser.token);
     return getUser.user;
   } catch (e) {
-    console.error(e);
     return 'Internal error';
   }
 }
 
-export const createUser = async (email: string, password: string, firstName: string, lastName: string): Promise<UserProfile | null> => {
+export const createUser = async (email: string, password: string, firstName: string, lastName: string) => {
   const mutation = gql`
     mutation createUser($email: String!, $password: String!, $firstName: String!, $lastName: String!) {
   createUser(email: $email, password: $password, first_name: $firstName, last_name: $lastName) {
@@ -81,11 +80,10 @@ export const createUser = async (email: string, password: string, firstName: str
 
   try {
     const { createUser } = await client.request(mutation, { email, password, firstName, lastName });
-    if (createUser.error) return createUser.error
+    if (createUser.error) return createUser.error as string
     await AsyncStorage.setItem('user', createUser.token);
-    return createUser.user;
+    return createUser.user as UserProfile;
   } catch (e) {
-    console.error(e);
-    return null;
+    return 'Network error while creating a new user';
   }
 }

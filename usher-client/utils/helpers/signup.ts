@@ -1,16 +1,17 @@
-import { GestureResponderEvent } from "react-native"
 import { createUser } from "../../services/api/auth"
+import { useStatusContext } from "../../services/contexts/StatusContext"
 
 export const signup = async (formData: SignupForm) => {
   const { email, password, firstName, lastName } = formData
+  const { changeStatus } = useStatusContext()
   const isValid = validateSignup(formData)
   if (isValid !== true) {
-    console.error(isValid)
+    changeStatus('error', isValid);
     return null
   }
   const created = await createUser(email, password, firstName, lastName);
   if (typeof created !== 'string') return created
-  console.error(created);
+  changeStatus('error', created);
   return null
 }
 

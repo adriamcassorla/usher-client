@@ -15,7 +15,9 @@ const SignUpForm = ({ setUser, setIsNewUser }: Props) => {
 
   const submitHandler = async () => {
     changeStatus("loading");
-    signup(formData).then(setUser);
+    signup(formData)
+      .then(setUser)
+      .catch((error) => changeStatus("error", error));
   };
   return (
     <VStack w={"80%"} justifyContent={"center"}>

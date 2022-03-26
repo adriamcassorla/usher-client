@@ -20,9 +20,11 @@ const Event = ({ route }: Props) => {
 
   useEffect(() => {
     changeStatus("loading");
-    getEventInfo(eventId, todayShows.length ? true : false).then((data) => {
-      setEventInfo(data);
-    });
+    getEventInfo(eventId, todayShows.length ? true : false)
+      .then((data) => {
+        setEventInfo(data);
+      })
+      .catch((error) => changeStatus("error", error));
   }, [eventId]);
 
   const imgHeight = 300;

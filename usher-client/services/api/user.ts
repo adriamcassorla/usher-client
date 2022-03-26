@@ -16,10 +16,9 @@ export const addFav = async (eventId: number) => {
     `
   try {
     const { addFav } = await client.request(mutation, { eventId });
-    return addFav.favorite_ids
+    return addFav.favorite_ids as number[]
   } catch (e) {
-    console.error(e);
-    return
+    return 'Network error while adding a new favourite' as string
   }
 }
 
@@ -36,10 +35,9 @@ export const deleteFav = async (eventId: number) => {
       `
   try {
     const { deleteFav } = await client.request(mutation, { eventId });
-    return deleteFav.favorite_ids
+    return deleteFav.favorite_ids as number[]
   } catch (e) {
-    console.error(e);
-    return
+    return 'Network error while deliting a favourite' as string
   }
 }
 
@@ -82,10 +80,9 @@ export const getUserProfile = async () => {
 
   try {
     const { getUser } = await client.request(query);
-    if (getUser.error) return null
+    if (getUser.error) return getUser.error as string
     return getUser.user as UserProfile
   } catch (e) {
-    console.error(e);
-    return null;
+    return 'Network error while trying to get user information' as string
   }
 };

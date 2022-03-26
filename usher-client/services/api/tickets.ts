@@ -27,11 +27,10 @@ export const generateTicket = async (showId: string, nSeats: number) => {
 
   try {
     const { createTickets } = await client.request(mutation, { showId, nSeats });
-    if (createTickets.error) console.error(createTickets.error);
+    if (createTickets.error) return createTickets.error as string;
     return createTickets.show as Show
   } catch (e) {
-    console.error(e);
-    return null;
+    return 'Error while creating the tickets'
   }
 }
 

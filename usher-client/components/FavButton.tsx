@@ -2,14 +2,16 @@ import * as React from "react";
 import { Button, Icon } from "native-base";
 import { Ionicons } from "@expo/vector-icons";
 import toggleFav from "../utils/helpers/favs";
-import { UserContext } from "../services/contexts/UserContext";
+import { useUserContext } from "../services/contexts/UserContext";
+import { useStatusContext } from "../services/contexts/StatusContext";
 
 type Props = {
   eventId: number;
 };
 
 const FavButton = ({ eventId }: Props) => {
-  const { user, populateUser } = React.useContext(UserContext);
+  const { user, populateUser } = useUserContext();
+  const { changeStatus } = useStatusContext();
 
   const [isFavorite, setIsFavorite] = React.useState(
     user?.favorite_ids?.includes(eventId)!
@@ -23,8 +25,12 @@ const FavButton = ({ eventId }: Props) => {
   const handlePress = async () => {
     setIsFavorite((fav) => !fav);
     const favorite_ids = await toggleFav(eventId, isFavorite);
-    const updatedUser = { ...user, favorite_ids } as UserProfile;
-    populateUser(updatedUser);
+    if (typeof favorite_ids === "string") {
+      changeStatus("error", favorite_ids);
+    } else {
+      const updatedUser = { ...user, favorite_ids } as UserProfile;
+      populateUser(updatedUser);
+    }
   };
 
   return (

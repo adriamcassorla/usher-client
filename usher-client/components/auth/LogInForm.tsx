@@ -16,7 +16,15 @@ const LogInForm = ({ setUser, setIsNewUser }: Props) => {
 
   const submitHandler = async () => {
     changeStatus("loading");
-    login(formData).then(setUser);
+    login(formData)
+      .then((user) => {
+        if (typeof user === "string") {
+          changeStatus("error", user);
+        } else {
+          setUser(user);
+        }
+      })
+      .catch((error) => changeStatus("error", error));
   };
   return (
     <VStack w={"80%"} justifyContent={"center"}>
@@ -63,7 +71,7 @@ const LogInForm = ({ setUser, setIsNewUser }: Props) => {
       </FormControl>
       <Button
         size="lg"
-        variant="link"
+        variant="outlined"
         colorScheme="primary"
         onPress={() => {
           setIsNewUser(true);
