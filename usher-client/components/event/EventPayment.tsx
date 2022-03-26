@@ -64,9 +64,9 @@ const Payment = ({ navigation, quantity, onClose, setTicketSelected, showId, eve
         billingDetails,
       });
       if (error) {
-        console.log('Payment confirmation error', error);
+        console.error(error);
+        return
       } else if (paymentIntent) {
-        console.log('Success from promise', paymentIntent);
       }
       
       return paymentIntent
