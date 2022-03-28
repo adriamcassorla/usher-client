@@ -73,8 +73,7 @@ export async function scheduleFavNotification(
           },
         },
         trigger: {
-          // date: notificationTime,
-          seconds: 3,
+          date: notificationTime,
         },
       });
       console.log(notificationId);

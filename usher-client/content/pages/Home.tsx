@@ -7,17 +7,19 @@ import HomeList from '../../components/home/HomeList';
 import GradientProvider from '../../components/GradientProvider';
 
 import * as Notifications from 'expo-notifications';
-import {
-  UserProvider,
-  useUserContext,
-} from '../../services/contexts/UserContext';
+import { useUserContext } from '../../services/contexts/UserContext';
 import {
   resetNotifications,
   scheduleInitialFavsNotifications,
   setFavsNotificationHandler,
 } from '../../utils/helpers/notifications';
 
-const Home = ({ navigation }) => {
+import { NativeStackScreenProps } from '@react-navigation/native-stack/lib/typescript/src/types';
+import { MainStackParamList } from '../../utils/Types/navTypes';
+
+type Props = NativeStackScreenProps<MainStackParamList, 'Main'>;
+
+const Home = ({ navigation }: Props) => {
   // * NOTE *  City should be a state depending on picker
   const city = 'Barcelona';
 
