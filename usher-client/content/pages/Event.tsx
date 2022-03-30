@@ -1,16 +1,16 @@
-import * as React from "react";
-import { useEffect, useState } from "react";
-import { ScrollView, Image, Spinner } from "native-base";
-import { View, StyleSheet } from "react-native";
+import * as React from 'react';
+import { useEffect, useState } from 'react';
+import { ScrollView, Image, Spinner } from 'native-base';
+import { View, StyleSheet } from 'react-native';
 
-import type { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { MainStackParamList } from "../../utils/Types/navTypes";
-import { getEventInfo } from "../../services/api/events";
-import { EventFooter, EventHeader, EventHero } from "../../components/event";
-import EventTabView from "../../components/event/EventTabView";
-import EventTabHeader from "../../components/event/EventTabHeader";
-import { useStatusContext } from "../../services/contexts/StatusContext";
-type Props = NativeStackScreenProps<MainStackParamList, "Event">;
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { MainStackParamList } from '../../utils/Types/navTypes';
+import { getEventInfo } from '../../services/api/events';
+import { EventFooter, EventHeader, EventHero } from '../../components/event';
+import EventTabView from '../../components/event/EventTabView';
+import EventTabHeader from '../../components/event/EventTabHeader';
+import { useStatusContext } from '../../services/contexts/StatusContext';
+type Props = NativeStackScreenProps<MainStackParamList, 'Event'>;
 
 const Event = ({ route }: Props) => {
   const { eventId, todayShows } = route.params;
@@ -19,12 +19,12 @@ const Event = ({ route }: Props) => {
   const { changeStatus } = useStatusContext();
 
   useEffect(() => {
-    changeStatus("loading");
+    changeStatus('loading');
     getEventInfo(eventId, todayShows.length ? true : false)
       .then((data) => {
         setEventInfo(data);
       })
-      .catch((error) => changeStatus("error", error));
+      .catch((error) => changeStatus('error', error));
   }, [eventId]);
 
   const imgHeight = 300;
@@ -35,18 +35,18 @@ const Event = ({ route }: Props) => {
         style={styles.scrollView}
         contentContainerStyle={styles.contentContainer}
         stickyHeaderIndices={[0, 2, 3]}
-        bg={"light.50"}
+        bg={'light.50'}
         showsVerticalScrollIndicator={false}
       >
         <EventHeader eventId={eventId} />
         <Image
           src={eventInfo.image}
           alt="Main event image"
-          w={"full"}
+          w={'full'}
           h={`${imgHeight}px`}
           mb={-50}
           resizeMode="cover"
-          onLoad={() => changeStatus("loaded")}
+          onLoad={() => changeStatus('loaded')}
         />
         <EventHero event={eventInfo}></EventHero>
         <EventTabHeader tabIndex={tabIndex} setTabIndex={setTabIndex} />

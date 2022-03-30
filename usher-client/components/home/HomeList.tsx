@@ -1,16 +1,16 @@
-import { Center, FlatList, Modal, Spinner, Text, View } from "native-base";
-import * as React from "react";
-import { useEffect, useState } from "react";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { filterEvents } from "../../utils/helpers/filter";
-import { Highlights, FilterMenu, EventCard } from "./";
+import { Center, FlatList, Modal, Spinner, Text, View } from 'native-base';
+import * as React from 'react';
+import { useEffect, useState } from 'react';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { filterEvents } from '../../utils/helpers/filter';
+import { Highlights, FilterMenu, EventCard } from './';
 
 type Props = {
   events: EventType[] | null;
 };
 
 type renderParams = {
-  item: EventType | "top" | "filter";
+  item: EventType | 'top' | 'filter';
 };
 
 const HomeList = ({ events }: Props) => {
@@ -27,8 +27,8 @@ const HomeList = ({ events }: Props) => {
   }, [filters, events]);
 
   const _renderItem = ({ item }: renderParams) => {
-    if (item === "top") return <Highlights />;
-    if (item === "filter")
+    if (item === 'top') return <Highlights />;
+    if (item === 'filter')
       return (
         <FilterMenu
           filters={filters}
@@ -43,13 +43,13 @@ const HomeList = ({ events }: Props) => {
   return (
     <FlatList
       // @ts-ignore
-      data={["top", "filter", ...filtered]}
+      data={['top', 'filter', ...filtered]}
       stickyHeaderIndices={[1]}
       removeClippedSubviews={true}
       initialNumToRender={5}
       renderItem={_renderItem}
       keyExtractor={(item) =>
-        typeof item === "string" ? item : String(item.id)
+        typeof item === 'string' ? item : String(item.id)
       }
       onScroll={(e) => {
         const yPos = e.nativeEvent.contentOffset.y;
