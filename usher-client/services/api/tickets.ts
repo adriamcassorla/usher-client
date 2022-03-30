@@ -34,3 +34,23 @@ export const generateTicket = async (showId: string, nSeats: number) => {
   }
 }
 
+
+export const getTicketUsage = async (id: string) => {
+  const query = gql`
+    query Query($id: String!) {
+      getTicketUsage(id: $id) {
+        used
+        error
+      }
+    }
+  `;
+
+  try {
+    const { getTicketUsage } = await client.request(query, { id });
+    if (getTicketUsage.error) return getTicketUsage.error as string;
+    return getTicketUsage.used as boolean
+  } catch (e) {
+    return 'Error while creating checking ticket usage'
+  }
+}
+

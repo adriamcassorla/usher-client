@@ -1,9 +1,10 @@
 import * as React from "react";
-import { FlatList, View, Text } from "native-base";
+import { FlatList, View, Text, Center, Image } from "native-base";
 
 import { EventsContext } from "../../services/contexts/EventsContext";
 import { UserContext } from "../../services/contexts/UserContext";
 import EventCard from "../../components/home/EventCard";
+const favIcon = require("./../../assets/icons8-bookmark-512.png");
 
 const Favorites = () => {
   const { events } = React.useContext(EventsContext);
@@ -23,20 +24,20 @@ const Favorites = () => {
 
   if (!favorites?.length && !loading)
     return (
-      <View h={"100%"} w={"100%"} alignItems="center" mt={0}>
-        {!favorites?.length && (
-          <Text
-            w={330}
-            my={3}
-            textAlign="center"
-            fontSize="2xl"
-            bold
-            color={"white"}
-          >
-            No events saved yet, go explore! 🕺
+      !favorites?.length && (
+        <Center h={"100%"} w={"100%"} alignItems="center" mt={0}>
+          <Image
+            source={favIcon}
+            alt="No favorites yet"
+            size="xl"
+            opacity={0.8}
+          />
+
+          <Text w={330} my={3} textAlign="center" fontSize="lg" color={"white"}>
+            No events saved yet.
           </Text>
-        )}
-      </View>
+        </Center>
+      )
     );
 
   return (

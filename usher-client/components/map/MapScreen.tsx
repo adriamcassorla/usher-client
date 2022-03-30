@@ -43,9 +43,6 @@ const MapScreen = ({ selectedVenue, setSelectedVenue, events }: Props) => {
       showsUserLocation={true}
       //@ts-ignore
       ref={mapRef}
-      onMapReady={() => {
-        changeStatus("loaded");
-      }}
     >
       {status === "loaded"
         ? venues.map((venue) => (

@@ -37,9 +37,7 @@ const HighlightsCarrousel = ({ topEvents }: Props) => {
       firstItem={1}
       loop={false}
       sliderHeight={370}
-      onLayout={() => {
-        setTimeout(() => changeStatus("loaded"), 100);
-      }}
+      onLayout={() => changeStatus("loaded")}
     />
   );
 };

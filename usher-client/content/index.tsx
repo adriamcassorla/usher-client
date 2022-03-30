@@ -13,20 +13,23 @@ const index = () => {
 
   useEffect(() => {
     getUserProfile()
-      .then((user) => {
-        setIsCheckingUser(false);
-        if (typeof user === "string") {
-          changeStatus("error", user);
+      .then((res) => {
+        if (typeof res === "string") {
+          changeStatus("error", res);
         } else {
-          populateUser(user);
+          populateUser(res);
         }
+        setIsCheckingUser(false);
       })
       .catch((error) => changeStatus("error", error));
   }, []);
 
   if (isCheckingUser) return null;
-  if (!user) return <Auth setUser={populateUser}></Auth>;
-  else return <MainStack></MainStack>;
+  else {
+    if (!user) {
+      return <Auth setUser={populateUser}></Auth>;
+    } else return <MainStack></MainStack>;
+  }
 };
 
 export default index;
