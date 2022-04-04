@@ -10,6 +10,10 @@ This repo corresponds to the final User app of the project. It can be used toget
 * [Usher Scanner](https://github.com/adriamcassorla/usher-scanner) - QR-Code scanner for ticket validation.
 * [Usher Dashboard](https://github.com/nicolo413/usher-dashboard) - Client-side desktop app for event promoters.
 
+## Screenshots
+<p align="center">
+  <img style='width:80%' src="https://res.cloudinary.com/dptkkaj8n/image/upload/v1649068458/usher-posters/ExploreScreenshots_djoz48.png" />
+</p>
 
 
 ## Getting started
@@ -38,7 +42,8 @@ expo r
 * [Expo](https://expo.io) - Build cross-platform native apps.
 * [Native Base](https://nativebase.io/) - UI component library with mobile first approach.
 * [Stripe API](https://stripe.com/) - Providing payment integration.
-* [Google Maps API](https://developers.google.com/maps) - Adding map interface and interaction.
+* [React Native Maps](https://github.com/react-native-maps/react-native-maps) - Adding map interface and interaction.
+* [Lottie](https://lottiefiles.com/) - Create and display cool animations.
 
 ## Contributing
 
@@ -52,3 +57,7 @@ Fork the repo and do your thing. Push to your fork and submit a pull request.
 * Nico López Diez - [Github](https://github.com/nicolo413) - [LinkedIn](https://www.linkedin.com/in/nicolas-lopez-diez/)
 * Adrià M. Cassorla - [Github](https://github.com/adriamcassorla) - [LinkedIn](https://www.linkedin.com/in/adriamcassorla/)
 * Adrian Suárez del Busto - [Github](https://github.com/adrian-s-db) - [LinkedIn](https://www.linkedin.com/in/adrian-s-delbusto/)
+
+<p align="center">
+  <img style='width:80%' src="https://res.cloudinary.com/dptkkaj8n/image/upload/v1649068454/usher-posters/DetailsScreenshots_zflzag.png" />
+</p>
