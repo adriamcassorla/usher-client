@@ -1,14 +1,14 @@
-import * as React from 'react';
-import { useEffect } from 'react';
-import { NativeBaseProvider, View } from 'native-base';
-import { UserProvider } from './services/contexts/UserContext';
-import { initStripe } from '@stripe/stripe-react-native';
+import * as React from "react";
+import { useEffect } from "react";
+import { NativeBaseProvider, View } from "native-base";
+import { UserProvider } from "./services/contexts/UserContext";
+import { initStripe } from "@stripe/stripe-react-native";
 //@ts-ignore
-import { REACT_APP_STRIPE_PUBLISHABLE_KEY } from 'react-native-dotenv';
-import theme from './styles/theme';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import Content from './content';
-import { StatusProvider } from './services/contexts/StatusContext';
+import { REACT_APP_STRIPE_PUBLISHABLE_KEY } from "react-native-dotenv";
+import theme from "./styles/theme";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import Content from "./content";
+import { StatusProvider } from "./services/contexts/StatusContext";
 
 import {
   useFonts,
@@ -22,7 +22,7 @@ import {
   Jost_500Medium_Italic,
   Jost_600SemiBold_Italic,
   Jost_700Bold_Italic,
-} from '@expo-google-fonts/jost';
+} from "@expo-google-fonts/jost";
 
 export default function App() {
   useEffect(() => {
@@ -46,13 +46,10 @@ export default function App() {
 
   return (
     <SafeAreaProvider>
-      <NativeBaseProvider
-        theme={theme}
-        config={{ suppressColorAccessibilityWarning: true }}
-      >
+      <NativeBaseProvider theme={theme}>
         <UserProvider>
           <StatusProvider>
-            <View w={'100%'} h={'100%'} bg={'dark.50'}>
+            <View w={"100%"} h={"100%"} bg={"dark.50"}>
               {fontsLoaded ? <Content></Content> : null}
             </View>
           </StatusProvider>

@@ -60,8 +60,9 @@ export async function scheduleFavNotification(
 ) {
   const favEvent = events?.find((event) => event.id === favId);
   const threeHours = 60 * 60 * 1000 * 3;
-  const notificationTime = +favEvent?.next_show.date! - threeHours;
-  if (favEvent?.next_show && notificationTime > Date.now()) {
+  const nextShow = favEvent?.next_show?.date;
+  const notificationTime = nextShow ? +nextShow - threeHours : 0; // If no nextShow forces if to fail.
+  if (nextShow && notificationTime > Date.now()) {
     try {
       const notificationId = await Notifications.scheduleNotificationAsync({
         content: {

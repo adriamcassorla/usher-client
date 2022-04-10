@@ -67,6 +67,7 @@ const theme = extendTheme({
   },
   config: {
     useSystemColorMode: false,
+    suppressColorAccessibilityWarning: true
   },
   fontConfig: {
     Jost: {

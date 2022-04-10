@@ -14,7 +14,7 @@ const defaultValue: StatusContextType = {
   changeStatus: () => {},
 };
 
-export const StatusContext = createContext<StatusContextType>(defaultValue);
+const StatusContext = createContext<StatusContextType>(defaultValue);
 
 export const StatusProvider = ({ children }: any) => {
   const toast = useToast();
