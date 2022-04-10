@@ -3,7 +3,7 @@ import { Button, Input, Stack, FormControl, VStack } from "native-base";
 import { signup, signupMock, SignupForm } from "../../utils/helpers/signup";
 import { focusStyle } from "../../styles/authStyles";
 import { useState } from "react";
-import { useStatusContext } from "../../services/contexts/StatusContext";
+import { useStatusContext } from "./../../services/contexts/StatusContext";
 type Props = {
   setUser: (user: UserProfile | null) => void;
   setIsNewUser: React.Dispatch<React.SetStateAction<boolean>>;

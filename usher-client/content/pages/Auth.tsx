@@ -7,7 +7,7 @@ import LogInForm from "../../components/auth/LogInForm";
 import SignUpForm from "../../components/auth/SignUpForm";
 import GradientProvider from "../../components/GradientProvider";
 import { useEffect } from "react";
-import { useStatusContext } from "../../services/contexts/StatusContext";
+import { useStatusContext } from "./../../services/contexts/StatusContext";
 
 type Props = {
   setUser: (user: UserProfile | null) => void;

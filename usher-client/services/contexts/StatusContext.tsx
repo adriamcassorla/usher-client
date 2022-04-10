@@ -18,11 +18,11 @@ const StatusContext = createContext<StatusContextType>(defaultValue);
 
 export const StatusProvider = ({ children }: any) => {
   const toast = useToast();
-  const [status, setStatus] = useState<Status>("loading");
+  const [status, setStatus] = useState<Status>(defaultValue.status);
 
   const changeStatus = (newStatus: Status, error?: string) => {
     setStatus(newStatus);
-    if (error) {
+    if (newStatus === "error") {
       toast.show({
         status: "error",
         title: "Oups... there has been an error! 🤔",
