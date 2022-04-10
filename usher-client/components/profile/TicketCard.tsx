@@ -11,12 +11,10 @@ import {
 } from "native-base";
 import { capitalize } from "../../utils/helpers/home";
 
-import QRCode from "react-native-qrcode-svg";
 const QRlogo = require("../../assets/qrcodelogo.png");
 //@ts-ignore
 import moment from "moment";
 import { isValid } from "../../utils/helpers/tickets";
-import { Pressable } from "react-native";
 
 const TicketCard = ({ ticket }: { ticket: Ticket }) => {
   const isValidTicket = isValid(ticket);
