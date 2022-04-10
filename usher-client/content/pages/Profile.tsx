@@ -10,12 +10,13 @@ import {
   Icon,
   Divider,
   Switch,
+  useToast,
 } from "native-base";
 import { AsyncStorage } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 import { CompositeScreenProps } from "@react-navigation/native";
-import { UserContext } from "../../services/contexts/UserContext";
+import { useUserContext } from "../../services/contexts/UserContext";
 
 import type { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import { HomeTabParamList, StackScreenType } from "../../utils/Types/navTypes";
@@ -26,7 +27,8 @@ type Props = CompositeScreenProps<
 >;
 
 const Profile = ({ navigation }: Props) => {
-  const { user, populateUser } = React.useContext(UserContext);
+  const { user, populateUser } = useUserContext();
+  const toast = useToast();
 
   return (
     <GradientProvider>
@@ -35,8 +37,8 @@ const Profile = ({ navigation }: Props) => {
         alt="Background shapes"
         top="-10px"
         size="xl"
-        height="450px"
-        width="100%"
+        height="85%"
+        width="110%"
         position="absolute"
       />
       <VStack
@@ -151,7 +153,11 @@ const Profile = ({ navigation }: Props) => {
                 populateUser(null);
                 await AsyncStorage.clear();
               } catch (e) {
-                console.error("Failed to log out with error: ", e);
+                toast.show({
+                  title: "Something went wrong",
+                  status: "error",
+                  description: "Failed to log out with error: " + e,
+                });
               }
             }}
           >

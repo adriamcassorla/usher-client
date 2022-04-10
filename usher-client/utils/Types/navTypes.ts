@@ -12,7 +12,7 @@ export type MainStackParamList = {
   Main: undefined;
   Event: { eventId: number, todayShows: Show[] };
   Payment: { showId: string, nSeats: number };
-  Confirmation: { event: string, date: string, nSeats: number };
+  Confirmation: { event: string, date: string, seats: number };
 }
 
 export type ProfileStackParamList = {

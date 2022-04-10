@@ -2,16 +2,22 @@ import * as React from "react";
 import { Button, Input, Stack, FormControl, VStack } from "native-base";
 import { signup, signupMock, SignupForm } from "../../utils/helpers/signup";
 import { focusStyle } from "../../styles/authStyles";
+import { useState } from "react";
+import { useStatusContext } from "../../services/contexts/StatusContext";
 type Props = {
   setUser: (user: UserProfile | null) => void;
   setIsNewUser: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const SignUpForm = ({ setUser, setIsNewUser }: Props) => {
-  const [formData, setFormData] = React.useState<SignupForm>(signupMock);
+  const [formData, setFormData] = useState<SignupForm>(signupMock);
+  const { changeStatus } = useStatusContext();
 
   const submitHandler = async () => {
-    signup(formData).then(setUser);
+    changeStatus("loading");
+    signup(formData)
+      .then(setUser)
+      .catch((error) => changeStatus("error", error));
   };
   return (
     <VStack w={"80%"} justifyContent={"center"}>

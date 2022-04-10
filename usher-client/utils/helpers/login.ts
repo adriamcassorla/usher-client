@@ -1,16 +1,13 @@
 import { getJWT } from "../../services/api/auth"
-import { getUserProfile } from './../../services/api/user'
 
 export const login = async (formData: LoginForm) => {
   const { email, password } = formData
   const isValid = validateLogin(formData)
   if (isValid !== true) {
-    console.error(isValid)
-    return null
+    return isValid as string
   }
   const login = await getJWT(email, password)
   if (typeof login !== 'string') return login
-  console.error(login);
   return null
 }
 

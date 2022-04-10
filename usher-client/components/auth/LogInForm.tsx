@@ -2,6 +2,8 @@ import * as React from "react";
 import { Button, Stack, Input, FormControl, VStack } from "native-base";
 import { login, LoginForm, loginMock } from "../../utils/helpers/login";
 import { focusStyle } from "../../styles/authStyles";
+import { useState } from "react";
+import { useStatusContext } from "../../services/contexts/StatusContext";
 
 type Props = {
   setUser: (user: UserProfile | null) => void;
@@ -9,10 +11,20 @@ type Props = {
 };
 
 const LogInForm = ({ setUser, setIsNewUser }: Props) => {
-  const [formData, setFormData] = React.useState<LoginForm>(loginMock);
+  const [formData, setFormData] = useState<LoginForm>(loginMock);
+  const { changeStatus } = useStatusContext();
 
   const submitHandler = async () => {
-    login(formData).then(setUser);
+    changeStatus("loading");
+    login(formData)
+      .then((user) => {
+        if (typeof user === "string") {
+          changeStatus("error", user);
+        } else {
+          setUser(user);
+        }
+      })
+      .catch((error) => changeStatus("error", error));
   };
   return (
     <VStack w={"80%"} justifyContent={"center"}>
@@ -59,7 +71,7 @@ const LogInForm = ({ setUser, setIsNewUser }: Props) => {
       </FormControl>
       <Button
         size="lg"
-        variant="link"
+        variant="outlined"
         colorScheme="primary"
         onPress={() => {
           setIsNewUser(true);

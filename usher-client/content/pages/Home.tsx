@@ -1,24 +1,59 @@
-import * as React from "react";
-const { useContext, useEffect, useState } = React;
-import { Center, Spinner } from "native-base";
+import * as React from 'react';
+const { useEffect } = React;
+import { Center } from 'native-base';
 
-import { EventsContext } from "../../services/contexts/EventsContext";
-import HomeList from "../../components/home/HomeList";
+import { useEventsContext } from '../../services/contexts/EventsContext';
+import HomeList from '../../components/home/HomeList';
+import GradientProvider from '../../components/GradientProvider';
 
-import { LinearGradient } from "expo-linear-gradient";
-import GradientProvider from "../../components/GradientProvider";
+import * as Notifications from 'expo-notifications';
+import { useUserContext } from '../../services/contexts/UserContext';
+import {
+  resetNotifications,
+  scheduleInitialFavsNotifications,
+  setFavsNotificationHandler,
+} from '../../utils/helpers/notifications';
 
-const Home = () => {
+import { NativeStackScreenProps } from '@react-navigation/native-stack/lib/typescript/src/types';
+import { MainStackParamList } from '../../utils/Types/navTypes';
+
+type Props = NativeStackScreenProps<MainStackParamList, 'Main'>;
+
+const Home = ({ navigation }: Props) => {
   // * NOTE *  City should be a state depending on picker
-  const city = "Barcelona";
+  const city = 'Barcelona';
 
-  const { events, populateEvents } = useContext(EventsContext);
+  const { events, populateEvents } = useEventsContext();
+  const { user } = useUserContext();
 
   useEffect(() => {
-    populateEvents(city), [city];
+    populateEvents(city);
+  }, [city]);
+
+  // Create notifications for faved events
+  useEffect(() => {
+    if (events && user) {
+      resetNotifications();
+      scheduleInitialFavsNotifications(user, events);
+    }
+  }, [events]);
+
+  // Update fav notifications when likes change
+  useEffect(() => {
+    if (user && events) setFavsNotificationHandler(user, events);
+  }, [user]);
+
+  // Add listener to nav to event page on notification interaction
+  useEffect(() => {
+    const subscription = Notifications.addNotificationResponseReceivedListener(
+      (response) => {
+        const eventId = response.notification.request.content.data.eventId;
+        navigation.navigate('Event', { eventId, todayShows: [1, 2] });
+      }
+    );
+    return () => subscription.remove();
   }, []);
 
-  if (!events) return <Spinner color="primary.500" />;
   return (
     <GradientProvider>
       <Center w="full" h="full">

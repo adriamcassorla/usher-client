@@ -1,17 +1,15 @@
 import * as React from "react";
 import { useState, useEffect, useContext } from "react";
-import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
-import { HomeTabParamList } from "../../utils/Types/navTypes";
 import MapScreen from "../../components/map/MapScreen";
 import MapEventList from "../../components/map/MapEventList";
 import { ZStack } from "native-base";
 import { FilterMenu } from "../../components/home";
-import { EventsContext } from "../../services/contexts/EventsContext";
+import { useEventsContext } from "../../services/contexts/EventsContext";
 import { filterEvents } from "../../utils/helpers/filter";
-type Props = BottomTabScreenProps<HomeTabParamList, "Map">;
+import { useStatusContext } from "../../services/contexts/StatusContext";
 
-const Map = ({ navigation }: Props) => {
-  const { events } = useContext(EventsContext);
+const Map = () => {
+  const { events } = useEventsContext();
   const [selectedVenue, setSelectedVenue] = useState<string | null>(null);
   const [filtered, setFiltered] = useState(events);
   const [filters, setFilters] = useState<string[]>([]);

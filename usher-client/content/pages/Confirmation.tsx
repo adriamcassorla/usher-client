@@ -1,25 +1,40 @@
 import * as React from "react";
 import { useEffect } from "react";
-const moment = require("moment");
-import { Button, Center, Flex, Heading, Text, useToast } from "native-base";
+//@ts-ignore
+import moment from "moment";
+import { Center, Flex, Text, useToast } from "native-base";
 import { MainStackParamList } from "../../utils/Types/navTypes";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { capitalize } from "../../utils/helpers/home";
-import ConfirmationGif from "../../components/ConfirmationGif";
+import ConfirmationGif from "../../components/Animations/ConfirmationGif";
+import { getUserProfile } from "../../services/api/user";
+import { useUserContext } from "../../services/contexts/UserContext";
+import { useStatusContext } from "../../services/contexts/StatusContext";
 
 type Props = NativeStackScreenProps<MainStackParamList, "Confirmation">;
 
 const Confirmation = ({ navigation, route }: Props) => {
-  const { event, nSeats, date } = route.params;
+  const { event, seats, date } = route.params;
   const toast = useToast();
+  const { populateUser } = useUserContext();
+  const { changeStatus } = useStatusContext();
 
   useEffect(() => {
+    getUserProfile()
+      .then((user) => {
+        if (typeof user === "string") {
+          changeStatus("error", user);
+        } else {
+          populateUser(user);
+        }
+      })
+      .catch((error) => changeStatus("error", error));
     setTimeout(() => {
       navigation.navigate("Main");
       toast.show({
         status: "success",
         title:
-          "Ticket" + (nSeats > 1 ? "s" : "") + " added to your profile page.",
+          "Ticket" + (seats > 1 ? "s" : "") + " added to your profile page.",
         mb: 8,
         mx: 5,
       });
@@ -41,7 +56,7 @@ const Confirmation = ({ navigation, route }: Props) => {
           Booking confirmed!
         </Text>
         <Text color={"light.100"} fontSize={"xl"} textAlign={"center"}>
-          You just got {nSeats} ticket{nSeats > 1 && "s"} for:
+          You just got {seats} ticket{seats > 1 && "s"} for:
         </Text>
         <Text
           color={"light.100"}
@@ -55,24 +70,6 @@ const Confirmation = ({ navigation, route }: Props) => {
           See you there at {moment(Number(date)).format("HH:mm")}!
         </Text>
       </Center>
-
-      {/* <Button
-        colorScheme="primary"
-        onPress={() => {
-          toast.show({
-            status: "success",
-            title:
-              "Ticket" +
-              (nSeats > 1 ? "s" : "") +
-              " added to your profile page.",
-            mb: 40,
-            mx: 5,
-          });
-          navigation.navigate("Main");
-        }}
-      >
-        All done, Return Home
-      </Button> */}
     </Flex>
   );
 };

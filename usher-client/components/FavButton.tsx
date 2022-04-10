@@ -2,14 +2,19 @@ import * as React from "react";
 import { Button, Icon } from "native-base";
 import { Ionicons } from "@expo/vector-icons";
 import toggleFav from "../utils/helpers/favs";
-import { UserContext } from "../services/contexts/UserContext";
+import { useUserContext } from "../services/contexts/UserContext";
+import { useEventsContext } from "../services/contexts/EventsContext";
+import { scheduleFavNotification } from "../utils/helpers/notifications";
+import { useStatusContext } from "../services/contexts/StatusContext";
 
 type Props = {
   eventId: number;
 };
 
 const FavButton = ({ eventId }: Props) => {
-  const { user, populateUser } = React.useContext(UserContext);
+  const { user, populateUser } = useUserContext();
+  const { changeStatus } = useStatusContext();
+  const { events } = useEventsContext();
 
   const [isFavorite, setIsFavorite] = React.useState(
     user?.favorite_ids?.includes(eventId)!
@@ -21,10 +26,18 @@ const FavButton = ({ eventId }: Props) => {
   }, [user?.favorite_ids?.length]);
 
   const handlePress = async () => {
+    // Schedule notification for new fav
+    if (!isFavorite) scheduleFavNotification(user?.id!, events!, eventId);
+    // Update button state
     setIsFavorite((fav) => !fav);
+    // Update user state
     const favorite_ids = await toggleFav(eventId, isFavorite);
-    const updatedUser = { ...user, favorite_ids } as UserProfile;
-    populateUser(updatedUser);
+    if (typeof favorite_ids === "string") {
+      changeStatus("error", favorite_ids);
+    } else {
+      const updatedUser = { ...user, favorite_ids } as UserProfile;
+      populateUser(updatedUser);
+    }
   };
 
   return (
@@ -42,7 +55,7 @@ const FavButton = ({ eventId }: Props) => {
       <Icon
         as={Ionicons}
         name={!isFavorite ? "heart-outline" : "heart"}
-        color={"primary.700"}
+        color={"primary.500"}
         size={7}
       />
     </Button>
